@@ -33,6 +33,7 @@
         "supportURL": "https://forums.lanik.us/viewforum.php?f=102"
         },
     "easylist-downloads.adblockplus.org/easylist.txt": {
+        "off": true,
         "title": "EasyList",
         "group": "ads",
         "homeURL": "https://easylist-downloads.adblockplus.org/easylist.txt",
@@ -74,6 +75,7 @@
         "supportURL": "https://forums.lanik.us/viewforum.php?f=96"
         },
     "easylist-downloads.adblockplus.org/easyprivacy.txt": {
+        "off": true,
         "title": "EasyPrivacy",
         "group": "privacy",
         "homeURL": "https://easylist-downloads.adblockplus.org/easyprivacy.txt",
@@ -205,12 +207,14 @@
         "supportURL": "http://www.malwaredomains.com/"
         },
     "mirror1.malwaredomains.com/files/justdomains": {
+        "off": true,
         "title": "Malware domains",
         "group": "malware",
         "homeURL": "http://malwaredomains.lehigh.edu/files/justdomains",
         "supportURL": "http://www.malwaredomains.com/"
         },
     "pgl.yoyo.org/as/serverlist": {
+        "off": true,
         "title": "Peter Lowe’s Ad server list",
         "group": "ads",
         "homeURL": "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext",
@@ -323,6 +327,7 @@
         "supportURL": "https://forums.lanik.us/"
         },
     "www.malwaredomainlist.com/hostslist/hosts.txt": {
+        "off": true,
         "title": "Malware Domain List",
         "group": "malware",
         "homeURL": "http://www.malwaredomainlist.com/hostslist/hosts.txt"

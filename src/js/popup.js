@@ -799,6 +799,9 @@ var getPopupData = function(tabId) {
         renderPopup();
         renderPopupLazy(); // low priority rendering
         hashFromPopupData(true);
+
+        uDom('#panes #rate button').on('click', updateVote);
+
         pollForContentChange();
     };
     messager.send({ what: 'getPopupData', tabId: tabId }, onDataReceived);
@@ -835,6 +838,24 @@ var onShowTooltip = function() {
 
 var onHideTooltip = function() {
     uDom.nodeFromId('tooltip').classList.remove('show');
+};
+
+var updateVote = function() {
+    var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/rate';
+    var xhr = new XMLHttpRequest();
+    var vote = this.dataset.vote === '+' ? 1 : -1;
+    var body = {
+        'url': this.parentElement.dataset.des,
+        'rating': vote
+    };
+
+    xhr.open('post', url, true);
+    xhr.timeout = 10000;
+    xhr.method = 'POST';
+    xhr.responseType = 'json';
+    xhr.onload = function() {};
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(body));
 };
 
 /******************************************************************************/

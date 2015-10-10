@@ -1,3 +1,5 @@
 *.bak
 *.pem
+*.sublime-project
+*.sublime-workspace
 /dist/build/

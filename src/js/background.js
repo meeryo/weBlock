@@ -52,7 +52,7 @@ var defaultExternalLists = [
 
 return {
     userSettings: {
-        advancedUserEnabled: false,
+        advancedUserEnabled: true,
         autoUpdate: true,
         collapseBlocked: true,
         colorBlindFriendly: false,

@@ -63,7 +63,7 @@ body, #panes {
     }
 
 #panes > div {
-    display: inline-block;
+    /*display: inline-block;*/
     position: relative;
     vertical-align: top;
     }
@@ -321,6 +321,9 @@ body.dirty #refresh:hover {
     font-size: 11.5px;
     text-align: center;
     }
+#firewallContainer > div > #rate {
+    display: block;
+}
 body.portrait #firewallContainer > div > span:nth-of-type(3),
 body.portrait #firewallContainer > div > span:nth-of-type(4) {
     font-size: 9px;
