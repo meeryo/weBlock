@@ -60,6 +60,7 @@ return {
         dynamicFilteringEnabled: true,
         experimentalEnabled: false,
         externalLists: defaultExternalLists,
+        filterThreshold: 50,
         firewallPaneMinimized: true,
         hyperlinkAuditingDisabled: true,
         parseAllABPHideFilters: true,
