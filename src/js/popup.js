@@ -781,6 +781,8 @@ var updateVote = function() {
 /******************************************************************************/
 
 var changeGlobalSlider = function(event) {
+    console.log(event.target.value);
+    document.getElementById('sliderValue').innerHTML = event.target.value;
     var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generateByPercentile';
     var body = {
         rating: event.currentTarget.value
@@ -792,14 +794,12 @@ var changeGlobalSlider = function(event) {
     xhr.onload = function() {
         var response = _getResponse(this);
         var filterUrl = response.list;
-
         messager.send({
             what: 'userSettings',
             name: 'externalLists',
             value: filterUrl
-        }, function() {
-            messager.send({ what: 'reloadAllFilters' });
         });
+        uDom('body').toggleClass('dirty', true);
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
@@ -844,7 +844,8 @@ var _getResponse = function(xhr) {
     uDom('#revertRules').on('click', revertFirewallRules);
     uDom('[data-i18n="popupAnyRulePrompt"]').on('click', toggleMinimize);
     document.getElementById('sliderInput').addEventListener('change', changeGlobalSlider);
-
+    document.getElementById('sliderInput').defaultValue = 50;
+    document.getElementById('sliderValue').innerHTML = 50;
     uDom('body').on('mouseenter', '[data-tip]', onShowTooltip)
                 .on('mouseleave', '[data-tip]', onHideTooltip);
 })();

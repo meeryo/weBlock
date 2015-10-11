@@ -476,3 +476,10 @@ body.dirty #refresh:hover {
 #firewallContainer.dirty ~ #rulesetTools > span:hover {
     color: black;
     }
+#sliderInput {
+    width: 100%;
+}
+#sliderValue {
+    width: 100%;
+    text-align: center;
+}
