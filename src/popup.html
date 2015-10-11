@@ -6,11 +6,16 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/common.css" type="text/css">
 <link rel="stylesheet" href="css/popup.css" type="text/css">
-<title>uBlock</title>
+<title>WeBlock</title>
 </head>
 
 <body>
 <a href="dashboard.html" target="_blank" id="gotoPrefs" title="popupTipDashboard"><span id="appname"> </span> <span id="version"> </span></a>
+<div id="slider" >
+    <label for="slider"> Slider</label>
+    <input type="range" id="sliderInput" min="0" value="0" max="100" step="1">
+</div>
+
 <div id="panes">
     <div>
         <p id="switch" data-i18n-tip="popupPowerSwitchInfo" data-tip-position="under"><span class="fa">&#xf011;</span></p>

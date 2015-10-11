@@ -79,7 +79,7 @@ var handleImportFilePicker = function() {
         if ( matches === null ) {
             return s;
         }
-        // 
+        //
         var out = [];
         var filterMatch;
         while ( matches !== null ) {
@@ -162,6 +162,7 @@ var revertChanges = function() {
     uDom.nodeFromId('userFilters').value = cachedUserFilters + '\n';
     userFiltersChanged();
 };
+
 
 /******************************************************************************/
 

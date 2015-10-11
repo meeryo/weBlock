@@ -860,6 +860,22 @@ var updateVote = function() {
 
 /******************************************************************************/
 
+var changeGlobalSlider = function(event) {
+    console.log(event.target.value);
+    var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generate/' + event.target.value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.timeout = 10000;
+    xhr.method = 'GET';
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+        console.log(xhr.reponsive.list);
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+};
+
+/*********************************************/
 // Popup DOM is assumed to be loaded at this point -- because this script
 // is loaded after everything else..
 
@@ -884,6 +900,7 @@ var updateVote = function() {
     uDom('#saveRules').on('click', saveFirewallRules);
     uDom('#revertRules').on('click', revertFirewallRules);
     uDom('[data-i18n="popupAnyRulePrompt"]').on('click', toggleMinimize);
+    document.getElementById('sliderInput').addEventListener('change', changeGlobalSlider);
 
     uDom('body').on('mouseenter', '[data-tip]', onShowTooltip)
                 .on('mouseleave', '[data-tip]', onHideTooltip);
