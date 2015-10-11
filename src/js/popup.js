@@ -779,19 +779,21 @@ var updateVote = function(event) {
     xhr.responseType = 'json';
     xhr.onload = function() {
         uDom(this).toggleClass('active');
+        messager.send({
+            what: 'userSettings',
+            name: 'filterThreshold'
+        }, function(threshold) {
+            _updateFilter(threshold);
+        });
     }.bind(this);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
 };
 
-/******************************************************************************/
-
-var changeGlobalSlider = function(event) {
-    vAPI.localStorage.setItem('sliderValue', event.target.value.toString());
-    document.getElementById('sliderValue').innerHTML = event.target.value;
+var _updateFilter = function(threshold, callback) {
     var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generateByPercentile';
     var body = {
-        rating: event.currentTarget.value
+        rating: threshold
     };
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -800,17 +802,42 @@ var changeGlobalSlider = function(event) {
     xhr.onload = function() {
         var response = _getResponse(this);
         var filterUrl = response.list;
+
         messager.send({
             what: 'userSettings',
             name: 'externalLists',
             value: filterUrl
         }, function() {
-          messager.send({ what: 'reloadAllFilters' });
+            messager.send({
+                what: 'reloadAllFilters'
+            });
         });
-        uDom('body').toggleClass('dirty', true);
+        if (!callback) {
+            return;
+        }
+        callback();
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
+};
+
+/******************************************************************************/
+
+var changeGlobalSlider = function(event) {
+    var sliderValue = event.currentTarget.value;
+    vAPI.localStorage.setItem('sliderValue', sliderValue.toString());
+    document.getElementById('sliderValue').innerHTML = sliderValue;
+
+    window._filterThreshold = sliderValue;
+    messager.send({
+        what: 'userSettings',
+        name: 'filterThreshold',
+        value: sliderValue
+    });
+
+    _updateFilter(sliderValue, function() {
+        uDom('body').toggleClass('dirty', true);
+    });
 };
 
 var _getResponse = function(xhr) {
