@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI */
-/* exported µBlock */
+/* exported weBlock */
 
 'use strict';
 
 /******************************************************************************/
 
-var µBlock = (function() {
+var weBlock = (function() {
 
 /******************************************************************************/
 
@@ -70,7 +70,7 @@ return {
         webrtcIPAddressHidden: false
     },
 
-    // https://github.com/chrisaljoudi/uBlock/issues/180
+    // https://github.com/chrisaljoudi/weBlock/issues/180
     // Whitelist directives need to be loaded once the PSL is available
     netWhitelist: {},
     netWhitelistModifyTime: 0,
@@ -107,7 +107,7 @@ return {
     // EasyList, EasyPrivacy and many others have an 4-day update period,
     // as per list headers.
     updateAssetsEvery: 97 * oneHour,
-    projectServerRoot: 'https://raw.githubusercontent.com/gorhill/uBlock/master/',
+    projectServerRoot: 'https://raw.githubusercontent.com/gorhill/weBlock/master/',
     userFiltersPath: 'assets/user/filters.txt',
     pslPath: 'assets/thirdparties/publicsuffix.org/list/effective_tld_names.dat',
 
@@ -117,24 +117,24 @@ return {
         'assets/user/filters.txt': {
             group: 'default'
         },
-        // uBlock
+        // weBlock
         'assets/ublock/filters.txt': {
-            title: 'uBlock filters',
+            title: 'weBlock filters',
             group: 'default'
         },
         'assets/ublock/privacy.txt': {
-            title: 'uBlock filters – Privacy',
+            title: 'weBlock filters – Privacy',
             group: 'default'
         },
         'assets/ublock/unbreak.txt': {
-            title: 'uBlock filters – Unbreak',
+            title: 'weBlock filters – Unbreak',
             group: 'default'
         },
         'assets/ublock/badware.txt': {
-            title: 'uBlock filters – Badware risks',
+            title: 'weBlock filters – Badware risks',
             group: 'default',
-            supportURL: 'https://github.com/gorhill/uBlock/wiki/Badware-risks',
-            instructionURL: 'https://github.com/gorhill/uBlock/wiki/Badware-risks'
+            supportURL: 'https://github.com/gorhill/weBlock/wiki/Badware-risks',
+            instructionURL: 'https://github.com/gorhill/weBlock/wiki/Badware-risks'
         }
     },
 

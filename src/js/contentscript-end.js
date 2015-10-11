@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI, HTMLDocument, XMLDocument */
@@ -31,9 +31,9 @@
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/464
+// https://github.com/chrisaljoudi/weBlock/issues/464
 if ( document instanceof HTMLDocument === false ) {
-    // https://github.com/chrisaljoudi/uBlock/issues/1528
+    // https://github.com/chrisaljoudi/weBlock/issues/1528
     // A XMLDocument can be a valid HTML document.
     if (
         document instanceof XMLDocument === false ||
@@ -54,13 +54,13 @@ if ( typeof vAPI !== 'object' ) {
     return;
 }
 
-// https://github.com/chrisaljoudi/uBlock/issues/587
+// https://github.com/chrisaljoudi/weBlock/issues/587
 // Pointless to execute without the start script having done its job.
 if ( !vAPI.contentscriptStartInjected ) {
     return;
 }
 
-// https://github.com/chrisaljoudi/uBlock/issues/456
+// https://github.com/chrisaljoudi/weBlock/issues/456
 // Already injected?
 if ( vAPI.contentscriptEndInjected ) {
     //console.debug('contentscript-end.js > content script already injected');
@@ -81,7 +81,7 @@ vAPI.shutdown.add(function() {
 /******************************************************************************/
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/789
+// https://github.com/chrisaljoudi/weBlock/issues/789
 // Be sure that specific cosmetic filters are still applied.
 // Executed once, then flushed from memory.
 
@@ -105,9 +105,9 @@ vAPI.shutdown.add(function() {
 /******************************************************************************/
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/7
+// https://github.com/chrisaljoudi/weBlock/issues/7
 
-var uBlockCollapser = (function() {
+var weBlockCollapser = (function() {
     var timer = null;
     var requestId = 1;
     var newRequests = [];
@@ -164,18 +164,18 @@ var uBlockCollapser = (function() {
             delete pendingRequests[request.id];
             pendingRequestCount -= 1;
 
-            // https://github.com/chrisaljoudi/uBlock/issues/869
+            // https://github.com/chrisaljoudi/weBlock/issues/869
             if ( !request.collapse ) {
                 continue;
             }
 
             target = entry.target;
 
-            // https://github.com/chrisaljoudi/uBlock/issues/399
+            // https://github.com/chrisaljoudi/weBlock/issues/399
             // Never remove elements from the DOM, just hide them
             target.style.setProperty('display', 'none', 'important');
 
-            // https://github.com/chrisaljoudi/uBlock/issues/1048
+            // https://github.com/chrisaljoudi/weBlock/issues/1048
             // Use attribute to construct CSS rule
             if ( (value = target.getAttribute(entry.attr)) ) {
                 selectors.push(entry.tagName + '[' + entry.attr + '="' + value + '"]');
@@ -228,7 +228,7 @@ var uBlockCollapser = (function() {
         if ( prop === undefined ) {
             return;
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/174
+        // https://github.com/chrisaljoudi/weBlock/issues/174
         // Do not remove fragment from src URL
         var src = target[prop];
         if ( typeof src !== 'string' || src.length === 0 ) {
@@ -262,7 +262,7 @@ var uBlockCollapser = (function() {
     };
 
     var addIFrame = function(iframe, dontObserve) {
-        // https://github.com/gorhill/uBlock/issues/162
+        // https://github.com/gorhill/weBlock/issues/162
         // Be prepared to deal with possible change of src attribute.
         if ( dontObserve !== true ) {
             iframeSourceObserver.observe(iframe, iframeSourceObserverOptions);
@@ -324,7 +324,7 @@ var uBlockCollapser = (function() {
 
     var retrieveGenericSelectors = function() {
         if ( lowGenericSelectors.length !== 0 || highGenerics === null ) {
-            //console.log('µBlock> ABP cosmetic filters: retrieving CSS rules using %d selectors', lowGenericSelectors.length);
+            //console.log('weBlock> ABP cosmetic filters: retrieving CSS rules using %d selectors', lowGenericSelectors.length);
             messager.send({
                     what: 'retrieveGenericCosmeticSelectors',
                     pageURL: window.location.href,
@@ -333,7 +333,7 @@ var uBlockCollapser = (function() {
                 },
                 retrieveHandler
             );
-            // https://github.com/chrisaljoudi/uBlock/issues/452
+            // https://github.com/chrisaljoudi/weBlock/issues/452
             retrieveHandler = nextRetrieveHandler;
         } else {
             nextRetrieveHandler(null);
@@ -341,13 +341,13 @@ var uBlockCollapser = (function() {
         lowGenericSelectors = [];
     };
 
-    // https://github.com/chrisaljoudi/uBlock/issues/452
+    // https://github.com/chrisaljoudi/weBlock/issues/452
     // This needs to be executed *after* the response from our query is
     // received, not at `DOMContentLoaded` time, or else there is a good
     // likeliness to outrun contentscript-start.js, which may still be waiting
     // on a response from its own query.
     var firstRetrieveHandler = function(response) {
-        // https://github.com/chrisaljoudi/uBlock/issues/158
+        // https://github.com/chrisaljoudi/weBlock/issues/158
         // Ensure injected styles are enforced
         // rhill 2014-11-16: not sure this is needed anymore. Test case in
         //  above issue was fine without the line below..
@@ -391,7 +391,7 @@ var uBlockCollapser = (function() {
         }
 
         //var tStart = timer.now();
-        //console.debug('µBlock> contextNodes = %o', contextNodes);
+        //console.debug('weBlock> contextNodes = %o', contextNodes);
         var result = response && response.result;
         var hideSelectors = [];
 
@@ -413,7 +413,7 @@ var uBlockCollapser = (function() {
             addStyleTag(hideSelectors);
         }
         contextNodes.length = 0;
-        //console.debug('%f: uBlock: CSS injection time', timer.now() - tStart);
+        //console.debug('%f: weBlock: CSS injection time', timer.now() - tStart);
     };
 
     var retrieveHandler = firstRetrieveHandler;
@@ -440,7 +440,7 @@ var uBlockCollapser = (function() {
             hostname: window.location.hostname,
             selectors: selectors
         });
-        //console.debug('µBlock> generic cosmetic filters: injecting %d CSS rules:', selectors.length, text);
+        //console.debug('weBlock> generic cosmetic filters: injecting %d CSS rules:', selectors.length, text);
     };
 
     var hideElements = (function() {
@@ -449,13 +449,13 @@ var uBlockCollapser = (function() {
         }
         if ( document.body.shadowRoot === undefined ) {
             return function(selectors) {
-                // https://github.com/chrisaljoudi/uBlock/issues/207
+                // https://github.com/chrisaljoudi/weBlock/issues/207
                 // Do not call querySelectorAll() using invalid CSS selectors
                 if ( selectors.length === 0 ) { return; }
                 var elems = document.querySelectorAll(selectors);
                 var i = elems.length;
                 if ( i === 0 ) { return; }
-                // https://github.com/chrisaljoudi/uBlock/issues/158
+                // https://github.com/chrisaljoudi/weBlock/issues/158
                 // Using CSSStyleDeclaration.setProperty is more reliable
                 while ( i-- ) {
                     elems[i].style.setProperty('display', 'none', 'important');
@@ -467,14 +467,14 @@ var uBlockCollapser = (function() {
             var elems = document.querySelectorAll(selectors);
             var i = elems.length;
             if ( i === 0 ) { return; }
-            // https://github.com/gorhill/uBlock/issues/435
+            // https://github.com/gorhill/weBlock/issues/435
             // Using shadow content so that we do not have to modify style
             // attribute.
             var sessionId = vAPI.sessionId;
             var elem, shadow;
             while ( i-- ) {
                 elem = elems[i];
-                // https://github.com/gorhill/uBlock/issues/762
+                // https://github.com/gorhill/weBlock/issues/762
                 // Always hide using inline style.
                 elem.style.setProperty('display', 'none', 'important');
                 // https://www.chromestatus.com/features/4668884095336448
@@ -482,7 +482,7 @@ var uBlockCollapser = (function() {
                 if ( elem.shadowRoot !== null ) {
                     continue;
                 }
-                // https://github.com/gorhill/uBlock/pull/555
+                // https://github.com/gorhill/weBlock/pull/555
                 // Not all nodes can be shadowed:
                 //   https://github.com/w3c/webcomponents/issues/102
                 try {
@@ -700,7 +700,7 @@ var uBlockCollapser = (function() {
     // Extract all classes: these will be passed to the cosmetic filtering
     // engine, and in return we will obtain only the relevant CSS selectors.
 
-    // https://github.com/gorhill/uBlock/issues/672
+    // https://github.com/gorhill/weBlock/issues/672
     // http://www.w3.org/TR/2014/REC-html5-20141028/infrastructure.html#space-separated-tokens
     // http://jsperf.com/enumerate-classes/6
 
@@ -751,7 +751,7 @@ var uBlockCollapser = (function() {
     classesFromNodeList(document.querySelectorAll('[class]'));
     retrieveGenericSelectors();
 
-    //console.debug('%f: uBlock: survey time', timer.now() - tStart);
+    //console.debug('%f: weBlock: survey time', timer.now() - tStart);
 
     // Below this point is the code which takes care to observe changes in
     // the page and to add if needed relevant CSS rules as a result of the
@@ -764,7 +764,7 @@ var uBlockCollapser = (function() {
         return;
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/618
+    // https://github.com/chrisaljoudi/weBlock/issues/618
     // Following is to observe dynamically added iframes:
     // - On Firefox, the iframes fails to fire a `load` event
 
@@ -777,7 +777,7 @@ var uBlockCollapser = (function() {
     // Added node lists will be cumulated here before being processed
     var addedNodeLists = [];
     var addedNodeListsTimer = null;
-    var collapser = uBlockCollapser;
+    var collapser = weBlockCollapser;
 
     var treeMutationObservedHandler = function() {
         var nodeList, iNode, node;
@@ -809,7 +809,7 @@ var uBlockCollapser = (function() {
         }
     };
 
-    // https://github.com/chrisaljoudi/uBlock/issues/205
+    // https://github.com/chrisaljoudi/weBlock/issues/205
     // Do not handle added node directly from within mutation observer.
     var treeMutationObservedHandlerAsync = function(mutations) {
         var iMutation = mutations.length;
@@ -859,8 +859,8 @@ var uBlockCollapser = (function() {
 (function() {
     var onResourceFailed = function(ev) {
         //console.debug('onResourceFailed(%o)', ev);
-        uBlockCollapser.add(ev.target);
-        uBlockCollapser.process();
+        weBlockCollapser.add(ev.target);
+        weBlockCollapser.process();
     };
     document.addEventListener('error', onResourceFailed, true);
 
@@ -873,12 +873,12 @@ var uBlockCollapser = (function() {
 /******************************************************************************/
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/7
+// https://github.com/chrisaljoudi/weBlock/issues/7
 
 // Executed only once
 
 (function() {
-    var collapser = uBlockCollapser;
+    var collapser = weBlockCollapser;
     var elems, i, elem;
 
     elems = document.querySelectorAll('embed, object');

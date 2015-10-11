@@ -3,11 +3,11 @@
 # This script assumes a linux environment
 
 if [ -z "$1" ]; then
-    echo "*** uBlock: invalid path."
+    echo "*** weBlock: invalid path."
     exit 1
 fi
 
-echo "*** uBlock: zeroing remote assets..."
+echo "*** weBlock: zeroing remote assets..."
 
 TARGETS=(
     "adblock.gardar.net/is.abp.txt"

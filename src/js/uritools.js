@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock, publicSuffixList */
+/* global weBlock, publicSuffixList */
 
 /*******************************************************************************
 
@@ -31,7 +31,7 @@ Naming convention from https://en.wikipedia.org/wiki/URI_scheme#Examples
 
 /******************************************************************************/
 
-µBlock.URI = (function() {
+weBlock.URI = (function() {
 
 'use strict';
 
@@ -163,7 +163,7 @@ URI.set = function(uri) {
     this.fragment = matches[5] !== undefined ? matches[5].slice(1) : '';
 
     // Assume very simple authority, i.e. just a hostname (highest likelihood
-    // case for µBlock)
+    // case for weBlock)
     if ( reHostFromNakedAuthority.test(this.authority) ) {
         this.hostname = this.authority;
         this.port = '';
@@ -258,7 +258,7 @@ URI.hostnameFromURI = function(uri) {
         return '';
     }
     var authority = matches[1].slice(2);
-    // Assume very simple authority (most common case for µBlock)
+    // Assume very simple authority (most common case for weBlock)
     if ( reHostFromNakedAuthority.test(authority) ) {
         return authority.toLowerCase();
     }
@@ -304,9 +304,9 @@ var psl = publicSuffixList;
 /******************************************************************************/
 
 // Trying to alleviate the worries of looking up too often the domain name from
-// a hostname. With a cache, uBlock benefits given that it deals with a
+// a hostname. With a cache, weBlock benefits given that it deals with a
 // specific set of hostnames within a narrow time span -- in other words, I
-// believe probability of cache hit are high in uBlock.
+// believe probability of cache hit are high in weBlock.
 
 var DomainCacheEntry = function(domain) {
     this.init(domain);
@@ -389,7 +389,7 @@ URI.domainFromURI = function(uri) {
 
 /******************************************************************************/
 
-// Normalize the way µBlock expects it
+// Normalize the way weBlock expects it
 
 URI.normalizedURI = function() {
     // Will be removed:

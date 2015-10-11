@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
-    Copyright (C) 2014 The µBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2014 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* jshint esnext: true, bitwise: false */
-/* global self, Components, punycode, µBlock */
+/* global self, Components, punycode, weBlock */
 
 // For background page
 
@@ -45,7 +45,7 @@ vAPI.thunderbird = Services.appinfo.ID === '{3550f703-e582-4d05-9a08-453d09bdfdc
 /******************************************************************************/
 
 vAPI.app = {
-    name: 'uBlock Origin',
+    name: 'weBlock',
     version: location.hash.slice(1)
 };
 
@@ -84,7 +84,7 @@ window.addEventListener('unload', function() {
 
     if ( cleanupTasks.length < expectedNumberOfCleanups ) {
         console.error(
-            'uBlock> Cleanup tasks performed: %s (out of %s)',
+            'weBlock> Cleanup tasks performed: %s (out of %s)',
             cleanupTasks.length,
             expectedNumberOfCleanups
         );
@@ -130,9 +130,9 @@ vAPI.browserSettings = {
         }
 
         var value = this.originalValues[key];
-        // https://github.com/gorhill/uBlock/issues/292#issuecomment-109621979
+        // https://github.com/gorhill/weBlock/issues/292#issuecomment-109621979
         // Forget the value immediately, it may change outside of
-        // uBlock control.
+        // weBlock control.
         delete this.originalValues[key];
 
         // Original value was a default one
@@ -203,7 +203,7 @@ vAPI.browserSettings = {
                 // Sigh.
                 this.rememberOriginalValue('network.http', 'speculative-parallel-limit');
                 value = !!details[setting];
-                // https://github.com/gorhill/uBlock/issues/292
+                // https://github.com/gorhill/weBlock/issues/292
                 // "true" means "do not disable", i.e. leave entry alone
                 if ( value === true ) {
                     this.clear('network', 'prefetch-next');
@@ -218,7 +218,7 @@ vAPI.browserSettings = {
                 this.rememberOriginalValue('browser', 'send_pings');
                 this.rememberOriginalValue('beacon', 'enabled');
                 value = !!details[setting];
-                // https://github.com/gorhill/uBlock/issues/292
+                // https://github.com/gorhill/weBlock/issues/292
                 // "true" means "do not disable", i.e. leave entry alone
                 if ( value === true ) {
                     this.clear('browser', 'send_pings');
@@ -863,7 +863,7 @@ vAPI.tabs.select = function(tab) {
         return;
     }
 
-    // https://github.com/gorhill/uBlock/issues/470
+    // https://github.com/gorhill/weBlock/issues/470
     var win = getOwnerWindow(tab);
     win.focus();
 
@@ -1010,7 +1010,7 @@ var tabWatcher = (function() {
 
     var currentBrowser = function() {
         var win = Services.wm.getMostRecentWindow(vAPI.tabs.mostRecentWindowId);
-        // https://github.com/gorhill/uBlock/issues/399
+        // https://github.com/gorhill/weBlock/issues/399
         // getTabBrowser() can return null at browser launch time.
         var tabBrowser = getTabBrowser(win);
         if ( tabBrowser === null ) {
@@ -1086,7 +1086,7 @@ var tabWatcher = (function() {
             vAPI.toolbarButton.attachToNewWindow(window);
         }
 
-        // https://github.com/gorhill/uBlock/issues/697
+        // https://github.com/gorhill/weBlock/issues/697
         // Ignore `TabShow` events: unfortunately the `pending` attribute is
         // not set when a tab is opened as a result of session restore -- it is
         // set *after* the event is fired in such case.
@@ -1139,7 +1139,7 @@ var tabWatcher = (function() {
             tabContainer.removeEventListener('TabSelect', onSelect);
         }
 
-        // https://github.com/gorhill/uBlock/issues/574
+        // https://github.com/gorhill/weBlock/issues/574
         // To keep in mind: not all windows are tab containers,
         // sometimes the window IS the tab.
         var tabs;
@@ -1468,7 +1468,7 @@ vAPI.messaging.onMessage = (function() {
         }
 
         // Auxiliary process to main process: no handler
-        console.error('uBlock> messaging > unknown request: %o', data);
+        console.error('weBlock> messaging > unknown request: %o', data);
 
         // Need to callback anyways in case caller expected an answer, or
         // else there is a memory leak on caller's side
@@ -1535,7 +1535,7 @@ vAPI.messaging.broadcast = function(message) {
 // Sometimes there is no way around synchronous messaging, as long as:
 // - the code at the other end execute fast and return quickly.
 // - it's not abused.
-// Original rationale is <https://github.com/gorhill/uBlock/issues/756>.
+// Original rationale is <https://github.com/gorhill/weBlock/issues/756>.
 // Synchronous messaging is a good solution for this case because:
 // - It's done only *once* per page load. (Keep in mind there is already a
 //   sync message sent for each single network request on a page and it's not
@@ -1652,7 +1652,7 @@ var httpObserver = {
             try {
                 this.componentRegistrar.unregisterFactory(this.classID, Components.manager.getClassObject(this.classID, Ci.nsIFactory));
             } catch (ex) {
-                console.error('uBlock> httpObserver > unable to unregister stale instance: ', ex);
+                console.error('weBlock> httpObserver > unable to unregister stale instance: ', ex);
             }
         }
 
@@ -1882,7 +1882,7 @@ var httpObserver = {
             return;
         }
 
-        // https://github.com/gorhill/uBlock/issues/654
+        // https://github.com/gorhill/weBlock/issues/654
         // Use the request type from the HTTP observer point of view.
         if ( rawtype !== 1 ) {
             pendingRequest.rawtype = rawtype;
@@ -1986,12 +1986,12 @@ vAPI.net.registerListeners = function() {
 
                 // Probably isn't the best method to identify the source tab.
 
-                // https://github.com/gorhill/uBlock/issues/450
+                // https://github.com/gorhill/weBlock/issues/450
                 // Skip entry if no valid URI available.
                 // Apparently URI can be undefined under some circumstances: I
                 // believe this may have to do with those very temporary
                 // browser objects created when opening a new tab, i.e. related
-                // to https://github.com/gorhill/uBlock/issues/212
+                // to https://github.com/gorhill/weBlock/issues/212
                 if ( !URI || URI.spec !== details.openerURL ) {
                     continue;
                 }
@@ -2033,7 +2033,7 @@ vAPI.net.registerListeners = function() {
     var locationChangedListener = function(e) {
         var browser = e.target;
 
-        // https://github.com/gorhill/uBlock/issues/697
+        // https://github.com/gorhill/weBlock/issues/697
         // Dismiss event if the associated tab is pending.
         var tab = tabWatcher.tabFromBrowser(browser);
         if ( !vAPI.fennec && tab && tab.hasAttribute('pending') ) {
@@ -2058,7 +2058,7 @@ vAPI.net.registerListeners = function() {
             return;
         }
 
-        // https://github.com/chrisaljoudi/uBlock/issues/105
+        // https://github.com/chrisaljoudi/weBlock/issues/105
         // Allow any kind of pages
         vAPI.tabs.onNavigation({
             frameId: 0,
@@ -2235,7 +2235,7 @@ vAPI.toolbarButton = {
             // Sanity check
             attempts = (attempts || 0) + 1;
             if ( attempts > 1/*000*/ ) {
-                console.error('uBlock0> resizePopupDelayed: giving up after too many attempts');
+                console.error('weBlock0> resizePopupDelayed: giving up after too many attempts');
                 return;
             }
 
@@ -2250,7 +2250,7 @@ vAPI.toolbarButton = {
             // https://github.com/gorhill/uMatrix/issues/362
             panel.parentNode.style.opacity = '1';
 
-            // https://github.com/chrisaljoudi/uBlock/issues/730
+            // https://github.com/chrisaljoudi/weBlock/issues/730
             // Voodoo programming: this recipe works
             var clientHeight = body.clientHeight;
             iframe.style.height = toPx(clientHeight);
@@ -2311,7 +2311,7 @@ vAPI.toolbarButton = {
     }
 
     tbb.codePath = 'legacy';
-    tbb.id = 'uBlock0-legacy-button';   // NOTE: must match legacy-toolbar-button.css
+    tbb.id = 'weBlock0-legacy-button';   // NOTE: must match legacy-toolbar-button.css
     tbb.viewId = tbb.id + '-panel';
 
     var sss = null;
@@ -2371,7 +2371,7 @@ vAPI.toolbarButton = {
             if ( toolbar === null ) {
                 return;
             }
-            // https://github.com/gorhill/uBlock/issues/264
+            // https://github.com/gorhill/weBlock/issues/264
             // Find a child customizable palette, if any.
             toolbar = toolbar.querySelector('.customization-target') || toolbar;
             toolbar.appendChild(toolbarButton);
@@ -2529,7 +2529,7 @@ vAPI.toolbarButton = {
     };
 
     tbb.onBeforePopupReady = function() {
-        // https://github.com/gorhill/uBlock/issues/83
+        // https://github.com/gorhill/weBlock/issues/83
         // Add `portrait` class if width is constrained.
         try {
             this.contentDocument.body.classList.toggle(
@@ -2722,7 +2722,7 @@ vAPI.toolbarButton = {
     };
 
     tbb.onBeforePopupReady = function() {
-        // https://github.com/gorhill/uBlock/issues/83
+        // https://github.com/gorhill/weBlock/issues/83
         // Add `portrait` class if width is constrained.
         try {
             this.contentDocument.body.classList.toggle(
@@ -2824,7 +2824,7 @@ vAPI.contextMenu.displayMenuItem = function({target}) {
     var menuitem = doc.getElementById(vAPI.contextMenu.menuItemId);
     var currentURI = gContextMenu.browser.currentURI;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/105
+    // https://github.com/chrisaljoudi/weBlock/issues/105
     // TODO: Should the element picker works on any kind of pages?
     if ( !currentURI.schemeIs('http') && !currentURI.schemeIs('https') ) {
         menuitem.hidden = true;
@@ -2991,7 +2991,7 @@ vAPI.contextMenu.remove = function() {
 /******************************************************************************/
 
 var optionsObserver = {
-    addonId: 'uBlock0@raymondhill.net',
+    addonId: 'weBlock0@raymondhill.net',
 
     register: function() {
         Services.obs.addObserver(this, 'addon-options-displayed', false);
@@ -3042,10 +3042,10 @@ vAPI.lastError = function() {
 // This is called only once, when everything has been loaded in memory after
 // the extension was launched. It can be used to inject content scripts
 // in already opened web pages, to remove whatever nuisance could make it to
-// the web pages before uBlock was ready.
+// the web pages before weBlock was ready.
 
 vAPI.onLoadAllCompleted = function() {
-    var µb = µBlock;
+    var µb = weBlock;
     var tabId;
     for ( var browser of tabWatcher.browsers() ) {
         tabId = tabWatcher.tabIdFromTarget(browser);
@@ -3084,7 +3084,7 @@ vAPI.cloud = (function() {
     var extensionBranchPath = 'extensions.' + location.host;
     var cloudBranchPath = extensionBranchPath + '.cloudStorage';
 
-    // https://github.com/gorhill/uBlock/issues/80#issuecomment-132081658
+    // https://github.com/gorhill/weBlock/issues/80#issuecomment-132081658
     //   We must use get/setComplexValue in order to properly handle strings
     //   with unicode characters.
     var iss = Ci.nsISupportsString;

@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock Origin - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI, HTMLDocument, XMLDocument */
@@ -30,9 +30,9 @@
 
 /******************************************************************************/
 
-// https://github.com/gorhill/uBlock/issues/464
+// https://github.com/gorhill/weBlock/issues/464
 if ( document instanceof HTMLDocument === false ) {
-    // https://github.com/chrisaljoudi/uBlock/issues/1528
+    // https://github.com/chrisaljoudi/weBlock/issues/1528
     // A XMLDocument can be a valid HTML document.
     if (
         document instanceof XMLDocument === false ||
@@ -257,7 +257,7 @@ var domLayout = (function() {
         if ( skipTagNames.hasOwnProperty(localName) ) {
             return null;
         }
-        // skip uBlock's own nodes
+        // skip weBlock's own nodes
         if ( node.classList.contains(sessionId) ) {
             return null;
         }
@@ -634,7 +634,7 @@ var cosmeticFilterFromNode = function(elem) {
 
     var selector = prefix + suffix.join('');
 
-    // https://github.com/chrisaljoudi/uBlock/issues/637
+    // https://github.com/chrisaljoudi/weBlock/issues/637
     // If the selector is still ambiguous at this point, further narrow using
     // `nth-of-type`. It is preferable to use `nth-of-type` as opposed to
     // `nth-child`, as `nth-of-type` is less volatile.
@@ -693,7 +693,7 @@ var cosmeticFilterFromTarget = function(nid, coarseSelector) {
 /******************************************************************************/
 
 var cosmeticFilterMapper = (function() {
-    // https://github.com/gorhill/uBlock/issues/546
+    // https://github.com/gorhill/weBlock/issues/546
     var matchesFnName;
     if ( typeof document.body.matches === 'function' ) {
         matchesFnName = 'matches';

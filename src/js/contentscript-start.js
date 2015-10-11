@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* jshint multistr: true */
@@ -34,9 +34,9 @@
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/464
+// https://github.com/chrisaljoudi/weBlock/issues/464
 if ( document instanceof HTMLDocument === false ) {
-    // https://github.com/chrisaljoudi/uBlock/issues/1528
+    // https://github.com/chrisaljoudi/weBlock/issues/1528
     // A XMLDocument can be a valid HTML document.
     if (
         document instanceof XMLDocument === false ||
@@ -52,7 +52,7 @@ if ( typeof vAPI !== 'object' ) {
     return;
 }
 
-// https://github.com/chrisaljoudi/uBlock/issues/456
+// https://github.com/chrisaljoudi/weBlock/issues/456
 // Already injected?
 if ( vAPI.contentscriptStartInjected ) {
     //console.debug('contentscript-start.js > content script already injected');
@@ -83,7 +83,7 @@ var cosmeticFilters = function(details) {
             donthideCosmeticFilters[donthide[i]] = true;
         }
     }
-    // https://github.com/chrisaljoudi/uBlock/issues/143
+    // https://github.com/chrisaljoudi/weBlock/issues/143
     if ( hide.length !== 0 ) {
         i = hide.length;
         var selector;
@@ -101,7 +101,7 @@ var cosmeticFilters = function(details) {
         var style = vAPI.specificHideStyle = document.createElement('style');
         // The linefeed before the style block is very important: do not remove!
         style.appendChild(document.createTextNode(text + '\n{display:none !important;}'));
-        //console.debug('µBlock> "%s" cosmetic filters: injecting %d CSS rules:', details.domain, details.hide.length, hideStyleText);
+        //console.debug('weBlock> "%s" cosmetic filters: injecting %d CSS rules:', details.domain, details.hide.length, hideStyleText);
         var parent = document.head || document.documentElement;
         if ( parent ) {
             parent.appendChild(style);
@@ -149,8 +149,8 @@ var filteringHandler = function(details) {
         localMessager.send({ what: 'cosmeticFiltersActivated' });
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/587
-    // If no filters were found, maybe the script was injected before uBlock's
+    // https://github.com/chrisaljoudi/weBlock/issues/587
+    // If no filters were found, maybe the script was injected before weBlock's
     // process was fully initialized. When this happens, pages won't be
     // cleaned right after browser launch.
     vAPI.contentscriptStartInjected = details && details.ready;
@@ -168,7 +168,7 @@ var hideElements = function(selectors) {
     if ( i === 0 ) {
         return;
     }
-    // https://github.com/chrisaljoudi/uBlock/issues/158
+    // https://github.com/chrisaljoudi/weBlock/issues/158
     // Using CSSStyleDeclaration.setProperty is more reliable
     if ( document.body.shadowRoot === undefined ) {
         while ( i-- ) {
@@ -176,14 +176,14 @@ var hideElements = function(selectors) {
         }
         return;
     }
-    // https://github.com/gorhill/uBlock/issues/435
+    // https://github.com/gorhill/weBlock/issues/435
     // Using shadow content so that we do not have to modify style
     // attribute.
     var sessionId = vAPI.sessionId;
     var elem, shadow;
     while ( i-- ) {
         elem = elems[i];
-        // https://github.com/gorhill/uBlock/issues/762
+        // https://github.com/gorhill/weBlock/issues/762
         // Always hide using inline style.
         elem.style.setProperty('display', 'none', 'important');
         // https://www.chromestatus.com/features/4668884095336448
@@ -191,7 +191,7 @@ var hideElements = function(selectors) {
         if ( elem.shadowRoot !== null ) {
             continue;
         }
-        // https://github.com/gorhill/uBlock/pull/555
+        // https://github.com/gorhill/weBlock/pull/555
         // Not all nodes can be shadowed:
         //   https://github.com/w3c/webcomponents/issues/102
         try {

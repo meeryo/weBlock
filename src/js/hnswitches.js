@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a Chromium browser extension to black/white list requests.
+    weBlock - a Chromium browser extension to black/white list requests.
     Copyright (C) 2015  Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global punycode, µBlock */
+/* global punycode, weBlock */
 /* jshint bitwise: false */
 
 /******************************************************************************/
 
-µBlock.HnSwitches = (function() {
+weBlock.HnSwitches = (function() {
 
 'use strict';
 
@@ -348,6 +348,6 @@ return HnSwitches;
 
 /******************************************************************************/
 
-µBlock.hnSwitches = new µBlock.HnSwitches();
+weBlock.hnSwitches = new weBlock.HnSwitches();
 
 /******************************************************************************/

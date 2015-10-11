@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI, HTMLDocument */
@@ -34,7 +34,7 @@
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/464
+// https://github.com/chrisaljoudi/weBlock/issues/464
 if ( document instanceof HTMLDocument === false ) {
     //console.debug('subscriber.js > not a HTLMDocument');
     return;
@@ -54,7 +54,7 @@ if ( typeof vAPI !== 'object' ) {
 
 if (
     document.querySelector('a[href^="abp:"]') === null &&
-    window.location.href !== 'https://github.com/gorhill/uBlock/wiki/Filter-lists-from-around-the-web'
+    window.location.href !== 'https://github.com/gorhill/weBlock/wiki/Filter-lists-from-around-the-web'
 ) {
     return;
 }
@@ -115,7 +115,7 @@ var onAbpLinkClicked = function(ev) {
         }
 
         // List already subscribed to?
-        // https://github.com/chrisaljoudi/uBlock/issues/1033
+        // https://github.com/chrisaljoudi/weBlock/issues/1033
         // Split on line separators, not whitespaces.
         var externalLists = details.externalLists.trim().split(/\s*[\n\r]+\s*/);
         if ( externalLists.indexOf(location) !== -1 ) {

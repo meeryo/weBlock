@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
-    Copyright (C) 2014 The µBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2014 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global self, µBlock */
+/* global self, weBlock */
 
 // For background page
 
@@ -67,10 +67,10 @@ vAPI.storage = chrome.storage.local;
 // https://developer.chrome.com/extensions/privacy#property-network
 
 // 2015-08-12: Wrapped Chrome API in try-catch statements. I had a fluke
-// event in which it appeared Chrome 46 decided to restart uBlock (for
+// event in which it appeared Chrome 46 decided to restart weBlock (for
 // unknown reasons) and again for unknown reasons the browser acted as if
-// uBlock did not declare the `privacy` permission in its manifest, putting
-// uBlock in a bad, non-functional state -- because call to `chrome.privacy`
+// weBlock did not declare the `privacy` permission in its manifest, putting
+// weBlock in a bad, non-functional state -- because call to `chrome.privacy`
 // API threw an exception.
 
 vAPI.browserSettings = {
@@ -526,8 +526,8 @@ vAPI.tabs.injectScript = function(tabId, details, callback) {
 
 // Must read: https://code.google.com/p/chromium/issues/detail?id=410868#c8
 
-// https://github.com/chrisaljoudi/uBlock/issues/19
-// https://github.com/chrisaljoudi/uBlock/issues/207
+// https://github.com/chrisaljoudi/weBlock/issues/19
+// https://github.com/chrisaljoudi/weBlock/issues/207
 // Since we may be called asynchronously, the tab id may not exist
 // anymore, so this ensures it does still exist.
 
@@ -601,7 +601,7 @@ vAPI.messaging.onPortMessage = (function() {
             delete toAuxPending[this.timerId];
             this.timerId = null;
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/383
+        // https://github.com/chrisaljoudi/weBlock/issues/383
         if ( messaging.ports.hasOwnProperty(this.port.name) ) {
             this.port.postMessage({
                 auxProcessId: this.request.auxProcessId,
@@ -719,7 +719,7 @@ vAPI.messaging.onPortMessage = (function() {
         }
 
         // Auxiliary process to main process: no handler
-        console.error('uBlock> messaging > unknown request: %o', request);
+        console.error('weBlock> messaging > unknown request: %o', request);
 
         // Need to callback anyways in case caller expected an answer, or
         // else there is a memory leak on caller's side
@@ -783,7 +783,7 @@ vAPI.net = {};
 /******************************************************************************/
 
 vAPI.net.registerListeners = function() {
-    var µb = µBlock;
+    var µb = weBlock;
     var µburi = µb.URI;
 
     var normalizeRequestDetails = function(details) {
@@ -800,7 +800,7 @@ vAPI.net.registerListeners = function() {
         var tail = µburi.path.slice(-6);
         var pos = tail.lastIndexOf('.');
 
-        // https://github.com/chrisaljoudi/uBlock/issues/862
+        // https://github.com/chrisaljoudi/weBlock/issues/862
         // If no transposition possible, transpose to `object` as per
         // Chromium bug 410382 (see below)
         if ( pos === -1 ) {
@@ -911,7 +911,7 @@ vAPI.net.registerListeners = function() {
             );
         }
 
-        // https://github.com/gorhill/uBlock/issues/675
+        // https://github.com/gorhill/weBlock/issues/675
         // Experimental: keep polling to be sure our listeners are still installed.
         //setTimeout(installListeners, 20000);
     }).bind(this);
@@ -948,7 +948,7 @@ vAPI.lastError = function() {
 // This is called only once, when everything has been loaded in memory after
 // the extension was launched. It can be used to inject content scripts
 // in already opened web pages, to remove whatever nuisance could make it to
-// the web pages before uBlock was ready.
+// the web pages before weBlock was ready.
 
 vAPI.onLoadAllCompleted = function() {
     // http://code.google.com/p/chromium/issues/detail?id=410868#c11
@@ -980,13 +980,13 @@ vAPI.onLoadAllCompleted = function() {
         }, function(){ scriptEnd(tabId); });
     };
     var bindToTabs = function(tabs) {
-        var µb = µBlock;
+        var µb = weBlock;
         var i = tabs.length, tab;
         while ( i-- ) {
             tab = tabs[i];
             µb.tabContextManager.commit(tab.id, tab.url);
             µb.bindTabToPageStats(tab.id);
-            // https://github.com/chrisaljoudi/uBlock/issues/129
+            // https://github.com/chrisaljoudi/weBlock/issues/129
             scriptStart(tab.id);
         }
     };

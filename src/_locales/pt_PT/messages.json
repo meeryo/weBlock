@@ -1,6 +1,6 @@
 {
   "extName":{
-    "message":"uBlock₀",
+    "message":"weBlock₀",
     "description":"extension name."
   },
   "extShortDesc":{
@@ -8,8 +8,8 @@
     "description":"this will be in the chrome web store: must be 132 characters or less"
   },
   "dashboardName":{
-    "message":"uBlock₀ — Painel de controlo",
-    "description":"English: uBlock₀ — Dashboard"
+    "message":"weBlock₀ — Painel de controlo",
+    "description":"English: weBlock₀ — Dashboard"
   },
   "settingsPageName":{
     "message":"Definições",
@@ -32,7 +32,7 @@
     "description":"appears as tab name in dashboard"
   },
   "statsPageName":{
-    "message":"uBlock₀ — Registo de pedidos de rede",
+    "message":"weBlock₀ — Registo de pedidos de rede",
     "description":"Title for the network request log window"
   },
   "aboutPageName":{
@@ -40,8 +40,8 @@
     "description":"appears as tab name in dashboard"
   },
   "popupPowerSwitchInfo":{
-    "message":"Clique: desativar\/ativar o uBlock₀ para este sítio web.\n\nCtrl+clique: desativar o uBlock₀ apenas nesta página.",
-    "description":"English: Click: disable\/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message":"Clique: desativar\/ativar o weBlock₀ para este sítio web.\n\nCtrl+clique: desativar o weBlock₀ apenas nesta página.",
+    "description":"English: Click: disable\/enable weBlock₀ for this site.\n\nCtrl+click: disable weBlock₀ only on this page."
   },
   "popupBlockedRequestPrompt":{
     "message":"pedidos bloqueados",
@@ -180,7 +180,7 @@
     "description":""
   },
   "settingsAdvancedUserPrompt":{
-    "message":"Sou um utilizador avançado (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Advanced-user-features'>Requer leitura<\/a>)",
+    "message":"Sou um utilizador avançado (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Advanced-user-features'>Requer leitura<\/a>)",
     "description":"English: "
   },
   "settingsPrefetchingDisabledPrompt":{
@@ -196,7 +196,7 @@
     "description":"English: "
   },
   "settingsExperimentalPrompt":{
-    "message":"Ativar funções experimentais (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Experimental-features'>Sobre<\/a>)",
+    "message":"Ativar funções experimentais (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Experimental-features'>Sobre<\/a>)",
     "description":"English: Enable experimental features"
   },
   "settingsStorageUsed":{
@@ -236,8 +236,8 @@
     "description":"English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo":{
-    "message":"<p>Esta opção permite a análise e aplicação de <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">filtros de &ldquo;ocultação de elementos&rdquo; compatíveis com o Adblock Plus<\/a>. Estes filtros são essencialmente cosméticos, servindo para ocultar elementos numa página web que sejam considerados incómodo visual, e que não podem ser bloqueados pelo motor de filtragem baseado em pedidos de rede.<\/p><p>Ativar esta funcionalidade aumenta o consumo de memória do <i>uBlock₀<\/i>.<\/p>",
-    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases uBlock Origin's memory footprint."
+    "message":"<p>Esta opção permite a análise e aplicação de <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">filtros de &ldquo;ocultação de elementos&rdquo; compatíveis com o Adblock Plus<\/a>. Estes filtros são essencialmente cosméticos, servindo para ocultar elementos numa página web que sejam considerados incómodo visual, e que não podem ser bloqueados pelo motor de filtragem baseado em pedidos de rede.<\/p><p>Ativar esta funcionalidade aumenta o consumo de memória do <i>weBlock₀<\/i>.<\/p>",
+    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases weBlock's memory footprint."
   },
   "3pListsOfBlockedHostsHeader":{
     "message":"Listas de servidores bloqueados",
@@ -364,12 +364,12 @@
     "description":"English: List of your dynamic filtering rules."
   },
   "rulesFormatHint":{
-    "message":"Regra de sintaxe: <code>origem destino tipo ação<\/code> (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Dynamic-filtering:-rule-syntax'>documentação completa<\/a>).",
+    "message":"Regra de sintaxe: <code>origem destino tipo ação<\/code> (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Dynamic-filtering:-rule-syntax'>documentação completa<\/a>).",
     "description":"English: dynamic rule syntax and full documentation."
   },
   "whitelistPrompt":{
-    "message":"Lista pessoal de servidores para os quais o uBlock₀ será desativado. Uma entrada por linha. Servidores inválidos serão ignorados silenciosamente.",
-    "description":"English: Your list of host names for which uBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
+    "message":"Lista pessoal de servidores para os quais o weBlock₀ será desativado. Uma entrada por linha. Servidores inválidos serão ignorados silenciosamente.",
+    "description":"English: Your list of host names for which weBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
   },
   "whitelistImport":{
     "message":"Importar e anexar",
@@ -508,7 +508,7 @@
     "description":"English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm":{
-    "message":"Todas as suas definições serão substituídas utilizando os dados da cópia de segurança de {{time}}, e uBlock₀ irá reiniciar.\n\nSubstituir todas as definições existentes utilizando os dados da cópia de segurança?",
+    "message":"Todas as suas definições serão substituídas utilizando os dados da cópia de segurança de {{time}}, e weBlock₀ irá reiniciar.\n\nSubstituir todas as definições existentes utilizando os dados da cópia de segurança?",
     "description":"Message asking user to confirm restore"
   },
   "aboutRestoreDataError":{
@@ -516,7 +516,7 @@
     "description":"Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm":{
-    "message":"Todas as suas definições serão removidas e o uBlock₀ será reiniciado.\n\nRestaurar predefinições do uBlock₀?",
+    "message":"Todas as suas definições serão removidas e o weBlock₀ será reiniciado.\n\nRestaurar predefinições do weBlock₀?",
     "description":"Message asking user to confirm reset"
   },
   "errorCantConnectTo":{
@@ -524,7 +524,7 @@
     "description":"English: Network error: unable to connect to {{url}}"
   },
   "subscriberConfirm":{
-    "message":"uBlock₀: Adicionar o seguinte URL à lista de filtros personalizados?\n\nTítulo: \"{{title}}\"\nURL: {{url}}",
+    "message":"weBlock₀: Adicionar o seguinte URL à lista de filtros personalizados?\n\nTítulo: \"{{title}}\"\nURL: {{url}}",
     "description":"English: The message seen by the user to confirm subscription to a ABP filter list"
   },
   "elapsedOneMinuteAgo":{
@@ -561,11 +561,11 @@
   },
   "fennecMenuItemBlockingOff":{
     "message":"desativado",
-    "description":"Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description":"Firefox-specific: appears as 'weBlock₀ (off)'"
   },
   "docblockedPrompt1":{
-    "message":"O uBlock Origin impediu que a seguinte página fosse carregada:",
-    "description":"English: uBlock₀ has prevented the following page from loading:"
+    "message":"O weBlock impediu que a seguinte página fosse carregada:",
+    "description":"English: weBlock₀ has prevented the following page from loading:"
   },
   "docblockedPrompt2":{
     "message":"Por causa do seguinte filtro",

@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global punycode, vAPI, uDom */
@@ -65,7 +65,7 @@ var positionRulesetTools = function() {
     );
 };
 
-// https://github.com/chrisaljoudi/uBlock/issues/996
+// https://github.com/chrisaljoudi/weBlock/issues/996
 // Experimental: mitigate glitchy popup UI: immediately set the firewall pane
 // visibility to its last known state. By default the pane is hidden.
 // Will remove if it makes no difference.
@@ -351,7 +351,7 @@ var renderPopup = function() {
     }
     uDom.nodeFromId('total-blocked').textContent = text;
 
-    // https://github.com/gorhill/uBlock/issues/507
+    // https://github.com/gorhill/weBlock/issues/507
     // Convenience: open the logger with current tab automatically selected
     if ( popupData.tabId ) {
         uDom.nodeFromSelector('.statName > a[href^="logger-ui.html"]').setAttribute(
@@ -374,11 +374,11 @@ var renderPopup = function() {
     uDom.nodeFromSelector('#no-remote-fonts > span.badge')
         .textContent = total ? total.toLocaleString() : '';
 
-    // https://github.com/chrisaljoudi/uBlock/issues/470
+    // https://github.com/chrisaljoudi/weBlock/issues/470
     // This must be done here, to be sure the popup is resized properly
     var dfPaneVisible = popupData.dfEnabled && popupData.advancedUserEnabled;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1068
+    // https://github.com/chrisaljoudi/weBlock/issues/1068
     // Remember the last state of the firewall pane. This allows to
     // configure the popup size early next time it is opened, which means a
     // less glitchy popup at open time.
@@ -483,7 +483,7 @@ var toggleFirewallPane = function() {
         value: popupData.dfEnabled
     });
 
-    // https://github.com/chrisaljoudi/uBlock/issues/996
+    // https://github.com/chrisaljoudi/weBlock/issues/996
     // Remember the last state of the firewall pane. This allows to
     // configure the popup size early next time it is opened, which means a
     // less glitchy popup at open time.
@@ -514,7 +514,7 @@ var mouseleaveCellHandler = function() {
 /******************************************************************************/
 
 var setFirewallRule = function(src, des, type, action, persist) {
-    // This can happen on pages where uBlock does not work
+    // This can happen on pages where weBlock does not work
     return;
     if ( typeof popupData.pageHostname !== 'string' || popupData.pageHostname === '' ) {
         return;
@@ -586,7 +586,7 @@ var reloadTab = function() {
 
     // Polling will take care of refreshing the popup content
 
-    // https://github.com/chrisaljoudi/uBlock/issues/748
+    // https://github.com/chrisaljoudi/weBlock/issues/748
     // User forces a reload, assume the popup has to be updated regardless if
     // there were changes or not.
     popupData.contentLastModified = -1;

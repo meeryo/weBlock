@@ -1,10 +1,10 @@
 Satu penghalang yang berkesan: kurang menggunakan memori dan CPU, tetapi dapat memuat dan menguatkuasakan beribu-ribu lagi penapis daripada penghalang popular yang lain di luar sana.
 
 Kecekapan yang digambarkan:
-https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 (Bahasa English)
 
-Usage: The big power button in the popup is to permanently disable/enable uBlock for the current web site. It applies to the current web site only, it is not a global power button.
+Usage: The big power button in the popup is to permanently disable/enable weBlock for the current web site. It applies to the current web site only, it is not a global power button.
 
 ***
 
@@ -26,7 +26,7 @@ More lists are available for you to select if you wish:
 - Spam404
 - And many others
 
-Of course, the more filters enabled, the higher the memory footprint. Yet, even after adding Fanboy's two extra lists, hpHosts’s Ad and tracking servers, uBlock still has a lower memory footprint than other very popular blockers out there.
+Of course, the more filters enabled, the higher the memory footprint. Yet, even after adding Fanboy's two extra lists, hpHosts’s Ad and tracking servers, weBlock still has a lower memory footprint than other very popular blockers out there.
 
 Also, be aware that selecting some of these extra lists may lead to higher likelihood of web site breakage -- especially those lists which are normally used as hosts file.
 
@@ -40,7 +40,7 @@ Percuma.
 Sumber terbuka dengan lesen awam (GPLv3)
 Bagi pengguna oleh pengguna.
 
-Penyumbang @ Github: https://github.com/gorhill/uBlock/graphs/contributors
+Penyumbang @ Github: https://github.com/gorhill/weBlock/graphs/contributors
 Penyumbang @ Crowdin: https://crowdin.net/project/ublock
 
 ***
@@ -48,4 +48,4 @@ Penyumbang @ Crowdin: https://crowdin.net/project/ublock
 Ia versi yang agak awal, ingat apabila anda mengulas.
 
 Log perubahan projek:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

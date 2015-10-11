@@ -1,8 +1,8 @@
 একটি দক্ষ প্রতিরোধক: মেমরি ও CPU-র পদচিহ্নের জন্য সহজ, এবং এখনো অন্যান্য জনপ্রিয় ব্লকার বা অবরোধকারীর থেকে হাজার হাজার অধিক ফিল্টারকে লোড এবং জোরদার করতে পারে।
 
-এটির কার্যকারিতার সচিত্র সংক্ষিপ্ত বিবরণ: https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+এটির কার্যকারিতার সচিত্র সংক্ষিপ্ত বিবরণ: https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
-ব্যবহার: পপআপে বড় পাওয়ার বোতাম স্থায়ীভাবে বর্তমান ওয়েব সাইটের জন্য uBlock সক্রিয়/নিষ্ক্রিয় করবে। এটা শুধুমাত্র বর্তমান ওয়েব সাইটে প্রযোজ্য, এটি একটি বৈশ্বিক পাওয়ার বোতাম নয়।
+ব্যবহার: পপআপে বড় পাওয়ার বোতাম স্থায়ীভাবে বর্তমান ওয়েব সাইটের জন্য weBlock সক্রিয়/নিষ্ক্রিয় করবে। এটা শুধুমাত্র বর্তমান ওয়েব সাইটে প্রযোজ্য, এটি একটি বৈশ্বিক পাওয়ার বোতাম নয়।
 
 ***
 
@@ -38,7 +38,7 @@
 পাবলিক লাইসেন্সসহ মুক্ত উৎসের (GPLv3)
 ব্যবহারকারীদের দ্বারা ব্যবহারকারীদের জন্য।
 
-অবদানকারীগণ @ Github: https://github.com/gorhill/uBlock/graphs/contributors
+অবদানকারীগণ @ Github: https://github.com/gorhill/weBlock/graphs/contributors
 অবদানকারীগণ @ Crowdin: https://crowdin.net/project/ublock
 
 ***
@@ -46,4 +46,4 @@
 এটি একটি প্রাথমিক সংস্করণ, আপনার পর্যালোচনার সময় তা মনে রাখুন।
 
 প্রকল্পের পরিবর্তন লগ:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

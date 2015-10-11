@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
-    Copyright (C) 2014 The µBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2014 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global ADDON_UNINSTALL, APP_SHUTDOWN */
@@ -63,10 +63,10 @@ function startup(data/*, reason*/) {
 
         let hiddenDoc = appShell.hiddenDOMWindow.document;
 
-        // https://github.com/gorhill/uBlock/issues/10
+        // https://github.com/gorhill/weBlock/issues/10
         // Fixed by github.com/AlexVallat:
-        //   https://github.com/chrisaljoudi/uBlock/issues/1149
-        //   https://github.com/AlexVallat/uBlock/commit/e762a29d308caa46578cdc34a9be92c4ad5ecdd0
+        //   https://github.com/chrisaljoudi/weBlock/issues/1149
+        //   https://github.com/AlexVallat/weBlock/commit/e762a29d308caa46578cdc34a9be92c4ad5ecdd0
         if ( hiddenDoc.readyState === 'loading' ) {
             hiddenDoc.addEventListener('DOMContentLoaded', onReady);
             return;
@@ -159,7 +159,7 @@ function uninstall(aData, aReason) {
     if ( aReason !== ADDON_UNINSTALL ) {
         return;
     }
-    // https://github.com/gorhill/uBlock/issues/84
+    // https://github.com/gorhill/weBlock/issues/84
     // "Add cleanup task to remove local storage settings when uninstalling"
     // To cleanup vAPI.localStorage in vapi-common.js
     // As I get more familiar with FF API, will find out whetehr there was

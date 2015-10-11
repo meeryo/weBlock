@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock */
+/* global weBlock */
 
 /******************************************************************************/
 /******************************************************************************/
 
-µBlock.logger = (function() {
+weBlock.logger = (function() {
 
 'use strict';
 
@@ -124,7 +124,7 @@ LogBuffer.prototype.writeOne = function(args) {
     // Grow the buffer between 1.5x-2x the current size
     if ( this.writePtr === this.readPtr ) {
         var toMove = this.buffer.slice(0, this.writePtr);
-        // https://github.com/gorhill/uBlock/issues/391
+        // https://github.com/gorhill/weBlock/issues/391
         // "The slice() method returns a shallow copy of a portion of an
         // "array into a new array object."
         // "shallow" => since we reuse entries, we need to remove the copied

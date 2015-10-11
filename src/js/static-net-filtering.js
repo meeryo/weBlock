@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,21 +16,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* jshint bitwise: false, esnext: true */
-/* global punycode, µBlock */
+/* global punycode, weBlock */
 
 /******************************************************************************/
 
-µBlock.staticNetFilteringEngine = (function(){
+weBlock.staticNetFilteringEngine = (function(){
 
 'use strict';
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 // fedcba9876543210
 // |      |   | |||
@@ -188,7 +188,7 @@ var alwaysTruePseudoRegex = {
 };
 
 var strToRegex = function(s, anchor, flags) {
-    // https://github.com/chrisaljoudi/uBlock/issues/1038
+    // https://github.com/chrisaljoudi/weBlock/issues/1038
     // Special case: always match.
     if ( s === '*' ) {
         return alwaysTruePseudoRegex;
@@ -205,7 +205,7 @@ var strToRegex = function(s, anchor, flags) {
         reStr += reStr + '$';
     }
 
-    //console.debug('µBlock.staticNetFilteringEngine: created RegExp("%s")', reStr);
+    //console.debug('weBlock.staticNetFilteringEngine: created RegExp("%s")', reStr);
     return new RegExp(reStr, flags);
 };
 
@@ -668,7 +668,7 @@ FilterPlainRightAnchoredHostname.fromSelfie = function(s) {
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/235
+// https://github.com/chrisaljoudi/weBlock/issues/235
 // The filter is left-anchored somewhere within the hostname part of the URL.
 
 var FilterPlainHnAnchored = function(s) {
@@ -706,7 +706,7 @@ FilterPlainHnAnchored.fromSelfie = function(s) {
 
 /******************************************************************************/
 
-// https://github.com/gorhill/uBlock/issues/142
+// https://github.com/gorhill/weBlock/issues/142
 
 var FilterPlainHnAnchoredHostname = function(s, domainOpt) {
     this.s = s;
@@ -962,12 +962,12 @@ FilterRegexHostname.fromSelfie = function(s) {
 
 // Dictionary of hostnames
 //
-// FilterHostnameDict is the main reason why uBlock is not equipped to keep
+// FilterHostnameDict is the main reason why weBlock is not equipped to keep
 // track of which filter comes from which list, and also why it's not equipped
 // to be able to disable a specific filter -- other than through using a
 // counter-filter.
 //
-// On the other hand it is also *one* of the reason uBlock's memory and CPU
+// On the other hand it is also *one* of the reason weBlock's memory and CPU
 // footprint is smaller. Compacting huge list of hostnames into single strings
 // saves a lot of memory compared to having one dictionary entry per hostname.
 
@@ -1406,7 +1406,7 @@ FilterParser.prototype.reset = function() {
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/589
+// https://github.com/chrisaljoudi/weBlock/issues/589
 // Be ready to handle multiple negated types
 
 FilterParser.prototype.parseOptType = function(raw, not) {
@@ -1552,11 +1552,11 @@ FilterParser.prototype.parse = function(raw) {
             var matches = this.reIsolateHostname.exec(s);
             if ( matches && matches.length === 3 ) {
                 s = punycode.toASCII(matches[1]) + matches[2];
-                //console.debug('µBlock.staticNetFilteringEngine/FilterParser.parse():', raw, '=', s);
+                //console.debug('weBlock.staticNetFilteringEngine/FilterParser.parse():', raw, '=', s);
             }
         }
 
-        // https://github.com/chrisaljoudi/uBlock/issues/1096
+        // https://github.com/chrisaljoudi/weBlock/issues/1096
         if ( s.charAt(0) === '^' ) {
             this.unsupported = true;
             return this;
@@ -1661,7 +1661,7 @@ FilterParser.prototype.makeToken = function() {
 
     var s = this.f;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1038
+    // https://github.com/chrisaljoudi/weBlock/issues/1038
     // Match any URL.
     if ( s === '*' ) {
         this.token = '*';
@@ -1902,7 +1902,7 @@ FilterContainer.prototype.compile = function(raw, out) {
     }
 
     // Pure hostnames, use more efficient liquid dict
-    // https://github.com/chrisaljoudi/uBlock/issues/665
+    // https://github.com/chrisaljoudi/weBlock/issues/665
     // Create a dict keyed on request type etc.
     if ( parsed.hostnamePure && this.compileHostnameOnlyFilter(parsed, out) ) {
         return true;
@@ -2233,7 +2233,7 @@ FilterContainer.prototype.tokenize = function(url) {
         tokenEntry.token = matches[0];
         i += 1;
 
-        // https://github.com/chrisaljoudi/uBlock/issues/1118
+        // https://github.com/chrisaljoudi/weBlock/issues/1118
         // Crazy case... but I guess we have to expect the worst...
         if ( i === 2048 ) {
             break;
@@ -2291,7 +2291,7 @@ FilterContainer.prototype.matchTokens = function(bucket, url) {
 
 // Specialized handlers
 
-// https://github.com/chrisaljoudi/uBlock/issues/116
+// https://github.com/chrisaljoudi/weBlock/issues/116
 // Some type of requests are exceptional, they need custom handling,
 // not the generic handling.
 
@@ -2318,7 +2318,7 @@ FilterContainer.prototype.matchStringExactType = function(context, requestURL, r
     var categories = this.categories;
     var key, bucket;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/139
+    // https://github.com/chrisaljoudi/weBlock/issues/139
     // Test against important block filters
     key = BlockAnyParty | Important | type;
     if ( (bucket = categories[toHex(key)]) ) {
@@ -2378,7 +2378,7 @@ FilterContainer.prototype.matchStringExactType = function(context, requestURL, r
 /******************************************************************************/
 
 FilterContainer.prototype.matchString = function(context) {
-    // https://github.com/chrisaljoudi/uBlock/issues/519
+    // https://github.com/chrisaljoudi/weBlock/issues/519
     // Use exact type match for anything beyond `other`
     // Also, be prepared to support unknown types
     var type = typeNameToTypeValue[context.requestType] || typeOtherValue;
@@ -2427,7 +2427,7 @@ FilterContainer.prototype.matchString = function(context) {
     var categories = this.categories;
     var key, bucket;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/139
+    // https://github.com/chrisaljoudi/weBlock/issues/139
     // Test against important block filters.
     // The purpose of the `important` option is to reverse the order of
     // evaluation. Normally, it is "evaluate block then evaluate allow", with

@@ -1,6 +1,6 @@
 {
   "extName":{
-    "message":"uBlock₀",
+    "message":"weBlock₀",
     "description":"extension name."
   },
   "extShortDesc":{
@@ -8,8 +8,8 @@
     "description":"this will be in the chrome web store: must be 132 characters or less"
   },
   "dashboardName":{
-    "message":"uBlock₀ — داشبورد",
-    "description":"English: uBlock₀ — Dashboard"
+    "message":"weBlock₀ — داشبورد",
+    "description":"English: weBlock₀ — Dashboard"
   },
   "settingsPageName":{
     "message":"تنظیمات",
@@ -32,7 +32,7 @@
     "description":"appears as tab name in dashboard"
   },
   "statsPageName":{
-    "message":"uBlock₀ — لاگ درخواست های شبکه",
+    "message":"weBlock₀ — لاگ درخواست های شبکه",
     "description":"Title for the network request log window"
   },
   "aboutPageName":{
@@ -40,8 +40,8 @@
     "description":"appears as tab name in dashboard"
   },
   "popupPowerSwitchInfo":{
-    "message":"کلیک: غیر فعال\/ فعال کردن uBlock₀ برای این سایت.\n\nکنترل+کلیک: غیر فعال کردن uBlock₀ فقط برای همین صفحه.",
-    "description":"English: Click: disable\/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message":"کلیک: غیر فعال\/ فعال کردن weBlock₀ برای این سایت.\n\nکنترل+کلیک: غیر فعال کردن weBlock₀ فقط برای همین صفحه.",
+    "description":"English: Click: disable\/enable weBlock₀ for this site.\n\nCtrl+click: disable weBlock₀ only on this page."
   },
   "popupBlockedRequestPrompt":{
     "message":"درخواست مسدود شده",
@@ -180,7 +180,7 @@
     "description":""
   },
   "settingsAdvancedUserPrompt":{
-    "message":"من کاربر حرفه ای هستم (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Advanced-user-features'>لازم است بخوانید<\/a>)",
+    "message":"من کاربر حرفه ای هستم (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Advanced-user-features'>لازم است بخوانید<\/a>)",
     "description":"English: "
   },
   "settingsPrefetchingDisabledPrompt":{
@@ -196,7 +196,7 @@
     "description":"English: "
   },
   "settingsExperimentalPrompt":{
-    "message":"فعال کردن ویژگی های آزمایشی (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Experimental-features'> درباره<\/a>)",
+    "message":"فعال کردن ویژگی های آزمایشی (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Experimental-features'> درباره<\/a>)",
     "description":"English: Enable experimental features"
   },
   "settingsStorageUsed":{
@@ -236,8 +236,8 @@
     "description":"English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo":{
-    "message":"<p>این گزینه <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-compatible &ldquo;element hiding&rdquo; filters<\/a> را  تجزیه و اجرا میکند. این فیلتر ها اساساً فنی هستند،  آنها اشیاء موجود در صفحه وب را که مزاحم تلقی میشوند و با موتور فیلترینگ شبکه قابل بلاک کردن نیستند را حذف میکنند.<\/p><p>فعال کردن این قابلیت مصرف حافظه ی  <i>uBlock<\/i>را افزایش میدهد.<\/p>",
-    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases uBlock Origin's memory footprint."
+    "message":"<p>این گزینه <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-compatible &ldquo;element hiding&rdquo; filters<\/a> را  تجزیه و اجرا میکند. این فیلتر ها اساساً فنی هستند،  آنها اشیاء موجود در صفحه وب را که مزاحم تلقی میشوند و با موتور فیلترینگ شبکه قابل بلاک کردن نیستند را حذف میکنند.<\/p><p>فعال کردن این قابلیت مصرف حافظه ی  <i>weBlock<\/i>را افزایش میدهد.<\/p>",
+    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases weBlock's memory footprint."
   },
   "3pListsOfBlockedHostsHeader":{
     "message":"فهرست میزبان های مسدود شده",
@@ -364,12 +364,12 @@
     "description":"English: List of your dynamic filtering rules."
   },
   "rulesFormatHint":{
-    "message":"نحوه استفاده: <code>source destination type action<\/code> (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Dynamic-filtering:-rule-syntax'>مستندات کامل<\/a>).",
+    "message":"نحوه استفاده: <code>source destination type action<\/code> (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Dynamic-filtering:-rule-syntax'>مستندات کامل<\/a>).",
     "description":"English: dynamic rule syntax and full documentation."
   },
   "whitelistPrompt":{
-    "message":"لیستی از هاست هایی که uBlock₀ در آنها غیرفعال خواهد شد. یک مطلب در هر خط. میزبان های نامعتبر در سکوت نادیده گرفته می شوند.",
-    "description":"English: Your list of host names for which uBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
+    "message":"لیستی از هاست هایی که weBlock₀ در آنها غیرفعال خواهد شد. یک مطلب در هر خط. میزبان های نامعتبر در سکوت نادیده گرفته می شوند.",
+    "description":"English: Your list of host names for which weBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
   },
   "whitelistImport":{
     "message":"وارد کردن و الحاق",
@@ -508,7 +508,7 @@
     "description":"English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm":{
-    "message":"تمام تنظیمات با استفاده از پشتیبان گیری در {{time}}،  رونویسی شده و uBlock₀ مجدد راه اندازی میشود.\n\nتمام تنظیمات موجود با استفاده از داده های پشتیبانی رونویسی شود؟",
+    "message":"تمام تنظیمات با استفاده از پشتیبان گیری در {{time}}،  رونویسی شده و weBlock₀ مجدد راه اندازی میشود.\n\nتمام تنظیمات موجود با استفاده از داده های پشتیبانی رونویسی شود؟",
     "description":"Message asking user to confirm restore"
   },
   "aboutRestoreDataError":{
@@ -516,7 +516,7 @@
     "description":"Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm":{
-    "message":"تمام تنظیمات شده حذف و uBlock دوباره راه اندازی خواهد شد.\n\nتنظیم مجدد uBlock به تنظیمات کارخانه؟",
+    "message":"تمام تنظیمات شده حذف و weBlock دوباره راه اندازی خواهد شد.\n\nتنظیم مجدد weBlock به تنظیمات کارخانه؟",
     "description":"Message asking user to confirm reset"
   },
   "errorCantConnectTo":{
@@ -524,7 +524,7 @@
     "description":"English: Network error: unable to connect to {{url}}"
   },
   "subscriberConfirm":{
-    "message":"uBlock: لینک زیر به لیست فیلتر ها اضافه شود؟\n\nعنوان: \"{{title}}\"\nآدرس: {{url}}",
+    "message":"weBlock: لینک زیر به لیست فیلتر ها اضافه شود؟\n\nعنوان: \"{{title}}\"\nآدرس: {{url}}",
     "description":"English: The message seen by the user to confirm subscription to a ABP filter list"
   },
   "elapsedOneMinuteAgo":{
@@ -561,11 +561,11 @@
   },
   "fennecMenuItemBlockingOff":{
     "message":"خاموش",
-    "description":"Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description":"Firefox-specific: appears as 'weBlock₀ (off)'"
   },
   "docblockedPrompt1":{
     "message":"ublock از بارگذاری این صفحات جلوگیری کرده:",
-    "description":"English: uBlock₀ has prevented the following page from loading:"
+    "description":"English: weBlock₀ has prevented the following page from loading:"
   },
   "docblockedPrompt2":{
     "message":"بخاطر فیلتر زیر",

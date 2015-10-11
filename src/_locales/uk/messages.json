@@ -1,6 +1,6 @@
 {
   "extName":{
-    "message":"uBlock₀",
+    "message":"weBlock₀",
     "description":"extension name."
   },
   "extShortDesc":{
@@ -8,8 +8,8 @@
     "description":"this will be in the chrome web store: must be 132 characters or less"
   },
   "dashboardName":{
-    "message":"µBlock — Панель керування",
-    "description":"English: uBlock₀ — Dashboard"
+    "message":"weBlock — Панель керування",
+    "description":"English: weBlock₀ — Dashboard"
   },
   "settingsPageName":{
     "message":"Налаштування",
@@ -32,7 +32,7 @@
     "description":"appears as tab name in dashboard"
   },
   "statsPageName":{
-    "message":"uBlock₀ — Журнал мережевих запитів",
+    "message":"weBlock₀ — Журнал мережевих запитів",
     "description":"Title for the network request log window"
   },
   "aboutPageName":{
@@ -40,8 +40,8 @@
     "description":"appears as tab name in dashboard"
   },
   "popupPowerSwitchInfo":{
-    "message":"Натиснення: вимикає\/умикає µBlock для поточного сайту.\n\nCtrl+натиснення: вимикає µBlock тільки для цієї сторінки.",
-    "description":"English: Click: disable\/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message":"Натиснення: вимикає\/умикає weBlock для поточного сайту.\n\nCtrl+натиснення: вимикає weBlock тільки для цієї сторінки.",
+    "description":"English: Click: disable\/enable weBlock₀ for this site.\n\nCtrl+click: disable weBlock₀ only on this page."
   },
   "popupBlockedRequestPrompt":{
     "message":"запитів заблоковано",
@@ -180,7 +180,7 @@
     "description":""
   },
   "settingsAdvancedUserPrompt":{
-    "message":"Я досвідчений користувач (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Advanced-user-features'>Обов’язково для прочитання<\/a>)",
+    "message":"Я досвідчений користувач (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Advanced-user-features'>Обов’язково для прочитання<\/a>)",
     "description":"English: "
   },
   "settingsPrefetchingDisabledPrompt":{
@@ -196,7 +196,7 @@
     "description":"English: "
   },
   "settingsExperimentalPrompt":{
-    "message":"Ввімкнути експериментальні функції (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Experimental-features'>Детальніше тут<\/a>)",
+    "message":"Ввімкнути експериментальні функції (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Experimental-features'>Детальніше тут<\/a>)",
     "description":"English: Enable experimental features"
   },
   "settingsStorageUsed":{
@@ -236,8 +236,8 @@
     "description":"English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo":{
-    "message":"<p>Ця опція вмикає аналіз та застосування <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-сумісних фільтрів &ldquo;приховання елементв&rdquo; <\/a>. По суті це косметичні фільтри – приховують елементи сторінки, які візуально дратують і не можуть бути блоковані механізмом фільтрації  мережевих запитів.<\/p><p>Увімкнення цієї функції збільшує споживання пам’яті <i>µBlock<\/i>'ом.<\/p>",
-    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases uBlock Origin's memory footprint."
+    "message":"<p>Ця опція вмикає аналіз та застосування <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-сумісних фільтрів &ldquo;приховання елементв&rdquo; <\/a>. По суті це косметичні фільтри – приховують елементи сторінки, які візуально дратують і не можуть бути блоковані механізмом фільтрації  мережевих запитів.<\/p><p>Увімкнення цієї функції збільшує споживання пам’яті <i>weBlock<\/i>'ом.<\/p>",
+    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases weBlock's memory footprint."
   },
   "3pListsOfBlockedHostsHeader":{
     "message":"Перелік заблокованих хостів",
@@ -364,12 +364,12 @@
     "description":"English: List of your dynamic filtering rules."
   },
   "rulesFormatHint":{
-    "message":"Синтаксис правил: <code>джерело призначення тип дія<\/code> (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Dynamic-filtering:-rule-syntax'>повна документація<\/a>).",
+    "message":"Синтаксис правил: <code>джерело призначення тип дія<\/code> (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Dynamic-filtering:-rule-syntax'>повна документація<\/a>).",
     "description":"English: dynamic rule syntax and full documentation."
   },
   "whitelistPrompt":{
-    "message":"Список тих доменів, для яких µBlock буде вимикатись. Один запис на рядок. Недопустимі назви будуть ігноруватись.",
-    "description":"English: Your list of host names for which uBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
+    "message":"Список тих доменів, для яких weBlock буде вимикатись. Один запис на рядок. Недопустимі назви будуть ігноруватись.",
+    "description":"English: Your list of host names for which weBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
   },
   "whitelistImport":{
     "message":"Імпортувати та додати",
@@ -508,7 +508,7 @@
     "description":"English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm":{
-    "message":"Всі ваші налаштування будуть перезаписані з резервної копії від {{time}} та µBlock буде перезапущено.\n\nПерезаписати всі налаштування використовуючи резервну копію?",
+    "message":"Всі ваші налаштування будуть перезаписані з резервної копії від {{time}} та weBlock буде перезапущено.\n\nПерезаписати всі налаштування використовуючи резервну копію?",
     "description":"Message asking user to confirm restore"
   },
   "aboutRestoreDataError":{
@@ -516,7 +516,7 @@
     "description":"Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm":{
-    "message":"Ваші налаштування буде видалено та µBlock буде перезапущено.\n\nПовернути µBlock до початкових налаштувань?",
+    "message":"Ваші налаштування буде видалено та weBlock буде перезапущено.\n\nПовернути weBlock до початкових налаштувань?",
     "description":"Message asking user to confirm reset"
   },
   "errorCantConnectTo":{
@@ -524,7 +524,7 @@
     "description":"English: Network error: unable to connect to {{url}}"
   },
   "subscriberConfirm":{
-    "message":"µBlock: Додати це посилання до списку ваших фільтрів?\n\nНазва: \"{{title}}\"\nПосилання: {{url}}",
+    "message":"weBlock: Додати це посилання до списку ваших фільтрів?\n\nНазва: \"{{title}}\"\nПосилання: {{url}}",
     "description":"English: The message seen by the user to confirm subscription to a ABP filter list"
   },
   "elapsedOneMinuteAgo":{
@@ -561,11 +561,11 @@
   },
   "fennecMenuItemBlockingOff":{
     "message":"Відключений",
-    "description":"Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description":"Firefox-specific: appears as 'weBlock₀ (off)'"
   },
   "docblockedPrompt1":{
-    "message":"uBlock запобіг завантаженню наступної сторінки:",
-    "description":"English: uBlock₀ has prevented the following page from loading:"
+    "message":"weBlock запобіг завантаженню наступної сторінки:",
+    "description":"English: weBlock₀ has prevented the following page from loading:"
   },
   "docblockedPrompt2":{
     "message":"Через наступний фільтр",

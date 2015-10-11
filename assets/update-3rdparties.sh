@@ -4,7 +4,7 @@
 
 TEMPFILE=/tmp/ublock-asset
 
-echo "*** uBlock: updating remote assets..."
+echo "*** weBlock: updating remote assets..."
 
 declare -A assets
 assets=(

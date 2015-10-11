@@ -1,6 +1,6 @@
 {
   "extName":{
-    "message":"uBlock₀",
+    "message":"weBlock₀",
     "description":"extension name."
   },
   "extShortDesc":{
@@ -8,8 +8,8 @@
     "description":"this will be in the chrome web store: must be 132 characters or less"
   },
   "dashboardName":{
-    "message":"uBlock₀ — Kontrollpanel",
-    "description":"English: uBlock₀ — Dashboard"
+    "message":"weBlock₀ — Kontrollpanel",
+    "description":"English: weBlock₀ — Dashboard"
   },
   "settingsPageName":{
     "message":"Inställningar",
@@ -32,7 +32,7 @@
     "description":"appears as tab name in dashboard"
   },
   "statsPageName":{
-    "message":"uBlock₀ — Logg för nätverksbegäranden",
+    "message":"weBlock₀ — Logg för nätverksbegäranden",
     "description":"Title for the network request log window"
   },
   "aboutPageName":{
@@ -40,8 +40,8 @@
     "description":"appears as tab name in dashboard"
   },
   "popupPowerSwitchInfo":{
-    "message":"Klick: avaktivera\/aktivera uBlock₀ för denna hemsida permanent.\n\nCtrl+klick: avaktivera uBlock₀ endast för denna sida.",
-    "description":"English: Click: disable\/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message":"Klick: avaktivera\/aktivera weBlock₀ för denna hemsida permanent.\n\nCtrl+klick: avaktivera weBlock₀ endast för denna sida.",
+    "description":"English: Click: disable\/enable weBlock₀ for this site.\n\nCtrl+click: disable weBlock₀ only on this page."
   },
   "popupBlockedRequestPrompt":{
     "message":"blockerade förfrågningar",
@@ -180,7 +180,7 @@
     "description":""
   },
   "settingsAdvancedUserPrompt":{
-    "message":"Jag är en avancerad användare (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Advanced-user-features'>obligatorisk läsning<\/a>)",
+    "message":"Jag är en avancerad användare (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Advanced-user-features'>obligatorisk läsning<\/a>)",
     "description":"English: "
   },
   "settingsPrefetchingDisabledPrompt":{
@@ -196,7 +196,7 @@
     "description":"English: "
   },
   "settingsExperimentalPrompt":{
-    "message":"Aktivera experimentella funktioner (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Experimental-features'>Om<\/a>)",
+    "message":"Aktivera experimentella funktioner (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Experimental-features'>Om<\/a>)",
     "description":"English: Enable experimental features"
   },
   "settingsStorageUsed":{
@@ -236,8 +236,8 @@
     "description":"English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo":{
-    "message":"<p>Det här alternativet aktiverar tolkning och applicering av <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-kompatibla &ldquo;elementdöljningsfilter&rdquo;<\/a>. Dessa filter är i huvudsak kosmetiska. De tjänar till att dölja element som anses vara till visuella besvär och som inte kan bli blockerade av den nätförfrågningsbaserade filtreringsmotorn.<\/p><p>Genom att aktivera denna funktion ökar uBlock₀s minnesanvändning.<\/p>",
-    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases uBlock Origin's memory footprint."
+    "message":"<p>Det här alternativet aktiverar tolkning och applicering av <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">Adblock Plus-kompatibla &ldquo;elementdöljningsfilter&rdquo;<\/a>. Dessa filter är i huvudsak kosmetiska. De tjänar till att dölja element som anses vara till visuella besvär och som inte kan bli blockerade av den nätförfrågningsbaserade filtreringsmotorn.<\/p><p>Genom att aktivera denna funktion ökar weBlock₀s minnesanvändning.<\/p>",
+    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases weBlock's memory footprint."
   },
   "3pListsOfBlockedHostsHeader":{
     "message":"Listor över blockerade värdar",
@@ -364,12 +364,12 @@
     "description":"English: List of your dynamic filtering rules."
   },
   "rulesFormatHint":{
-    "message":"Regelsyntax: <code>källa destination typ åtgärd<\/code> (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Dynamic-filtering:-rule-syntax'>full dokumentation<\/a>).",
+    "message":"Regelsyntax: <code>källa destination typ åtgärd<\/code> (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Dynamic-filtering:-rule-syntax'>full dokumentation<\/a>).",
     "description":"English: dynamic rule syntax and full documentation."
   },
   "whitelistPrompt":{
-    "message":"Din lista över vilka värdnamn där uBlock₀ har inaktiveras. En post per rad. Ogiltiga värdnamn kommer att ignoreras.",
-    "description":"English: Your list of host names for which uBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
+    "message":"Din lista över vilka värdnamn där weBlock₀ har inaktiveras. En post per rad. Ogiltiga värdnamn kommer att ignoreras.",
+    "description":"English: Your list of host names for which weBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
   },
   "whitelistImport":{
     "message":"Importera och lägg till",
@@ -508,7 +508,7 @@
     "description":"English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm":{
-    "message":"Alla dina inställningar kommer att skrivas över med data som har säkerhetskopierats {{time}} och uBlock₀ kommer att starta om.\n\nVill du skriva över befintliga inställningar med säkerhetskopierad data?",
+    "message":"Alla dina inställningar kommer att skrivas över med data som har säkerhetskopierats {{time}} och weBlock₀ kommer att starta om.\n\nVill du skriva över befintliga inställningar med säkerhetskopierad data?",
     "description":"Message asking user to confirm restore"
   },
   "aboutRestoreDataError":{
@@ -516,7 +516,7 @@
     "description":"Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm":{
-    "message":"Alla dina inställningar kommer att raderas, och uBlock₀ kommer att starta om.\n\nÅterställ uBlock₀ till fabriksinställningar?",
+    "message":"Alla dina inställningar kommer att raderas, och weBlock₀ kommer att starta om.\n\nÅterställ weBlock₀ till fabriksinställningar?",
     "description":"Message asking user to confirm reset"
   },
   "errorCantConnectTo":{
@@ -524,7 +524,7 @@
     "description":"English: Network error: unable to connect to {{url}}"
   },
   "subscriberConfirm":{
-    "message":"uBlock₀: Lägg till följande URL till din skräddarsydda filterlista?\n\nTitel: \"{{title}}\"\nURL: {{url}}",
+    "message":"weBlock₀: Lägg till följande URL till din skräddarsydda filterlista?\n\nTitel: \"{{title}}\"\nURL: {{url}}",
     "description":"English: The message seen by the user to confirm subscription to a ABP filter list"
   },
   "elapsedOneMinuteAgo":{
@@ -561,11 +561,11 @@
   },
   "fennecMenuItemBlockingOff":{
     "message":"av",
-    "description":"Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description":"Firefox-specific: appears as 'weBlock₀ (off)'"
   },
   "docblockedPrompt1":{
-    "message":"uBlock Origin har förhindrat följande sida från att ladda:",
-    "description":"English: uBlock₀ has prevented the following page from loading:"
+    "message":"weBlock har förhindrat följande sida från att ladda:",
+    "description":"English: weBlock₀ has prevented the following page from loading:"
   },
   "docblockedPrompt2":{
     "message":"P.g.a. följande filter",

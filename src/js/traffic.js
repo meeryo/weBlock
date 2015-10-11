@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,16 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock, vAPI */
+/* global weBlock, vAPI */
 
 /******************************************************************************/
 
 // Start isolation from global scope
 
-µBlock.webRequest = (function() {
+weBlock.webRequest = (function() {
 
 'use strict';
 
@@ -38,11 +38,11 @@ var exports = {};
 // Intercept and filter web requests.
 
 var onBeforeRequest = function(details) {
-    //console.debug('µBlock.webRequest/onBeforeRequest(): "%s": %o', details.url, details);
-    //console.debug('µBlock.webRequest/onBeforeRequest(): "type=%s, id=%d, parent id=%d, url=%s', details.type, details.frameId, details.parentFrameId, details.url);
+    //console.debug('weBlock.webRequest/onBeforeRequest(): "%s": %o', details.url, details);
+    //console.debug('weBlock.webRequest/onBeforeRequest(): "type=%s, id=%d, parent id=%d, url=%s', details.type, details.frameId, details.parentFrameId, details.url);
 
     // Special handling for root document.
-    // https://github.com/chrisaljoudi/uBlock/issues/1001
+    // https://github.com/chrisaljoudi/weBlock/issues/1001
     // This must be executed regardless of whether the request is
     // behind-the-scene
     var requestType = details.type;
@@ -57,7 +57,7 @@ var onBeforeRequest = function(details) {
     }
 
     // Lookup the page store associated with this tab id.
-    var µb = µBlock;
+    var µb = weBlock;
     var pageStore = µb.pageStoreFromTabId(tabId);
     if ( !pageStore ) {
         var tabContext = µb.tabContextManager.lookup(tabId);
@@ -68,7 +68,7 @@ var onBeforeRequest = function(details) {
         pageStore = µb.pageStoreFromTabId(tabId);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/886
+    // https://github.com/chrisaljoudi/weBlock/issues/886
     // For requests of type `sub_frame`, the parent frame id must be used
     // to lookup the proper context:
     // > If the document of a (sub-)frame is loaded (type is main_frame or
@@ -78,7 +78,7 @@ var onBeforeRequest = function(details) {
     var isFrame = requestType === 'sub_frame';
     var frameId = isFrame ? details.parentFrameId : details.frameId;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/114
+    // https://github.com/chrisaljoudi/weBlock/issues/114
     var requestContext = pageStore.createContextFromFrameId(frameId);
 
     // Setup context and evaluate
@@ -109,7 +109,7 @@ var onBeforeRequest = function(details) {
     if ( µb.isAllowResult(result) ) {
         //console.debug('traffic.js > onBeforeRequest(): ALLOW "%s" (%o) because "%s"', details.url, details, result);
 
-        // https://github.com/chrisaljoudi/uBlock/issues/114
+        // https://github.com/chrisaljoudi/weBlock/issues/114
         frameId = details.frameId;
         if ( frameId > 0 ) {
             if ( isFrame  ) {
@@ -125,13 +125,13 @@ var onBeforeRequest = function(details) {
     // Blocked
     //console.debug('traffic.js > onBeforeRequest(): BLOCK "%s" (%o) because "%s"', details.url, details, result);
 
-    // https://github.com/chrisaljoudi/uBlock/issues/905#issuecomment-76543649
+    // https://github.com/chrisaljoudi/weBlock/issues/905#issuecomment-76543649
     // No point updating the badge if it's not being displayed.
     if ( µb.userSettings.showIconBadge ) {
         µb.updateBadgeAsync(tabId);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/18
+    // https://github.com/chrisaljoudi/weBlock/issues/18
     // Do not use redirection, we need to block outright to be sure the request
     // will not be made. There can be no such guarantee with redirection.
 
@@ -143,12 +143,12 @@ var onBeforeRequest = function(details) {
 var onBeforeRootFrameRequest = function(details) {
     var tabId = details.tabId;
     var requestURL = details.url;
-    var µb = µBlock;
+    var µb = weBlock;
 
     µb.tabContextManager.push(tabId, requestURL);
 
     // Special handling for root document.
-    // https://github.com/chrisaljoudi/uBlock/issues/1001
+    // https://github.com/chrisaljoudi/weBlock/issues/1001
     // This must be executed regardless of whether the request is
     // behind-the-scene
     var requestHostname = details.hostname;
@@ -194,10 +194,10 @@ var onBeforeRootFrameRequest = function(details) {
     // Check for generic block
     if ( result === '' && snfe.matchString(context) !== undefined ) {
         result = snfe.toResultString(true);
-        // https://github.com/chrisaljoudi/uBlock/issues/1128
+        // https://github.com/chrisaljoudi/weBlock/issues/1128
         // Do not block if the match begins after the hostname, except when
         // the filter is specifically of type `other`.
-        // https://github.com/gorhill/uBlock/issues/490
+        // https://github.com/gorhill/weBlock/issues/490
         // Removing this for the time being, will need a new, dedicated type.
         if ( result.charAt(1) === 'b' ) {
             result = toBlockDocResult(requestURL, requestHostname, result);
@@ -247,7 +247,7 @@ var onBeforeRootFrameRequest = function(details) {
 
 var toBlockDocResult = function(url, hostname, result) {
     // Make a regex out of the result
-    var re = µBlock.staticNetFilteringEngine
+    var re = weBlock.staticNetFilteringEngine
                    .filterRegexFromCompiled(result.slice(3), 'gi');
     if ( re === null ) {
         return '';
@@ -257,8 +257,8 @@ var toBlockDocResult = function(url, hostname, result) {
         return '';
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1128
-    // https://github.com/chrisaljoudi/uBlock/issues/1212
+    // https://github.com/chrisaljoudi/weBlock/issues/1128
+    // https://github.com/chrisaljoudi/weBlock/issues/1212
     // Relax the rule: verify that the match is completely before the path part
     if ( re.lastIndex <= url.indexOf(hostname) + hostname.length + 1 ) {
         return result;
@@ -274,7 +274,7 @@ var toBlockDocResult = function(url, hostname, result) {
 var onBeforeBehindTheSceneRequest = function(details) {
     //console.debug('traffic.js > onBeforeBehindTheSceneRequest(): "%s": %o', details.url, details);
 
-    var µb = µBlock;
+    var µb = weBlock;
     var pageStore = µb.pageStoreFromTabId(vAPI.noTabId);
     if ( !pageStore ) {
         return;
@@ -344,7 +344,7 @@ var onHeadersReceived = function(details) {
     // If we reach this point, we are dealing with a sub_frame
 
     // Lookup the page store associated with this tab id.
-    var µb = µBlock;
+    var µb = weBlock;
     var pageStore = µb.pageStoreFromTabId(tabId);
     if ( !pageStore ) {
         return;
@@ -387,7 +387,7 @@ var onHeadersReceived = function(details) {
 
 var onRootFrameHeadersReceived = function(details) {
     var tabId = details.tabId;
-    var µb = µBlock;
+    var µb = weBlock;
 
     µb.tabContextManager.push(tabId, details.url);
 

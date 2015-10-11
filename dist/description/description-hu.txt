@@ -1,6 +1,6 @@
 Egy hatékony blokkoló: kíméletes a processzorral és a memóriával, mégis képes nagyságrendekkel több szűrő betöltésére és alkalmazására a többi népszerű blokkolóhoz viszonyítva.
 
-Áttekintés a hatékonyságáról: https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+Áttekintés a hatékonyságáról: https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
 Használat: A nagy bekapcsológomb a kiegészítő tiltására/engedélyezésére szolgál a jelenlegi webhelyen. A gomb kizárólag a jelenlegi webhelyre érvényes, nem egy globális kapcsoló.
 
@@ -24,7 +24,7 @@ Egyéb listák is kiválaszthatók a felhasználó igénye szerint:
 - Spam404
 - És sok más
 
-Természetesen, több szűrő használatával a memóriaigény is növekszik. Ennek ellenére Fanboy két extra listája és a hpHosts (reklám és követőszerverek) lista hozzáadásával a uBlock memóriafogyasztása még mindig alacsonyabb, mint a legnépszerűbb blokkolóké.
+Természetesen, több szűrő használatával a memóriaigény is növekszik. Ennek ellenére Fanboy két extra listája és a hpHosts (reklám és követőszerverek) lista hozzáadásával a weBlock memóriafogyasztása még mindig alacsonyabb, mint a legnépszerűbb blokkolóké.
 
 Emellett, néhány extra lista kiválasztásával megnövekszik az esély arra, hogy a webhelyek használhatatlanná válnak -- főleg azon listákról van szó, melyek normál esetben hosts fájlként használatosak.
 
@@ -38,7 +38,7 @@ Ingyenes.
 Nyílt forráskódú nyilvános licenccel (GPLv3)
 Felhasználóknak felhasználóktól.
 
-Közreműködők a Github-on: https://github.com/gorhill/uBlock/graphs/contributors
+Közreműködők a Github-on: https://github.com/gorhill/weBlock/graphs/contributors
 Közreműködők a Crowdin-en: https://crowdin.net/project/ublock
 
 ***
@@ -46,4 +46,4 @@ Közreműködők a Crowdin-en: https://crowdin.net/project/ublock
 Ez még egy elég korai verzió, amit illik szem előtt tartani értékeléskor.
 
 Változások listája:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

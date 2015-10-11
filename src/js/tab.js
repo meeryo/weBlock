@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global vAPI, µBlock */
+/* global vAPI, weBlock */
 
 /******************************************************************************/
 /******************************************************************************/
@@ -30,13 +30,13 @@
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 // https://github.com/gorhill/httpswitchboard/issues/303
 // Some kind of trick going on here:
 //   Any scheme other than 'http' and 'https' is remapped into a fake
-//   URL which trick the rest of µBlock into being able to process an
-//   otherwise unmanageable scheme. µBlock needs web page to have a proper
+//   URL which trick the rest of weBlock into being able to process an
+//   otherwise unmanageable scheme. weBlock needs web page to have a proper
 //   hostname to work properly, so just like the 'chromium-behind-the-scene'
 //   fake domain name, we map unknown schemes into a fake '{scheme}-scheme'
 //   hostname. This way, for a specific scheme you can create scope with
@@ -81,17 +81,17 @@ Also, other "anomalies" can occur:
 
 - a network request for a root document is fired without the corresponding
 tab being really assigned a new URL
-<https://github.com/chrisaljoudi/uBlock/issues/516>
+<https://github.com/chrisaljoudi/weBlock/issues/516>
 
 - a network request for a secondary resource is labeled with a tab id for
 which no root document was pulled for that tab.
-<https://github.com/chrisaljoudi/uBlock/issues/1001>
+<https://github.com/chrisaljoudi/weBlock/issues/1001>
 
 - a network request for a secondary resource is made without the root
 document to which it belongs being formally bound yet to the proper tab id,
 causing a bad scope to be used for filtering purpose.
-<https://github.com/chrisaljoudi/uBlock/issues/1205>
-<https://github.com/chrisaljoudi/uBlock/issues/1140>
+<https://github.com/chrisaljoudi/weBlock/issues/1205>
+<https://github.com/chrisaljoudi/weBlock/issues/1140>
 
 So the solution here is to keep a lightweight data structure which only
 purpose is to keep track as accurately as possible of which root document
@@ -109,18 +109,18 @@ The TabContext objects do not suffer this restriction, and as a result they
 offer the most reliable picture of which root document URL is really associated
 to which tab. Moreover, the TabObject can undo an association from a root
 document, and automatically re-associate with the next most recent. This takes
-care of <https://github.com/chrisaljoudi/uBlock/issues/516>.
+care of <https://github.com/chrisaljoudi/weBlock/issues/516>.
 
 The PageStore object no longer cache the various information about which
 root document it is currently bound. When it needs to find out, it will always
 defer to the TabContext object, which will provide the real answer. This takes
-case of <https://github.com/chrisaljoudi/uBlock/issues/1205>. In effect, the
+case of <https://github.com/chrisaljoudi/weBlock/issues/1205>. In effect, the
 master switch and dynamic filtering rules can be evaluated now properly even
 in the absence of a PageStore object, this was not the case before.
 
 Also, the TabContext object will try its best to find a good candidate root
 document URL for when none exists. This takes care of 
-<https://github.com/chrisaljoudi/uBlock/issues/1001>.
+<https://github.com/chrisaljoudi/weBlock/issues/1001>.
 
 The TabContext manager is self-contained, and it takes care to properly
 housekeep itself.
@@ -130,7 +130,7 @@ housekeep itself.
 µb.tabContextManager = (function() {
     var tabContexts = Object.create(null);
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1001
+    // https://github.com/chrisaljoudi/weBlock/issues/1001
     // This is to be used as last-resort fallback in case a tab is found to not
     // be bound while network requests are fired for the tab.
     var mostRecentRootDocURL = '';
@@ -186,7 +186,7 @@ housekeep itself.
         vAPI.tabs.get(this.tabId, this.onTab.bind(this));
     };
 
-    // https://github.com/gorhill/uBlock/issues/248
+    // https://github.com/gorhill/weBlock/issues/248
     // Stack entries have to be committed to stick. Non-committed stack
     // entries are removed after a set delay.
     TabContext.prototype.onCommit = function() {
@@ -201,7 +201,7 @@ housekeep itself.
                 break;
             }
         }
-        // https://github.com/gorhill/uBlock/issues/300
+        // https://github.com/gorhill/weBlock/issues/300
         // If no committed entry was found, fall back on the bottom-most one
         // as being the committed one by default.
         if ( i === -1 && this.stack.length !== 0 ) {
@@ -257,7 +257,7 @@ housekeep itself.
     };
 
     // Called when a former push is a false positive:
-    //   https://github.com/chrisaljoudi/uBlock/issues/516
+    //   https://github.com/chrisaljoudi/weBlock/issues/516
     TabContext.prototype.unpush = function(url) {
         if ( vAPI.isBehindTheSceneTabId(this.tabId) ) {
             return;
@@ -317,14 +317,14 @@ housekeep itself.
         if ( entry !== undefined ) {
             return entry;
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/1025
+        // https://github.com/chrisaljoudi/weBlock/issues/1025
         // Google Hangout popup opens without a root frame. So for now we will
         // just discard that best-guess root frame if it is too far in the
         // future, at which point it ceases to be a "best guess".
         if ( mostRecentRootDocURL !== '' && mostRecentRootDocURLTimestamp + 500 < Date.now() ) {
             mostRecentRootDocURL = '';
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/1001
+        // https://github.com/chrisaljoudi/weBlock/issues/1001
         // Not a behind-the-scene request, yet no page store found for the
         // tab id: we will thus bind the last-seen root document to the
         // unbound tab. It's a guess, but better than ending up filtering
@@ -411,7 +411,7 @@ vAPI.tabs.onNavigation = function(details) {
     var tabContext = µb.tabContextManager.commit(details.tabId, details.url);
     var pageStore = µb.bindTabToPageStats(details.tabId, 'afterNavigate');
 
-    // https://github.com/chrisaljoudi/uBlock/issues/630
+    // https://github.com/chrisaljoudi/weBlock/issues/630
     // The hostname of the bound document must always be present in the
     // mini-matrix. That's the best place I could find for the fix, all other
     // options had bad side-effects or complications.
@@ -451,7 +451,7 @@ vAPI.tabs.onClosed = function(tabId) {
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/297
+// https://github.com/chrisaljoudi/weBlock/issues/297
 
 vAPI.tabs.onPopup = function(details) {
     //console.debug('vAPI.tabs.onPopup: details = %o', details);
@@ -467,8 +467,8 @@ vAPI.tabs.onPopup = function(details) {
 
     var µburi = µb.URI;
 
-    // https://github.com/gorhill/uBlock/issues/341
-    // Allow popups if uBlock is turned off in opener's context.
+    // https://github.com/gorhill/weBlock/issues/341
+    // Allow popups if weBlock is turned off in opener's context.
     if ( µb.getNetFilteringSwitch(openerURL) === false ) {
         return;
     }
@@ -507,7 +507,7 @@ vAPI.tabs.onPopup = function(details) {
         result = 'ub:no-popups: ' + µb.hnSwitches.z + ' true';
     }
 
-    // https://github.com/gorhill/uBlock/issues/581
+    // https://github.com/gorhill/weBlock/issues/581
     //   Take into account popup-specific rules in dynamic URL filtering, OR
     //   generic allow rules.
     if ( result === '' ) {
@@ -520,7 +520,7 @@ vAPI.tabs.onPopup = function(details) {
         }
     }
 
-    // https://github.com/gorhill/uBlock/issues/581
+    // https://github.com/gorhill/weBlock/issues/581
     //   Take into account `allow` rules in dynamic filtering: `block` rules
     //   are ignored, as block rules are not meant to block specific types
     //   like `popup` (just like with static filters).
@@ -531,9 +531,9 @@ vAPI.tabs.onPopup = function(details) {
         }
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/323
-    // https://github.com/chrisaljoudi/uBlock/issues/1142
-    //   Don't block if uBlock is turned off in popup's context
+    // https://github.com/chrisaljoudi/weBlock/issues/323
+    // https://github.com/chrisaljoudi/weBlock/issues/1142
+    //   Don't block if weBlock is turned off in popup's context
     if (
         result === '' &&
         µb.getNetFilteringSwitch(targetURL) &&
@@ -542,7 +542,7 @@ vAPI.tabs.onPopup = function(details) {
         result = µb.staticNetFilteringEngine.toResultString(loggerEnabled);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/91
+    // https://github.com/chrisaljoudi/weBlock/issues/91
     var pageStore = µb.pageStoreFromTabId(details.openerTabId);
     if ( pageStore ) {
         pageStore.logRequest(context, result);
@@ -603,13 +603,13 @@ vAPI.tabs.registerListeners();
         return (this.pageStores[tabId] = this.PageStore.factory(tabId));
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/516
+    // https://github.com/chrisaljoudi/weBlock/issues/516
     // Never rebind behind-the-scene scope
     if ( vAPI.isBehindTheSceneTabId(tabId) ) {
         return pageStore;
     }
 
-    // https://github.com/gorhill/uBlock/issues/516
+    // https://github.com/gorhill/weBlock/issues/516
     // If context if 'beforeRequest', do not rebind, wait for confirmation.
     if ( context === 'beforeRequest' ) {
         return pageStore;
@@ -629,7 +629,7 @@ vAPI.tabs.registerListeners();
 /******************************************************************************/
 
 µb.unbindTabFromPageStats = function(tabId) {
-    //console.debug('µBlock> unbindTabFromPageStats(%d)', tabId);
+    //console.debug('weBlock> unbindTabFromPageStats(%d)', tabId);
     var pageStore = this.pageStores[tabId];
     if ( pageStore !== undefined ) {
         pageStore.dispose();
@@ -723,7 +723,7 @@ vAPI.tabs.registerListeners();
 /******************************************************************************/
 
 // Stale page store entries janitor
-// https://github.com/chrisaljoudi/uBlock/issues/455
+// https://github.com/chrisaljoudi/weBlock/issues/455
 
 var pageStoreJanitorPeriod = 15 * 60 * 1000;
 var pageStoreJanitorSampleAt = 0;

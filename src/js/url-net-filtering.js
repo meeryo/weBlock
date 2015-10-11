@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to black/white list requests.
+    weBlock - a browser extension to black/white list requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock */
+/* global weBlock */
 
 /******************************************************************************/
 
 // The purpose of log filtering is to create ad hoc filtering rules, to
 // diagnose and assist in the creation of custom filters.
 
-µBlock.URLNetFiltering = (function() {
+weBlock.URLNetFiltering = (function() {
 
 'use strict';
 
@@ -428,7 +428,7 @@ return URLNetFiltering;
 
 /******************************************************************************/
 
-µBlock.sessionURLFiltering = new µBlock.URLNetFiltering();
-µBlock.permanentURLFiltering = new µBlock.URLNetFiltering();
+weBlock.sessionURLFiltering = new weBlock.URLNetFiltering();
+weBlock.permanentURLFiltering = new weBlock.URLNetFiltering();
 
 /******************************************************************************/

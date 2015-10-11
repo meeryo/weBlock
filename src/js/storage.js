@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,21 +16,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global YaMD5, µBlock, vAPI, punycode, publicSuffixList */
+/* global YaMD5, weBlock, vAPI, punycode, publicSuffixList */
 
 'use strict';
 
 /******************************************************************************/
 
-µBlock.getBytesInUse = function(callback) {
+weBlock.getBytesInUse = function(callback) {
     if ( typeof callback !== 'function' ) {
         callback = this.noopFunc;
     }
     var getBytesInUseHandler = function(bytesInUse) {
-        µBlock.storageUsed = bytesInUse;
+        weBlock.storageUsed = bytesInUse;
         callback(bytesInUse);
     };
     vAPI.storage.getBytesInUse(null, getBytesInUseHandler);
@@ -38,7 +38,7 @@
 
 /******************************************************************************/
 
-µBlock.keyvalSetOne = function(key, val, callback) {
+weBlock.keyvalSetOne = function(key, val, callback) {
     var bin = {};
     bin[key] = val;
     vAPI.storage.set(bin, callback || this.noopFunc);
@@ -46,7 +46,7 @@
 
 /******************************************************************************/
 
-µBlock.saveLocalSettings = function(force) {
+weBlock.saveLocalSettings = function(force) {
     if ( force ) {
         this.localSettingsModifyTime = Date.now();
     }
@@ -61,41 +61,41 @@
 
 // Save local settings regularly. Not critical.
 
-µBlock.asyncJobs.add(
+weBlock.asyncJobs.add(
     'autoSaveLocalSettings',
     null,
-    µBlock.saveLocalSettings.bind(µBlock),
+    weBlock.saveLocalSettings.bind(weBlock),
     4 * 60 * 1000,
     true
 );
 
 /******************************************************************************/
 
-µBlock.saveUserSettings = function() {
+weBlock.saveUserSettings = function() {
     vAPI.storage.set(this.userSettings);
 };
 
 /******************************************************************************/
 
-µBlock.savePermanentFirewallRules = function() {
+weBlock.savePermanentFirewallRules = function() {
     this.keyvalSetOne('dynamicFilteringString', this.permanentFirewall.toString());
 };
 
 /******************************************************************************/
 
-µBlock.savePermanentURLFilteringRules = function() {
+weBlock.savePermanentURLFilteringRules = function() {
     this.keyvalSetOne('urlFilteringString', this.permanentURLFiltering.toString());
 };
 
 /******************************************************************************/
 
-µBlock.saveHostnameSwitches = function() {
+weBlock.saveHostnameSwitches = function() {
     this.keyvalSetOne('hostnameSwitchesString', this.hnSwitches.toString());
 };
 
 /******************************************************************************/
 
-µBlock.saveWhitelist = function() {
+weBlock.saveWhitelist = function() {
     this.keyvalSetOne('netWhitelist', this.stringFromWhitelist(this.netWhitelist));
     this.netWhitelistModifyTime = Date.now();
 };
@@ -103,9 +103,9 @@
 /******************************************************************************/
 
 // This will remove all unused filter list entries from
-// µBlock.remoteBlacklists`. This helps reduce the size of backup files.
+// weBlock.remoteBlacklists`. This helps reduce the size of backup files.
 
-µBlock.extractSelectedFilterLists = function(callback) {
+weBlock.extractSelectedFilterLists = function(callback) {
     var µb = this;
 
     var onBuiltinListsLoaded = function(details) {
@@ -124,8 +124,8 @@
                 continue;
             }
             entry = result[path];
-            // https://github.com/gorhill/uBlock/issues/277
-            // uBlock's filter lists are always enabled by default, so we
+            // https://github.com/gorhill/weBlock/issues/277
+            // weBlock's filter lists are always enabled by default, so we
             // have to include in backup only those which are turned off.
             if ( path.lastIndexOf('assets/ublock/', 0) === 0 ) {
                 if ( entry.off !== true ) {
@@ -144,7 +144,7 @@
         callback(result);
     };
 
-    // https://github.com/gorhill/uBlock/issues/63
+    // https://github.com/gorhill/weBlock/issues/63
     // Get built-in block lists: this will help us determine whether a
     // specific list must be included in the result.
     this.loadAndPatchStockFilterLists(onBuiltinListsLoaded);
@@ -152,19 +152,19 @@
 
 /******************************************************************************/
 
-µBlock.saveUserFilters = function(content, callback) {
+weBlock.saveUserFilters = function(content, callback) {
     this.assets.put(this.userFiltersPath, content, callback);
 };
 
 /******************************************************************************/
 
-µBlock.loadUserFilters = function(callback) {
+weBlock.loadUserFilters = function(callback) {
     return this.assets.get(this.userFiltersPath, callback);
 };
 
 /******************************************************************************/
 
-µBlock.appendUserFilters = function(filters) {
+weBlock.appendUserFilters = function(filters) {
     if ( filters.length === 0 ) {
         return;
     }
@@ -192,7 +192,7 @@
         if ( details.error ) {
             return;
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/976
+        // https://github.com/chrisaljoudi/weBlock/issues/976
         // If we reached this point, the filter quite probably needs to be
         // added for sure: do not try to be too smart, trying to avoid
         // duplicates at this point may lead to more issues.
@@ -204,12 +204,12 @@
 
 /******************************************************************************/
 
-µBlock.getAvailableLists = function(callback) {
+weBlock.getAvailableLists = function(callback) {
     var availableLists = {};
     var relocationMap = {};
 
     var fixLocation = function(location) {
-        // https://github.com/chrisaljoudi/uBlock/issues/418
+        // https://github.com/chrisaljoudi/weBlock/issues/418
         // We now support built-in external filter lists
         if ( /^https?:/.test(location) === false ) {
             location = 'assets/thirdparties/' + location;
@@ -219,7 +219,7 @@
 
     // selected lists
     var onSelectedListsLoaded = function(store) {
-        var µb = µBlock;
+        var µb = weBlock;
         var lists = store.remoteBlacklists;
         var locations = Object.keys(lists);
         var location, availableEntry, storedEntry;
@@ -253,7 +253,7 @@
             }
             // This may happen if the list name was pulled from the list
             // content.
-            // https://github.com/chrisaljoudi/uBlock/issues/982
+            // https://github.com/chrisaljoudi/weBlock/issues/982
             // There is no guarantee the title was successfully extracted from
             // the list content.
             if ( availableEntry.title === '' &&
@@ -332,18 +332,18 @@
 
 /******************************************************************************/
 
-µBlock.createShortUniqueId = function(path) {
+weBlock.createShortUniqueId = function(path) {
     var md5 = YaMD5.hashStr(path);
     return md5.slice(0, 4) + md5.slice(-4);
 };
 
-µBlock.createShortUniqueId.idLength = 8;
+weBlock.createShortUniqueId.idLength = 8;
 
 /******************************************************************************/
 
-µBlock.loadFilterLists = function(callback) {
+weBlock.loadFilterLists = function(callback) {
 
-    //quickProfiler.start('µBlock.loadFilterLists()');
+    //quickProfiler.start('weBlock.loadFilterLists()');
 
     var µb = this;
     var filterlistsCount = 0;
@@ -432,13 +432,13 @@
 
 /******************************************************************************/
 
-µBlock.getCompiledFilterListPath = function(path) {
+weBlock.getCompiledFilterListPath = function(path) {
     return 'cache://compiled-filter-list:' + this.createShortUniqueId(path);
 };
 
 /******************************************************************************/
 
-µBlock.getCompiledFilterList = function(path, callback) {
+weBlock.getCompiledFilterList = function(path, callback) {
     var compiledPath = this.getCompiledFilterListPath(path);
     var µb = this;
 
@@ -448,7 +448,7 @@
             return;
         }
         var listMeta = µb.remoteBlacklists[path];
-        // https://github.com/gorhill/uBlock/issues/313
+        // https://github.com/gorhill/weBlock/issues/313
         // Always try to fetch the name if this is an external filter list.
         if ( listMeta && listMeta.title === '' || /^https?:/.test(path) ) {
             var matches = details.content.slice(0, 1024).match(/(?:^|\n)!\s*Title:([^\n]+)/i);
@@ -457,7 +457,7 @@
             }
         }
 
-        //console.debug('µBlock.getCompiledFilterList/onRawListLoaded: compiling "%s"', path);
+        //console.debug('weBlock.getCompiledFilterList/onRawListLoaded: compiling "%s"', path);
         details.content = µb.compileFilters(details.content);
         µb.assets.put(compiledPath, details.content);
         callback(details);
@@ -465,11 +465,11 @@
 
     var onCompiledListLoaded = function(details) {
         if ( details.content === '' ) {
-            //console.debug('µBlock.getCompiledFilterList/onCompiledListLoaded: no compiled version for "%s"', path);
+            //console.debug('weBlock.getCompiledFilterList/onCompiledListLoaded: no compiled version for "%s"', path);
             µb.assets.get(path, onRawListLoaded);
             return;
         }
-        //console.debug('µBlock.getCompiledFilterList/onCompiledListLoaded: using compiled version for "%s"', path);
+        //console.debug('weBlock.getCompiledFilterList/onCompiledListLoaded: using compiled version for "%s"', path);
         details.path = path;
         callback(details);
     };
@@ -479,20 +479,20 @@
 
 /******************************************************************************/
 
-µBlock.purgeCompiledFilterList = function(path) {
+weBlock.purgeCompiledFilterList = function(path) {
     this.assets.purge(this.getCompiledFilterListPath(path));
 };
 
 /******************************************************************************/
 
-µBlock.purgeFilterList = function(path) {
+weBlock.purgeFilterList = function(path) {
     this.purgeCompiledFilterList(path);
     this.assets.purge(path);
 };
 
 /******************************************************************************/
 
-µBlock.compileFilters = function(rawText) {
+weBlock.compileFilters = function(rawText) {
     var rawEnd = rawText.length;
     var compiledFilters = [];
 
@@ -585,7 +585,7 @@
 
 /******************************************************************************/
 
-µBlock.applyCompiledFilters = function(rawText) {
+weBlock.applyCompiledFilters = function(rawText) {
     var skipCosmetic = !this.userSettings.parseAllABPHideFilters;
     var staticNetFilteringEngine = this.staticNetFilteringEngine;
     var cosmeticFilteringEngine = this.cosmeticFilteringEngine;
@@ -601,7 +601,7 @@
 
 // `switches` contains the filter lists for which the switch must be revisited.
 
-µBlock.selectFilterLists = function(switches) {
+weBlock.selectFilterLists = function(switches) {
     switches = switches || {};
 
     // Only the lists referenced by the switches are touched.
@@ -631,7 +631,7 @@
 
 // Plain reload of all filters.
 
-µBlock.reloadAllFilters = function() {
+weBlock.reloadAllFilters = function() {
     var µb = this;
 
     // We are just reloading the filter lists: we do not want assets to update.
@@ -646,7 +646,7 @@
 
 /******************************************************************************/
 
-µBlock.loadPublicSuffixList = function(callback) {
+weBlock.loadPublicSuffixList = function(callback) {
     var µb = this;
     var path = µb.pslPath;
     var compiledPath = 'cache://compiled-publicsuffixlist';
@@ -656,7 +656,7 @@
     }
     var onRawListLoaded = function(details) {
         if ( details.content !== '' ) {
-            //console.debug('µBlock.loadPublicSuffixList/onRawListLoaded: compiling "%s"', path);
+            //console.debug('weBlock.loadPublicSuffixList/onRawListLoaded: compiling "%s"', path);
             publicSuffixList.parse(details.content, punycode.toASCII);
             µb.assets.put(compiledPath, JSON.stringify(publicSuffixList.toSelfie()));
         }
@@ -665,11 +665,11 @@
 
     var onCompiledListLoaded = function(details) {
         if ( details.content === '' ) {
-            //console.debug('µBlock.loadPublicSuffixList/onCompiledListLoaded: no compiled version for "%s"', path);
+            //console.debug('weBlock.loadPublicSuffixList/onCompiledListLoaded: no compiled version for "%s"', path);
             µb.assets.get(path, onRawListLoaded);
             return;
         }
-        //console.debug('µBlock.loadPublicSuffixList/onCompiledListLoaded: using compiled version for "%s"', path);
+        //console.debug('weBlock.loadPublicSuffixList/onCompiledListLoaded: using compiled version for "%s"', path);
         publicSuffixList.fromSelfie(JSON.parse(details.content));
         callback();
     };
@@ -679,7 +679,7 @@
 
 /******************************************************************************/
 
-µBlock.toSelfie = function() {
+weBlock.toSelfie = function() {
     var selfie = {
         magic: this.systemSettings.selfieMagic,
         publicSuffixList: publicSuffixList.toSelfie(),
@@ -688,14 +688,14 @@
         cosmeticFilteringEngine: this.cosmeticFilteringEngine.toSelfie()
     };
     vAPI.storage.set({ selfie: selfie });
-    //console.debug('storage.js > µBlock.toSelfie()');
+    //console.debug('storage.js > weBlock.toSelfie()');
 };
 
 // This is to be sure the selfie is generated in a sane manner: the selfie will
 // be generated if the user doesn't change his filter lists selection for
 // some set time.
 
-µBlock.toSelfieAsync = function(after) {
+weBlock.toSelfieAsync = function(after) {
     if ( typeof after !== 'number' ) {
         after = this.selfieAfter;
     }
@@ -710,22 +710,22 @@
 
 /******************************************************************************/
 
-µBlock.destroySelfie = function() {
+weBlock.destroySelfie = function() {
     vAPI.storage.remove('selfie');
     this.asyncJobs.remove('toSelfie');
-    //console.debug('µBlock.destroySelfie()');
+    //console.debug('weBlock.destroySelfie()');
 };
 
 /******************************************************************************/
 
-// https://github.com/gorhill/uBlock/issues/531
+// https://github.com/gorhill/weBlock/issues/531
 // Overwrite user settings with admin settings if present.
 //
-// Admin settings match layout of a uBlock backup. Not all data is
+// Admin settings match layout of a weBlock backup. Not all data is
 // necessarily present, i.e. administrators may removed entries which
 // values are left to the user's choice.
 
-µBlock.restoreAdminSettings = function() {
+weBlock.restoreAdminSettings = function() {
     var data = null;
     var json = vAPI.localStorage.getItem('adminSettings');
     if ( typeof json === 'string' && json !== '' ) {
@@ -792,7 +792,7 @@
 
 /******************************************************************************/
 
-µBlock.updateStartHandler = function(callback) {
+weBlock.updateStartHandler = function(callback) {
     var µb = this;
     var onListsReady = function(lists) {
         var assets = {};
@@ -815,7 +815,7 @@
 
 /******************************************************************************/
 
-µBlock.assetUpdatedHandler = function(details) {
+weBlock.assetUpdatedHandler = function(details) {
     var path = details.path || '';
     if ( this.remoteBlacklists.hasOwnProperty(path) === false ) {
         return;
@@ -825,7 +825,7 @@
         return;
     }
     // Compile the list while we have the raw version in memory
-    //console.debug('µBlock.getCompiledFilterList/onRawListLoaded: compiling "%s"', path);
+    //console.debug('weBlock.getCompiledFilterList/onRawListLoaded: compiling "%s"', path);
     this.assets.put(
         this.getCompiledFilterListPath(path),
         this.compileFilters(details.content)
@@ -834,7 +834,7 @@
 
 /******************************************************************************/
 
-µBlock.updateCompleteHandler = function(details) {
+weBlock.updateCompleteHandler = function(details) {
     var µb = this;
     var updatedCount = details.updatedCount;
 
@@ -848,7 +848,7 @@
 
     var onPSLReady = function() {
         if ( updatedCount !== 0 ) {
-            //console.debug('storage.js > µBlock.updateCompleteHandler: reloading filter lists');
+            //console.debug('storage.js > weBlock.updateCompleteHandler: reloading filter lists');
             µb.loadFilterLists(onFiltersReady);
         } else {
             onFiltersReady();
@@ -860,7 +860,7 @@
     }
 
     if ( details.hasOwnProperty(this.pslPath) ) {
-        //console.debug('storage.js > µBlock.updateCompleteHandler: reloading PSL');
+        //console.debug('storage.js > weBlock.updateCompleteHandler: reloading PSL');
         this.loadPublicSuffixList(onPSLReady);
         updatedCount -= 1;
     } else {
@@ -870,7 +870,7 @@
 
 /******************************************************************************/
 
-µBlock.assetCacheRemovedHandler = (function() {
+weBlock.assetCacheRemovedHandler = (function() {
     var barrier = false;
 
     var handler = function(paths) {
@@ -883,12 +883,12 @@
         while ( i-- ) {
             path = paths[i];
             if ( this.remoteBlacklists.hasOwnProperty(path) ) {
-                //console.debug('µBlock.assetCacheRemovedHandler: decompiling "%s"', path);
+                //console.debug('weBlock.assetCacheRemovedHandler: decompiling "%s"', path);
                 this.purgeCompiledFilterList(path);
                 continue;
             }
             if ( path === this.pslPath ) {
-                //console.debug('µBlock.assetCacheRemovedHandler: decompiling "%s"', path);
+                //console.debug('weBlock.assetCacheRemovedHandler: decompiling "%s"', path);
                 this.assets.purge('cache://compiled-publicsuffixlist');
                 continue;
             }
@@ -902,17 +902,17 @@
 
 /******************************************************************************/
 
-// https://github.com/gorhill/uBlock/issues/602
+// https://github.com/gorhill/weBlock/issues/602
 // - Load and patch `filter-list.json`
 // - Load and patch user's `remoteBlacklists`
 // - Load and patch cached filter lists
 // - Load and patch compiled filter lists
 //
-// Once enough time has passed to safely assume all uBlock Origin
+// Once enough time has passed to safely assume all weBlock
 // installations have been converted to the new stock filter lists, this code
 // can be removed.
 
-µBlock.patchFilterLists = function(filterLists) {
+weBlock.patchFilterLists = function(filterLists) {
     var modified = false;
     var oldListKey, newListKey, listEntry;
     for ( var listKey in filterLists ) {
@@ -927,8 +927,8 @@
             }
         }
         newListKey = this.oldListToNewListMap[oldListKey];
-        // https://github.com/gorhill/uBlock/issues/668
-        // https://github.com/gorhill/uBlock/issues/669
+        // https://github.com/gorhill/weBlock/issues/668
+        // https://github.com/gorhill/weBlock/issues/669
         // Beware: an entry for the new list key may already exists. If it is
         // the case, leave it as is.
         if ( newListKey !== '' && filterLists.hasOwnProperty(newListKey) === false ) {
@@ -942,9 +942,9 @@
     return modified;
 };
 
-µBlock.loadAndPatchStockFilterLists = function(callback) {
+weBlock.loadAndPatchStockFilterLists = function(callback) {
     var onStockListsLoaded = function(details) {
-        var µb = µBlock;
+        var µb = weBlock;
         var stockLists;
         try {
             stockLists = JSON.parse(details.content);
@@ -959,7 +959,7 @@
             if ( stockLists.hasOwnProperty(oldListKey) === false ) {
                 continue;
             }
-            // https://github.com/gorhill/uBlock/issues/708
+            // https://github.com/gorhill/weBlock/issues/708
             // Support migrating external stock filter lists as well.
             if ( reExternalURL.test(oldListKey) === false ) {
                 oldListKey = 'assets/thirdparties/' + oldListKey;
