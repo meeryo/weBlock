@@ -804,6 +804,8 @@ var changeGlobalSlider = function(event) {
             what: 'userSettings',
             name: 'externalLists',
             value: filterUrl
+        }, function() {
+          messager.send({ what: 'reloadAllFilters' });
         });
         uDom('body').toggleClass('dirty', true);
     };
