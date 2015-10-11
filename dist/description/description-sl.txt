@@ -1,14 +1,14 @@
 Efektiven zatiralec oglasov: lahek na pomnilniku in procesorju, in vendar lahko nalaga in uveljavlja tisoče filtrov več kot kakšen drug popularen dodatek za blokiranje oglasov.
 
-Ilustrirana efektivnost: https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+Ilustrirana efektivnost: https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
-Uporaba: Velik gumb za vklop/izklop v pojavnem oknu je namenjen trajnemu izklopu/vklopu uBlock₀ za trenutno spletno stran. Ta uporaba velja samo za trenutno spletno stran, tako da gumb ne predstavlja globalnega vklopa/izklopa.
+Uporaba: Velik gumb za vklop/izklop v pojavnem oknu je namenjen trajnemu izklopu/vklopu weBlock₀ za trenutno spletno stran. Ta uporaba velja samo za trenutno spletno stran, tako da gumb ne predstavlja globalnega vklopa/izklopa.
 
 ***
 
-uBlock₀ je fleksibilen - in s tem več kot samo "blokada oglasom": lahko bere in ustvarja filtre iz datotek z gostitelji (HOSTS datoteka).
+weBlock₀ je fleksibilen - in s tem več kot samo "blokada oglasom": lahko bere in ustvarja filtre iz datotek z gostitelji (HOSTS datoteka).
 
-Brez kakršnihkoli dodatnih nastavitev, uBlock₀ uporablja sledeče filtre:
+Brez kakršnihkoli dodatnih nastavitev, weBlock₀ uporablja sledeče filtre:
 
 - EasyList
 - Seznam oglaševalskih strežnikov Peter Lowe
@@ -24,7 +24,7 @@ Več filtrskih seznamov na razpolago (če to želite):
 - Spam404
 - In mnogi drugi
 
-Seveda, več filtrov kot je aktivnih, večji je odtis v pomnilniku. Pa kljub temu - tudi z nalaganjem dveh dodatnih seznamov filtrov (Fanboy in hpHosts) ima uBlock₀ še vedno nižjo mero obremenitve pomnilnika kot ostali zelo popularni dodatki za blokiranje oglasov.
+Seveda, več filtrov kot je aktivnih, večji je odtis v pomnilniku. Pa kljub temu - tudi z nalaganjem dveh dodatnih seznamov filtrov (Fanboy in hpHosts) ima weBlock₀ še vedno nižjo mero obremenitve pomnilnika kot ostali zelo popularni dodatki za blokiranje oglasov.
 
 Poleg tega bodite pozorni, da vklop določenih dodatnih seznamov filtrov lahko pripelje do višje verjetnosti za nefunkcionalnost spletne strani - predvsem "ogrožajoči" so tisti seznami, ki se jih ponavadi uporablja kot HOSTS datoteko.
 
@@ -38,7 +38,7 @@ Zastonj.
 Odprtokodno pod GPLv3 licenco
 Za uporabnike od uporabnikov.
 
-Razvijalci @ Github: https://github.com/gorhill/uBlock/graphs/contributors
+Razvijalci @ Github: https://github.com/gorhill/weBlock/graphs/contributors
 Prevajalci @ Crowdin: https://crowdin.net/project/ublock
 
 ***
@@ -46,4 +46,4 @@ Prevajalci @ Crowdin: https://crowdin.net/project/ublock
 Gre še za dokaj sveže različice, prosimo da to upoštevate pri vaši kritiki.
 
 Dnevnik sprememb projekta:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

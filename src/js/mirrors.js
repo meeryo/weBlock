@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* jshint bitwise: false */
-/* global vAPI, µBlock, YaMD5 */
+/* global vAPI, weBlock, YaMD5 */
 
 /******************************************************************************/
 
 // Low-level asset files manager
 
-µBlock.mirrors = (function() {
+weBlock.mirrors = (function() {
 
 'use strict';
 
@@ -193,7 +193,7 @@ var toUrlKey = function(url) {
         if ( matches === null ) {
             continue;
         }
-        // https://github.com/chrisaljoudi/uBlock/issues/301
+        // https://github.com/chrisaljoudi/weBlock/issues/301
         // Use whole URL as key when no regex capture
         return matches.length === 1 ? url : matches[1];
     }
@@ -204,7 +204,7 @@ var toUrlKey = function(url) {
 
 // Ref: http://www.iana.org/assignments/media-types/media-types.xhtml
 
-// https://github.com/chrisaljoudi/uBlock/issues/362
+// https://github.com/chrisaljoudi/weBlock/issues/362
 //
 // Using http://dev.w3.org/2006/webapi/FileAPI/#enctype logic, at least it's
 // something... It looks like this is what the browser should be doing with
@@ -550,7 +550,7 @@ var load = function() {
     };
 
     vAPI.storage.get({ 'mirrors_metadata': metadata }, onMetadataReady);
-    µBlock.assets.get('assets/ublock/mirror-candidates.txt', onMirrorCandidatesReady);
+    weBlock.assets.get('assets/ublock/mirror-candidates.txt', onMirrorCandidatesReady);
 };
 
 /******************************************************************************/

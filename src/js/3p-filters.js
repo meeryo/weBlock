@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI, uDom */
@@ -122,7 +122,7 @@ var renderFilterLists = function() {
             .replace('{{total}}', !isNaN(+entry.entryCount) ? renderNumber(entry.entryCount) : '?');
         elem.text(text);
 
-        // https://github.com/gorhill/uBlock/issues/78
+        // https://github.com/gorhill/weBlock/issues/78
         // Badge for non-secure connection
         var remoteURL = listKey;
         if ( remoteURL.lastIndexOf('http:', 0) !== 0 ) {
@@ -132,7 +132,7 @@ var renderFilterLists = function() {
             li.descendants('span.status.unsecure').css('display', '');
         }
 
-        // https://github.com/chrisaljoudi/uBlock/issues/104
+        // https://github.com/chrisaljoudi/weBlock/issues/104
         var asset = listDetails.cache[listKey] || {};
 
         // Badge for update status

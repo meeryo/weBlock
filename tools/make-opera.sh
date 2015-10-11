@@ -2,10 +2,10 @@
 #
 # This script assumes a linux environment
 
-echo "*** uBlock0.opera: Creating web store package"
-echo "*** uBlock0.opera: Copying files"
+echo "*** weBlock0.opera: Creating web store package"
+echo "*** weBlock0.opera: Copying files"
 
-DES=dist/build/uBlock0.opera
+DES=dist/build/weBlock0.opera
 rm -r $DES
 mkdir -p $DES
 
@@ -30,4 +30,4 @@ rm -r $DES/_locales/mr
 rm -r $DES/_locales/sr
 rm -r $DES/_locales/ta
 
-echo "*** uBlock0.opera: Package done."
+echo "*** weBlock0.opera: Package done."

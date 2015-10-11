@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014  Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global punycode, µBlock */
+/* global punycode, weBlock */
 /* jshint bitwise: false */
 
 /******************************************************************************/
 
-µBlock.Firewall = (function() {
+weBlock.Firewall = (function() {
 
 'use strict';
 
@@ -336,7 +336,7 @@ var is3rdParty = function(srcHostname, desHostname) {
            desHostname.charAt(desHostname.length - srcDomain.length - 1) !== '.';
 };
 
-var domainFromHostname = µBlock.URI.domainFromHostname;
+var domainFromHostname = weBlock.URI.domainFromHostname;
 
 /******************************************************************************/
 
@@ -554,7 +554,7 @@ Matrix.prototype.fromString = function(text, append) {
         srcHostname = punycode.toASCII(fields[0]);
         desHostname = punycode.toASCII(fields[1]);
 
-        // https://github.com/chrisaljoudi/uBlock/issues/1082
+        // https://github.com/chrisaljoudi/weBlock/issues/1082
         // Discard rules with invalid hostnames
         if ( (srcHostname !== '*' && reBadHostname.test(srcHostname)) ||
              (desHostname !== '*' && reBadHostname.test(desHostname))
@@ -567,7 +567,7 @@ Matrix.prototype.fromString = function(text, append) {
             continue;
         }
 
-        // https://github.com/chrisaljoudi/uBlock/issues/840
+        // https://github.com/chrisaljoudi/weBlock/issues/840
         // Discard invalid rules
         if ( desHostname !== '*' && type !== '*' ) {
             continue;
@@ -609,7 +609,7 @@ return Matrix;
 
 /******************************************************************************/
 
-µBlock.sessionFirewall = new µBlock.Firewall();
-µBlock.permanentFirewall = new µBlock.Firewall();
+weBlock.sessionFirewall = new weBlock.Firewall();
+weBlock.permanentFirewall = new weBlock.Firewall();
 
 /******************************************************************************/

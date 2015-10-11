@@ -2,7 +2,7 @@
 #
 # This script assumes a linux environment
 
-echo "*** uBlock: Importing from Crowdin archive"
+echo "*** weBlock: Importing from Crowdin archive"
 
 SRC=~/Downloads/crowdin
 rm -r $SRC
@@ -112,4 +112,4 @@ cp $SRC/zh-TW/description.txt $DES/description-zh_TW.txt
 #
 
 rm -r $SRC
-echo "*** uBlock: Import done."
+echo "*** weBlock: Import done."

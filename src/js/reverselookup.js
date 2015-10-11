@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,14 +16,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock */
+/* global weBlock */
 
 /******************************************************************************/
 
-µBlock.staticFilteringReverseLookup = (function() {
+weBlock.staticFilteringReverseLookup = (function() {
 
 'use strict';
 
@@ -79,7 +79,7 @@ var initWorker = function(callback) {
     var onListLoaded = function(details) {
         var entry = entries[details.path];
 
-        // https://github.com/gorhill/uBlock/issues/536
+        // https://github.com/gorhill/weBlock/issues/536
         // Use path string when there is no filter list title.
 
         worker.postMessage({
@@ -98,7 +98,7 @@ var initWorker = function(callback) {
         }
     };
 
-    var µb = µBlock;
+    var µb = weBlock;
     var path, entry;
 
     for ( path in µb.remoteBlacklists ) {
@@ -183,7 +183,7 @@ var fromCosmeticFilter = function(hostname, rawFilter, callback) {
         var message = {
             what: 'fromCosmeticFilter',
             id: id,
-            domain: µBlock.URI.domainFromHostname(hostname),
+            domain: weBlock.URI.domainFromHostname(hostname),
             hostname: hostname,
             rawFilter: rawFilter
         };

@@ -1,6 +1,6 @@
 {
   "extName":{
-    "message":"uBlock₀",
+    "message":"weBlock₀",
     "description":"extension name."
   },
   "extShortDesc":{
@@ -8,8 +8,8 @@
     "description":"this will be in the chrome web store: must be 132 characters or less"
   },
   "dashboardName":{
-    "message":"uBlock₀ - Πίνακας ελέγχου",
-    "description":"English: uBlock₀ — Dashboard"
+    "message":"weBlock₀ - Πίνακας ελέγχου",
+    "description":"English: weBlock₀ — Dashboard"
   },
   "settingsPageName":{
     "message":"Ρυθμίσεις",
@@ -32,7 +32,7 @@
     "description":"appears as tab name in dashboard"
   },
   "statsPageName":{
-    "message":"uBlock₀ - Καταγραφή αιτημάτων δικτύου",
+    "message":"weBlock₀ - Καταγραφή αιτημάτων δικτύου",
     "description":"Title for the network request log window"
   },
   "aboutPageName":{
@@ -40,8 +40,8 @@
     "description":"appears as tab name in dashboard"
   },
   "popupPowerSwitchInfo":{
-    "message":"Κλικ: απενεργοποίηση\/ενεργοποίηση του uBlock για αυτόν τον ιστότοπο.\n\nCtrl+κλικ: απενεργοποίηση του µBlock μόνο για αυτήν τη σελίδα.",
-    "description":"English: Click: disable\/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message":"Κλικ: απενεργοποίηση\/ενεργοποίηση του weBlock για αυτόν τον ιστότοπο.\n\nCtrl+κλικ: απενεργοποίηση του weBlock μόνο για αυτήν τη σελίδα.",
+    "description":"English: Click: disable\/enable weBlock₀ for this site.\n\nCtrl+click: disable weBlock₀ only on this page."
   },
   "popupBlockedRequestPrompt":{
     "message":"αποκλεισμένα αιτήματα",
@@ -180,7 +180,7 @@
     "description":""
   },
   "settingsAdvancedUserPrompt":{
-    "message":"Είμαι προχωρημένος χρήστης (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Advanced-user-features'>Aπαραίτητη ανάγνωση<\/a>)",
+    "message":"Είμαι προχωρημένος χρήστης (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Advanced-user-features'>Aπαραίτητη ανάγνωση<\/a>)",
     "description":"English: "
   },
   "settingsPrefetchingDisabledPrompt":{
@@ -196,7 +196,7 @@
     "description":"English: "
   },
   "settingsExperimentalPrompt":{
-    "message":"Ενεργοποιήση πειραματικών χαρακτηριστικών (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Experimental-features'>Πληροφορίες<\/a>)",
+    "message":"Ενεργοποιήση πειραματικών χαρακτηριστικών (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Experimental-features'>Πληροφορίες<\/a>)",
     "description":"English: Enable experimental features"
   },
   "settingsStorageUsed":{
@@ -236,8 +236,8 @@
     "description":"English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo":{
-    "message":"<p>Η επιλογή αυτή επιτρέπει την ανάλυση και επιβολή των συμβατών με τα <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">&ldquo;κρυμμένα στοιχεία&rdquo; του Adblock Plus φίλτρων<\/a>. Τα φίλτρα αυτά είναι ουσιαστικά κοσμητικά, χρησιμεύουν στην απόκρυψη στοιχείων από μια σελίδα στην οποία θεωρούνται οπτική όχληση και δεν μπορούν να αποκλειστούν με την, βασισμένη σε αιτήματα δικτύου, μηχανή φιλτραρίσματος.<\/p><p>Η ενεργοποίηση αυτής της λειτουργίας αυξάνει το αποτύπωμα μνήμης του <i>µBlock<\/i>.<\/p>",
-    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases uBlock Origin's memory footprint."
+    "message":"<p>Η επιλογή αυτή επιτρέπει την ανάλυση και επιβολή των συμβατών με τα <a href=\"https:\/\/adblockplus.org\/en\/faq_internal#elemhide\">&ldquo;κρυμμένα στοιχεία&rdquo; του Adblock Plus φίλτρων<\/a>. Τα φίλτρα αυτά είναι ουσιαστικά κοσμητικά, χρησιμεύουν στην απόκρυψη στοιχείων από μια σελίδα στην οποία θεωρούνται οπτική όχληση και δεν μπορούν να αποκλειστούν με την, βασισμένη σε αιτήματα δικτύου, μηχανή φιλτραρίσματος.<\/p><p>Η ενεργοποίηση αυτής της λειτουργίας αυξάνει το αποτύπωμα μνήμης του <i>weBlock<\/i>.<\/p>",
+    "description":"This option enables the parsing and enforcing of Adblock Plus-compatible 'element hiding' filters. These filters are essentially cosmetic, they serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the net request-based filtering engine.\n\nEnabling this feature increases weBlock's memory footprint."
   },
   "3pListsOfBlockedHostsHeader":{
     "message":"Λίστες αποκλεισμένων hosts",
@@ -364,12 +364,12 @@
     "description":"English: List of your dynamic filtering rules."
   },
   "rulesFormatHint":{
-    "message":"Συντακτικό κανόνων: <code>προέλευση προορισμός τύπος ενέργεια<\/code> (<a href='https:\/\/github.com\/gorhill\/uBlock\/wiki\/Dynamic-filtering:-rule-syntax'>πλήρης τεκμηρίωση<\/a>).",
+    "message":"Συντακτικό κανόνων: <code>προέλευση προορισμός τύπος ενέργεια<\/code> (<a href='https:\/\/github.com\/gorhill\/weBlock\/wiki\/Dynamic-filtering:-rule-syntax'>πλήρης τεκμηρίωση<\/a>).",
     "description":"English: dynamic rule syntax and full documentation."
   },
   "whitelistPrompt":{
-    "message":"Η λίστα σας με τα ονόματα κόμβων (host names) στα οποία το uBlock θα είναι απενεργοποιημένο. Μια καταχώρηση ανά γραμμή. Άκυρα ονόματα κόμβων θα παρακάμπτονται σιωπηλά.",
-    "description":"English: Your list of host names for which uBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
+    "message":"Η λίστα σας με τα ονόματα κόμβων (host names) στα οποία το weBlock θα είναι απενεργοποιημένο. Μια καταχώρηση ανά γραμμή. Άκυρα ονόματα κόμβων θα παρακάμπτονται σιωπηλά.",
+    "description":"English: Your list of host names for which weBlock₀ will be disabled. One host name per line. Invalid host names will be silently ignored."
   },
   "whitelistImport":{
     "message":"Εισαγωγή και προσάρτηση",
@@ -508,7 +508,7 @@
     "description":"English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm":{
-    "message":"Όλες οι ρυθμίσεις σας θα αντικατασταθούν χρησιμοποιώντας τα δεδομένα του αντιγράφου ασφαλείας που δημιουργήθηκε κατά ημ\/νία και ώρα: {{time}} και θα ακολουθήσει επανεκκίνηση του uBlock.",
+    "message":"Όλες οι ρυθμίσεις σας θα αντικατασταθούν χρησιμοποιώντας τα δεδομένα του αντιγράφου ασφαλείας που δημιουργήθηκε κατά ημ\/νία και ώρα: {{time}} και θα ακολουθήσει επανεκκίνηση του weBlock.",
     "description":"Message asking user to confirm restore"
   },
   "aboutRestoreDataError":{
@@ -516,7 +516,7 @@
     "description":"Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm":{
-    "message":"Όλες οι ρυθμίσεις σας θα καταργηθούν και θα γίνει επανεκκίνηση του uBlock.\n\nΕπαναφορά του uBlock στις εργοστασιακές ρυθμίσεις;",
+    "message":"Όλες οι ρυθμίσεις σας θα καταργηθούν και θα γίνει επανεκκίνηση του weBlock.\n\nΕπαναφορά του weBlock στις εργοστασιακές ρυθμίσεις;",
     "description":"Message asking user to confirm reset"
   },
   "errorCantConnectTo":{
@@ -524,7 +524,7 @@
     "description":"English: Network error: unable to connect to {{url}}"
   },
   "subscriberConfirm":{
-    "message":"uBlock₀: Προσθήκη του παρακάτω URL στις προσαρμοσμένες λίστες φίλτρων σας;\n\nΤίτλος: \"{{title}}\"\nURL: {{url}}",
+    "message":"weBlock₀: Προσθήκη του παρακάτω URL στις προσαρμοσμένες λίστες φίλτρων σας;\n\nΤίτλος: \"{{title}}\"\nURL: {{url}}",
     "description":"English: The message seen by the user to confirm subscription to a ABP filter list"
   },
   "elapsedOneMinuteAgo":{
@@ -561,11 +561,11 @@
   },
   "fennecMenuItemBlockingOff":{
     "message":"απενεργοποιημένο",
-    "description":"Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description":"Firefox-specific: appears as 'weBlock₀ (off)'"
   },
   "docblockedPrompt1":{
-    "message":"Το uBlock₀ έχει αποτρέψει τη φόρτωση της παρακάτω σελίδας:",
-    "description":"English: uBlock₀ has prevented the following page from loading:"
+    "message":"Το weBlock₀ έχει αποτρέψει τη φόρτωση της παρακάτω σελίδας:",
+    "description":"English: weBlock₀ has prevented the following page from loading:"
   },
   "docblockedPrompt2":{
     "message":"Εξαιτίας του ακόλουθου φίλτρου",

@@ -1,9 +1,9 @@
 Etkili bir engelleyici: Belleği ve işlemciyi zorlamaz, yine de diğer popüler engelleyicilere göre binlerce daha çok süzgeci yükleyip uygulayabilir.
 
 Verimliliğinin resmedilen genel bakışı:
-https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
-Kullanımı: Arayüzdeki büyük güç düğmesi mevcut web sitesinde uBlock'u kalıcı olarak devre dışı bırakır/etkinleştirir. Bu yalnızca mevcut web sitesine uygulanır, evrensel bir güç düğmesi değildir.
+Kullanımı: Arayüzdeki büyük güç düğmesi mevcut web sitesinde weBlock'u kalıcı olarak devre dışı bırakır/etkinleştirir. Bu yalnızca mevcut web sitesine uygulanır, evrensel bir güç düğmesi değildir.
 
 ***
 
@@ -25,7 +25,7 @@ Hazır olarak şu süzgeç listeleri yüklüdür ve uygulanır:
 - Spam404
 - Ve daha birçoğu
 
-Tabii ki,  daha fazla süzgeç etkinleştirildikçe, bellek kullanımı da yükselir. Ama, Fanboy'un iki ekstra listesi, hpHosts'un reklam ve izleme sunucuları ekledikten sonra dahi uBlock diğer oldukça popüler olan engelleyicilere göre daha az bellek kullanır.
+Tabii ki,  daha fazla süzgeç etkinleştirildikçe, bellek kullanımı da yükselir. Ama, Fanboy'un iki ekstra listesi, hpHosts'un reklam ve izleme sunucuları ekledikten sonra dahi weBlock diğer oldukça popüler olan engelleyicilere göre daha az bellek kullanır.
 
 Ayrıca, bazı ekstra listelerin seçilmesinin web sitelerinin bozulması olasılığını artırabileceğini unutmayın -- özellikle normalde alan adları dosyası olarak kullanılan listelerin.
 
@@ -39,7 +39,7 @@ Ayrıca, bazı ekstra listelerin seçilmesinin web sitelerinin bozulması olası
 Açık kaynak kamu lisanslı (GPLv3)
 Kullanıcılar tarafından kullanıcılar için.
 
-Katkıda bulunanlar @ Github: https://github.com/gorhill/uBlock/graphs/contributors
+Katkıda bulunanlar @ Github: https://github.com/gorhill/weBlock/graphs/contributors
 Katkıda bulunanlar @ Crowdin: https://crowdin.net/project/ublock
 
 ***
@@ -47,4 +47,4 @@ Katkıda bulunanlar @ Crowdin: https://crowdin.net/project/ublock
 Bu çok erken bir sürüm, gözden geçirirken, bunu göz önünde bulundurun.
 
 Proje değişiklik günlüğü:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

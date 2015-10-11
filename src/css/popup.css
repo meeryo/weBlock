@@ -9,7 +9,7 @@ body {
     white-space: nowrap;
     }
 /**
- https://github.com/gorhill/uBlock/issues/83
+ https://github.com/gorhill/weBlock/issues/83
  .portrait = portrait mode = width is constrained = optimize layout accordingly.
  */
 body.portrait {
@@ -349,7 +349,7 @@ body.dirty #refresh:hover {
     }
 /**
  Source for color-blind color scheme from https://github.com/WyohKnott:
- https://github.com/chrisaljoudi/uBlock/issues/467#issuecomment-95177219
+ https://github.com/chrisaljoudi/weBlock/issues/467#issuecomment-95177219
  */
 #firewallContainer > div.allowed > span:nth-of-type(1):before,
 #firewallContainer.minimized > div.isDomain.totalAllowed > span:nth-of-type(1):before {

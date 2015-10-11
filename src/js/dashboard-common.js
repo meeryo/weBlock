@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global uDom */
@@ -24,14 +24,14 @@
 
 /******************************************************************************/
 
-self.uBlockDashboard = self.uBlockDashboard || {};
+self.weBlockDashboard = self.weBlockDashboard || {};
 
 /******************************************************************************/
 
 // Helper for client panes:
 //   Remove literal duplicate lines from a set based on another set.
 
-self.uBlockDashboard.mergeNewLines = function(text, newText) {
+self.weBlockDashboard.mergeNewLines = function(text, newText) {
     var lineBeg, textEnd, lineEnd;
     var line, hash, bucket;
 

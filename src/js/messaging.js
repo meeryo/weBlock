@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock, vAPI */
+/* global weBlock, vAPI */
 
 /******************************************************************************/
 /******************************************************************************/
@@ -32,7 +32,7 @@
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -58,7 +58,7 @@ var onMessage = function(request, sender, callback) {
     // Async
     switch ( request.what ) {
     case 'getAssetContent':
-        // https://github.com/chrisaljoudi/uBlock/issues/417
+        // https://github.com/chrisaljoudi/weBlock/issues/417
         µb.assets.get(request.url, callback);
         return;
 
@@ -191,7 +191,7 @@ vAPI.messaging.setup(onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -397,7 +397,7 @@ var onMessage = function(request, sender, callback) {
             request.srcHostname,
             request.desHostnames
         );
-        // https://github.com/gorhill/uBlock/issues/188
+        // https://github.com/gorhill/weBlock/issues/188
         µb.cosmeticFilteringEngine.removeFromSelectorCache(request.srcHostname, 'net');
         response = popupDataFromTabId(request.tabId);
         break;
@@ -448,7 +448,7 @@ vAPI.messaging.listen('popup.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -498,7 +498,7 @@ vAPI.messaging.listen('contentscript-start.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -603,7 +603,7 @@ vAPI.messaging.listen('contentscript-end.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -682,7 +682,7 @@ vAPI.messaging.listen('element-picker.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -744,7 +744,7 @@ vAPI.messaging.listen('cloud-ui.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -842,7 +842,7 @@ vAPI.messaging.listen('3p-filters.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -887,7 +887,7 @@ vAPI.messaging.listen('1p-filters.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -954,7 +954,7 @@ var onMessage = function(request, sender, callback) {
         break;
 
     case 'setSessionRules':
-        // https://github.com/chrisaljoudi/uBlock/issues/772
+        // https://github.com/chrisaljoudi/weBlock/issues/772
         µb.cosmeticFilteringEngine.removeFromSelectorCache('*');
         r = untangle(request.rules);
         µb.sessionFirewall.fromString(r.firewallRules);
@@ -999,7 +999,7 @@ vAPI.messaging.listen('dyna-rules.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -1048,7 +1048,7 @@ vAPI.messaging.listen('whitelist.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -1125,7 +1125,7 @@ var restoreUserData = function(request) {
     var onAllRemoved = function() {
         // Be sure to adjust `countdown` if adding/removing anything below
         µb.keyvalSetOne('version', userData.version);
-        µBlock.saveLocalSettings(true);
+        weBlock.saveLocalSettings(true);
         vAPI.storage.set(userData.userSettings, onCountdown);
         µb.keyvalSetOne('remoteBlacklists', userData.filterLists, onCountdown);
         µb.keyvalSetOne('netWhitelist', userData.netWhitelist || '', onCountdown);
@@ -1146,7 +1146,7 @@ var restoreUserData = function(request) {
         }, onCountdown);
     };
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1102
+    // https://github.com/chrisaljoudi/weBlock/issues/1102
     // Ensure all currently cached assets are flushed from storage AND memory.
     µb.assets.rmrf();
 
@@ -1217,7 +1217,7 @@ vAPI.messaging.listen('settings.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -1346,7 +1346,7 @@ var onMessage = function(request, sender, callback) {
     case 'subscriberData':
         response = {
             confirmStr: vAPI.i18n('subscriberConfirm'),
-            externalLists: µBlock.userSettings.externalLists
+            externalLists: weBlock.userSettings.externalLists
         };
         break;
 
@@ -1386,7 +1386,7 @@ var onMessage = function(request, sender, callback) {
 
     switch ( request.what ) {
     case 'temporarilyWhitelistDocument':
-        µBlock.webRequest.temporarilyWhitelistDocument(request.hostname);
+        weBlock.webRequest.temporarilyWhitelistDocument(request.hostname);
         break;
 
     default:
@@ -1413,7 +1413,7 @@ vAPI.messaging.listen('document-blocked.js', onMessage);
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 

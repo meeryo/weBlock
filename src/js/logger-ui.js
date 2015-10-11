@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock Origin - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* global vAPI, uDom */
@@ -159,8 +159,8 @@ var renderedURLTemplate = document.querySelector('#renderedURLTemplate > span');
 /******************************************************************************/
 
 // Pretty much same logic as found in:
-//   µBlock.staticNetFilteringEngine.filterStringFromCompiled
-//   µBlock.staticNetFilteringEngine.filterRegexFromCompiled
+//   weBlock.staticNetFilteringEngine.filterStringFromCompiled
+//   weBlock.staticNetFilteringEngine.filterRegexFromCompiled
 
 var filterDecompiler = (function() {
     var typeValToTypeName = {
@@ -229,7 +229,7 @@ var filterDecompiler = (function() {
         case '//h':
             filter += '/' + tfield0 + '/';
             break;
-        // https://github.com/gorhill/uBlock/issues/465
+        // https://github.com/gorhill/weBlock/issues/465
         // Unexpected: return the raw compiled representation instead of a
         // blank string.
         default:
@@ -687,7 +687,7 @@ var onLogBufferRead = function(response) {
         allTabIdsToken = response.tabIdsToken;
     }
 
-    // https://github.com/gorhill/uBlock/issues/507
+    // https://github.com/gorhill/weBlock/issues/507
     // Ensure tab selector is in sync with URL hash
     pageSelectorFromURLHash();
 
@@ -1569,7 +1569,7 @@ var rowFilterer = (function() {
     uDom('#filterButton').on('click', onFilterButton);
     uDom('#filterInput').on('input', onFilterChangedAsync);
 
-    // https://github.com/gorhill/uBlock/issues/404
+    // https://github.com/gorhill/weBlock/issues/404
     // Ensure page state is in sync with the state of its various widgets.
     parseInput();
     filterAll();

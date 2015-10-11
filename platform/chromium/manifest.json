@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
 
-    "name": "uBlock Origin",
+    "name": "weBlock",
     "version": "1.2.2",
 
     "default_locale": "en",
@@ -16,11 +16,11 @@
             "19": "img/browsericons/icon19.png",
             "38": "img/browsericons/icon38.png"
         },
-        "default_title": "uBlock Origin",
+        "default_title": "weBlock",
         "default_popup": "popup.html"
     },
 
-    "author": "All uBlock Origin contributors",
+    "author": "All weBlock contributors",
     "background": {
         "page": "background.html"
     },
@@ -42,7 +42,7 @@
                 "https://*.adblockplus.org/*",
                 "https://*.adblockplus.me/*",
                 "https://www.fanboy.co.nz/*",
-                "https://github.com/gorhill/uBlock/wiki/Filter-lists-from-around-the-web"
+                "https://github.com/gorhill/weBlock/wiki/Filter-lists-from-around-the-web"
             ],
             "js": ["js/subscriber.js"],
             "run_at": "document_idle"
@@ -66,5 +66,5 @@
         "http://*/*",
         "https://*/*"
     ],
-    "short_name": "uBlock₀"
+    "short_name": "weBlock₀"
 }

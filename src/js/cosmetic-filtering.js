@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,21 +16,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 /* jshint bitwise: false */
-/* global punycode, µBlock */
+/* global punycode, weBlock */
 
 /******************************************************************************/
 
-µBlock.cosmeticFilteringEngine = (function(){
+weBlock.cosmeticFilteringEngine = (function(){
 
 'use strict';
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 
@@ -435,7 +435,7 @@ SelectorCacheEntry.prototype.add = function(selectors, type) {
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/420
+// https://github.com/chrisaljoudi/weBlock/issues/420
 SelectorCacheEntry.prototype.remove = function(type) {
     this.lastAccessTime = Date.now();
     if ( type === undefined || type === 'cosmetic' ) {
@@ -478,7 +478,7 @@ var makeHash = function(unhide, token, mask) {
     // Ref: Given a URL, returns a unique 4-character long hash string
     // Based on: FNV32a
     // http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-reference-source
-    // The rest is custom, suited for µBlock.
+    // The rest is custom, suited for weBlock.
     var i1 = token.length;
     var i2 = i1 >> 1;
     var i4 = i1 >> 2;
@@ -590,7 +590,7 @@ FilterContainer.prototype.reset = function() {
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/1004
+// https://github.com/chrisaljoudi/weBlock/issues/1004
 // Detect and report invalid CSS selectors.
 
 FilterContainer.prototype.isValidSelector = (function() {
@@ -606,7 +606,7 @@ FilterContainer.prototype.isValidSelector = (function() {
 
     return function(s) {
         try {
-            // https://github.com/gorhill/uBlock/issues/693
+            // https://github.com/gorhill/weBlock/issues/693
             div.matches(s + ',\n#foo');
             return true;
         } catch (e) {
@@ -614,7 +614,7 @@ FilterContainer.prototype.isValidSelector = (function() {
         if ( s.lastIndexOf('script//:', 0) === 0 ) {
             return true;
         }
-        console.error('uBlock> invalid cosmetic filter:', s);
+        console.error('weBlock> invalid cosmetic filter:', s);
         return false;
     };
 })();
@@ -646,7 +646,7 @@ FilterContainer.prototype.compile = function(s, out) {
         return true;
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/151
+    // https://github.com/chrisaljoudi/weBlock/issues/151
     // Negated hostname means the filter applies to all non-negated hostnames
     // of same filter OR globally if there is no non-negated hostnames.
     var applyGlobally = true;
@@ -674,7 +674,7 @@ FilterContainer.prototype.compile = function(s, out) {
 FilterContainer.prototype.compileGenericSelector = function(parsed, out) {
     var selector = parsed.suffix;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/497
+    // https://github.com/chrisaljoudi/weBlock/issues/497
     // All generic exception filters are put in the same bucket: they are
     // expected to be very rare.
     if ( parsed.unhide ) {
@@ -748,7 +748,7 @@ FilterContainer.prototype.reHighMedium = /^\[href\^="https?:\/\/([^"]{8})[^"]*"\
 /******************************************************************************/
 
 FilterContainer.prototype.compileHostnameSelector = function(hostname, parsed, out) {
-    // https://github.com/chrisaljoudi/uBlock/issues/145
+    // https://github.com/chrisaljoudi/weBlock/issues/145
     var unhide = parsed.unhide;
     if ( hostname.charAt(0) === '~' ) {
         hostname = hostname.slice(1);
@@ -757,11 +757,11 @@ FilterContainer.prototype.compileHostnameSelector = function(hostname, parsed, o
 
     // punycode if needed
     if ( this.reHasUnicode.test(hostname) ) {
-        //console.debug('µBlock.cosmeticFilteringEngine/FilterContainer.compileHostnameSelector> punycoding:', hostname);
+        //console.debug('weBlock.cosmeticFilteringEngine/FilterContainer.compileHostnameSelector> punycoding:', hostname);
         hostname = this.punycode.toASCII(hostname);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/188
+    // https://github.com/chrisaljoudi/weBlock/issues/188
     // If not a real domain as per PSL, assign a synthetic one
     var hash;
     var domain = this.µburi.domainFromHostname(hostname);
@@ -901,7 +901,7 @@ FilterContainer.prototype.fromCompiledContent = function(text, lineBeg, skip) {
             continue;
         }
 
-        // https://github.com/chrisaljoudi/uBlock/issues/497
+        // https://github.com/chrisaljoudi/weBlock/issues/497
         // Generic exception filters: expected to be a rare occurrence.
         if ( fields[0] === 'g1' ) {
             this.genericDonthide.push(fields[1]);
@@ -1219,7 +1219,7 @@ FilterContainer.prototype.retrieveGenericSelectors = function(request) {
             hideHigh: this.highHighGenericHide,
             hideHighCount: this.highHighGenericHideCount
         };
-        // https://github.com/chrisaljoudi/uBlock/issues/497
+        // https://github.com/chrisaljoudi/weBlock/issues/497
         r.donthide = this.genericDonthide;
     }
 
@@ -1239,7 +1239,7 @@ FilterContainer.prototype.retrieveGenericSelectors = function(request) {
     //quickProfiler.stop();
 
     //console.log(
-    //    'µBlock> abp-hide-filters.js: %d selectors in => %d selectors out',
+    //    'weBlock> abp-hide-filters.js: %d selectors in => %d selectors out',
     //    request.selectors.length,
     //    r.hide.length + r.donthide.length
     //);
@@ -1260,7 +1260,7 @@ FilterContainer.prototype.retrieveDomainSelectors = function(request) {
     var domain = this.µburi.domainFromHostname(hostname) || hostname;
     var pos = domain.indexOf('.');
 
-    // https://github.com/chrisaljoudi/uBlock/issues/587
+    // https://github.com/chrisaljoudi/weBlock/issues/587
     // r.ready will tell the content script the cosmetic filtering engine is
     // up and ready.
 
@@ -1280,7 +1280,7 @@ FilterContainer.prototype.retrieveDomainSelectors = function(request) {
     if ( (bucket = this.hostnameFilters[hash]) ) {
         bucket.retrieve(hostname, r.cosmeticHide);
     }
-    // https://github.com/chrisaljoudi/uBlock/issues/188
+    // https://github.com/chrisaljoudi/weBlock/issues/188
     // Special bucket for those filters without a valid domain name as per PSL
     if ( (bucket = this.hostnameFilters[this.type0NoDomainHash]) ) {
         bucket.retrieve(hostname, r.cosmeticHide);
@@ -1297,7 +1297,7 @@ FilterContainer.prototype.retrieveDomainSelectors = function(request) {
         bucket.retrieve(hostname, r.cosmeticDonthide);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/188
+    // https://github.com/chrisaljoudi/weBlock/issues/188
     // Special bucket for those filters without a valid domain name as per PSL
     if ( (bucket = this.hostnameFilters[this.type1NoDomainHash]) ) {
         bucket.retrieve(hostname, r.cosmeticDonthide);
@@ -1309,7 +1309,7 @@ FilterContainer.prototype.retrieveDomainSelectors = function(request) {
     //quickProfiler.stop();
 
     //console.log(
-    //    'µBlock> abp-hide-filters.js: "%s" => %d selectors out',
+    //    'weBlock> abp-hide-filters.js: "%s" => %d selectors out',
     //    request.locationURL,
     //    r.cosmeticHide.length + r.cosmeticDonthide.length
     //);

@@ -1,10 +1,10 @@
-# uBlock -- To block sites known for delivering adware/crapware.
+# weBlock -- To block sites known for delivering adware/crapware.
 #
 # For sites documented to put users at risk of installing adware/crapware etc.
 # The purpose is to at least ensure a user is warned of the risks ahead.
 # 
 # Each entry has to be well enough sourced, see:
-# https://github.com/gorhill/uBlock/wiki/Badware-risks
+# https://github.com/gorhill/weBlock/wiki/Badware-risks
 
 # Using request of type `other` will cause the whole site to be blocked through
 # strict blocking, yet the site will render properly if a user still decide to

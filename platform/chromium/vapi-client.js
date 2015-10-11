@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
-    Copyright (C) 2014 The µBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2014 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 // For non background pages
@@ -32,7 +32,7 @@
 var vAPI = self.vAPI = self.vAPI || {};
 var chrome = self.chrome;
 
-// https://github.com/chrisaljoudi/uBlock/issues/456
+// https://github.com/chrisaljoudi/weBlock/issues/456
 // Already injected?
 if ( vAPI.vapiClientInjected ) {
     //console.debug('vapi-client.js already injected: skipping.');
@@ -86,7 +86,7 @@ vAPI.messaging = {
         } catch (ex) {
         }
         if ( this.port === null ) {
-            //console.error("uBlock> Can't patch things up. It's over.");
+            //console.error("weBlock> Can't patch things up. It's over.");
             vAPI.shutdown.exec();
             return false;
         }
@@ -207,7 +207,7 @@ MessagingChannel.prototype.sendTo = function(message, toTabId, toChannel, callba
     // performance become a risk -- especially for long-lived, dynamic
     // pages. Guard against this.
     if ( messaging.pendingCount > 25 ) {
-        //console.error('uBlock> Sigh. Main process is sulking. Will try to patch things up.');
+        //console.error('weBlock> Sigh. Main process is sulking. Will try to patch things up.');
         messaging.close();
     }
     if ( messaging.port === null ) {

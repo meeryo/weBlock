@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global vAPI, uDom, uBlockDashboard */
+/* global vAPI, uDom, weBlockDashboard */
 
 /******************************************************************************/
 
@@ -69,7 +69,7 @@ function allFiltersApplyHandler() {
 /******************************************************************************/
 
 var handleImportFilePicker = function() {
-    // https://github.com/chrisaljoudi/uBlock/issues/1004
+    // https://github.com/chrisaljoudi/weBlock/issues/1004
     // Support extraction of filters from ABP backup file
     var abpImporter = function(s) {
         var reAbpSubscriptionExtractor = /\n\[Subscription\]\n+url=~[^\n]+([\x08-\x7E]*?)(?:\[Subscription\]|$)/ig;
@@ -176,7 +176,7 @@ var setCloudData = function(data, append) {
     }
     var textarea = uDom.nodeFromId('userFilters');
     if ( append ) {
-        data = uBlockDashboard.mergeNewLines(textarea.value, data);
+        data = weBlockDashboard.mergeNewLines(textarea.value, data);
     }
     textarea.value = data;
     userFiltersChanged();

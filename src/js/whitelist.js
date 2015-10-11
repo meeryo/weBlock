@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global vAPI, uDom, uBlockDashboard */
+/* global vAPI, uDom, weBlockDashboard */
 
 /******************************************************************************/
 
@@ -137,7 +137,7 @@ var setCloudData = function(data, append) {
     }
     var textarea = uDom.nodeFromId('whitelist');
     if ( append ) {
-        data = uBlockDashboard.mergeNewLines(textarea.value.trim(), data);
+        data = weBlockDashboard.mergeNewLines(textarea.value.trim(), data);
     }
     textarea.value = data.trim() + '\n';
     whitelistChanged();

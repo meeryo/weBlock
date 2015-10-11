@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
-    Copyright (C) 2014 The µBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2014 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
 'use strict';
 
 /******************************************************************************/
 
-// https://github.com/gorhill/uBlock/issues/800
+// https://github.com/gorhill/weBlock/issues/800
 this.EXPORTED_SYMBOLS = ['contentObserver', 'LocationChangeListener'];
 
 const {interfaces: Ci, utils: Cu} = Components;
@@ -139,9 +139,9 @@ var contentObserver = {
     shouldLoad: function(type, location, origin, context) {
         // For whatever reason, sometimes the global scope is completely
         // uninitialized at this point. Repro steps:
-        // - Launch FF with uBlock enabled
-        // - Disable uBlock
-        // - Enable uBlock
+        // - Launch FF with weBlock enabled
+        // - Disable weBlock
+        // - Enable weBlock
         // - Services and all other global variables are undefined
         // Hopefully will eventually understand why this happens.
         if ( Services === undefined ) {
@@ -166,7 +166,7 @@ var contentObserver = {
                 context.opener !== context &&
                 this.ignoredPopups.has(context) === false
             ) {
-                // https://github.com/gorhill/uBlock/issues/452
+                // https://github.com/gorhill/weBlock/issues/452
                 // Use location of top window, not that of a frame, as this
                 // would cause tab id lookup (necessary for popup blocking) to
                 // always fail.
@@ -267,10 +267,10 @@ var contentObserver = {
             };
 
             // The goal is to have content scripts removed from web pages. This
-            // helps remove traces of uBlock from memory when disabling/removing
+            // helps remove traces of weBlock from memory when disabling/removing
             // the addon.
             // For example, this takes care of:
-            //   https://github.com/gorhill/uBlock/commit/ea4faff383789053f423498c1f1165c403fde7c7#commitcomment-11964137
+            //   https://github.com/gorhill/weBlock/commit/ea4faff383789053f423498c1f1165c403fde7c7#commitcomment-11964137
             //   > "gets the whole selected tab flashing"
             sandbox.outerShutdown = function() {
                 sandbox.removeMessageListener();
@@ -347,9 +347,9 @@ var contentObserver = {
     observe: function(doc) {
         // For whatever reason, sometimes the global scope is completely
         // uninitialized at this point. Repro steps:
-        // - Launch FF with uBlock enabled
-        // - Disable uBlock
-        // - Enable uBlock
+        // - Launch FF with weBlock enabled
+        // - Disable weBlock
+        // - Enable weBlock
         // - Services and all other global variables are undefined
         // Hopefully will eventually understand why this happens.
         if ( Services === undefined ) {
@@ -366,7 +366,7 @@ var contentObserver = {
             win.addEventListener('mousedown', this.ignorePopup, true);
         }
 
-        // https://github.com/gorhill/uBlock/issues/260
+        // https://github.com/gorhill/weBlock/issues/260
         // https://developer.mozilla.org/en-US/docs/Web/API/Document/contentType
         //   "Non-standard, only supported by Gecko. To be used in 
         //   "chrome code (i.e. Extensions and XUL applications)."
@@ -406,7 +406,7 @@ var contentObserver = {
 
             if (
                 doc.querySelector('a[href^="abp:"]') ||
-                loc.href === 'https://github.com/gorhill/uBlock/wiki/Filter-lists-from-around-the-web'
+                loc.href === 'https://github.com/gorhill/weBlock/wiki/Filter-lists-from-around-the-web'
             ) {
                 lss(this.contentBaseURI + 'subscriber.js', sandbox);
             }

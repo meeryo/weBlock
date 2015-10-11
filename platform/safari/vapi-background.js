@@ -1,7 +1,7 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
-    Copyright (C) 2015 The uBlock authors
+    weBlock - a browser extension to block requests.
+    Copyright (C) 2015 The weBlock authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global self, safari, SafariBrowserTab, µBlock */
+/* global self, safari, SafariBrowserTab, weBlock */
 
 // For background page
 
@@ -38,7 +38,7 @@
     /******************************************************************************/
 
     vAPI.app = {
-        name: "uBlock",
+        name: "weBlock",
         version: safari.extension.displayVersion
     };
 
@@ -68,7 +68,7 @@
     /******************************************************************************/
 
     vAPI.app.restart = function() {
-        µBlock.restart();
+        weBlock.restart();
     };
 
     /******************************************************************************/
@@ -274,12 +274,12 @@
     /******************************************************************************/
 
     vAPI.tabs.getTabId = function(tab) {
-        if(typeof tab.uBlockCachedID !== "undefined") {
-            return tab.uBlockCachedID;
+        if(typeof tab.weBlockCachedID !== "undefined") {
+            return tab.weBlockCachedID;
         }
         for(var i in vAPI.tabs.stack) {
             if(vAPI.tabs.stack[i] === tab) {
-                return (tab.uBlockCachedID = +i);
+                return (tab.weBlockCachedID = +i);
             }
         }
 
@@ -631,7 +631,7 @@
             return;
         }
 
-        console.error('µBlock> messaging > unknown request: %o', request.message);
+        console.error('weBlock> messaging > unknown request: %o', request.message);
 
         // Unhandled:
         // Need to callback anyways in case caller expected an answer, or
@@ -694,7 +694,7 @@
     /******************************************************************************/
 
     vAPI.net.registerListeners = function() {
-        var µb = µBlock;
+        var µb = weBlock;
 
         // Until Safari has more specific events, those are instead handled
         // in the onBeforeRequestAdapter; clean them up so they're garbage-collected
@@ -866,7 +866,7 @@
     // This is called only once, when everything has been loaded in memory after
     // the extension was launched. It can be used to inject content scripts
     // in already opened web pages, to remove whatever nuisance could make it to
-    // the web pages before uBlock was ready.
+    // the web pages before weBlock was ready.
 
     vAPI.onLoadAllCompleted = function() {};
 

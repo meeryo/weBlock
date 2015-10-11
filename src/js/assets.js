@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global vAPI, µBlock, YaMD5 */
+/* global vAPI, weBlock, YaMD5 */
 
 /*******************************************************************************
 
@@ -39,7 +39,7 @@ File system structure:
 
 // Low-level asset files manager
 
-µBlock.assets = (function() {
+weBlock.assets = (function() {
 
 'use strict';
 
@@ -52,7 +52,7 @@ var oneDay = 24 * oneHour;
 
 /******************************************************************************/
 
-var projectRepositoryRoot = µBlock.projectServerRoot;
+var projectRepositoryRoot = weBlock.projectServerRoot;
 var nullFunc = function() {};
 var reIsExternalPath = /^(file|ftps?|https?):\/\//;
 var reIsUserPath = /^assets\/user\//;
@@ -67,7 +67,7 @@ var exports = {
     autoUpdate: true,
     autoUpdateDelay: 4 * oneDay,
 
-    // https://github.com/chrisaljoudi/uBlock/issues/426
+    // https://github.com/chrisaljoudi/weBlock/issues/426
     remoteFetchBarrier: 0
 };
 
@@ -131,7 +131,7 @@ var cachedAssetsManager = (function() {
                 var lastError = vAPI.lastError();
                 if ( lastError ) {
                     console.error(
-                        'µBlock> cachedAssetsManager> getEntries():',
+                        'weBlock> cachedAssetsManager> getEntries():',
                         lastError.message
                     );
                 }
@@ -155,7 +155,7 @@ var cachedAssetsManager = (function() {
             var lastError = vAPI.lastError();
             if ( lastError ) {
                 details.error = 'Error: ' + lastError.message;
-                console.error('µBlock> cachedAssetsManager.load():', details.error);
+                console.error('weBlock> cachedAssetsManager.load():', details.error);
                 cbError(details);
                 return;
             }
@@ -203,7 +203,7 @@ var cachedAssetsManager = (function() {
             var lastError = vAPI.lastError();
             if ( lastError ) {
                 details.error = 'Error: ' + lastError.message;
-                console.error('µBlock> cachedAssetsManager.save():', details.error);
+                console.error('weBlock> cachedAssetsManager.save():', details.error);
                 cbError(details);
                 return;
             }
@@ -284,7 +284,7 @@ var cachedAssetsManager = (function() {
 /******************************************************************************/
 
 var getTextFileFromURL = function(url, onLoad, onError) {
-    // console.log('µBlock.assets/getTextFileFromURL("%s"):', url);
+    // console.log('weBlock.assets/getTextFileFromURL("%s"):', url);
 
     // https://github.com/gorhill/uMatrix/issues/15
     var onResponseReceived = function() {
@@ -355,7 +355,7 @@ var updateLocalChecksums = function() {
 var getRepoMetadata = function(callback) {
     callback = callback || nullFunc;
 
-    // https://github.com/chrisaljoudi/uBlock/issues/515
+    // https://github.com/chrisaljoudi/weBlock/issues/515
     // Handle re-entrancy here, i.e. we MUST NOT tamper with the waiting list
     // of callers, if any, except to add one at the end of the list.
     if ( repoMetadata !== null && repoMetadata.waiting.length !== 0 ) {
@@ -394,7 +394,7 @@ var getRepoMetadata = function(callback) {
             }
             entry = entries[path];
             // If repo checksums could not be fetched, assume no change.
-            // https://github.com/gorhill/uBlock/issues/602
+            // https://github.com/gorhill/weBlock/issues/602
             //   Added: if repo checksum is that of the empty string,
             //   assume no change
             if (
@@ -414,7 +414,7 @@ var getRepoMetadata = function(callback) {
             updateLocalChecksums();
         }
         // Notify all waiting callers
-        // https://github.com/chrisaljoudi/uBlock/issues/515
+        // https://github.com/chrisaljoudi/weBlock/issues/515
         // VERY IMPORTANT: because of re-entrancy, we MUST:
         // - process the waiting callers in a FIFO manner
         // - not cache repoMetadata.waiting.length, we MUST use the live
@@ -433,11 +433,11 @@ var getRepoMetadata = function(callback) {
         if ( /^(?:[0-9a-f]{32}\s+\S+(?:\s+|$))+/.test(details.content) === false ) {
             return '';
         }
-        // https://github.com/gorhill/uBlock/issues/602
+        // https://github.com/gorhill/weBlock/issues/602
         // External filter lists are not meant to appear in checksums.txt.
         // TODO: remove this code once v1.1.0.0 is everywhere.
         var out = [];
-        var listMap = µBlock.oldListToNewListMap;
+        var listMap = weBlock.oldListToNewListMap;
         var lines = details.content.split(/\s*\n\s*/);
         var line, matches;
         for ( var i = 0; i < lines.length; i++ ) {
@@ -518,22 +518,22 @@ var readLocalFile = function(path, callback) {
     };
 
     var onInstallFileLoaded = function() {
-        //console.log('µBlock> readLocalFile("%s") / onInstallFileLoaded()', path);
+        //console.log('weBlock> readLocalFile("%s") / onInstallFileLoaded()', path);
         reportBack(this.responseText);
     };
 
     var onInstallFileError = function() {
-        console.error('µBlock> readLocalFile("%s") / onInstallFileError()', path);
+        console.error('weBlock> readLocalFile("%s") / onInstallFileError()', path);
         reportBack('', 'Error');
     };
 
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock> readLocalFile("%s") / onCachedContentLoaded()', path);
+        //console.log('weBlock> readLocalFile("%s") / onCachedContentLoaded()', path);
         reportBack(details.content);
     };
 
     var onCachedContentError = function(details) {
-        //console.error('µBlock> readLocalFile("%s") / onCachedContentError()', path);
+        //console.error('weBlock> readLocalFile("%s") / onCachedContentError()', path);
         if ( reIsExternalPath.test(path) ) {
             reportBack('', 'Error: asset not found');
             return;
@@ -556,7 +556,7 @@ var readLocalFile = function(path, callback) {
 // Get the repository copy of a built-in asset.
 
 var readRepoFile = function(path, callback) {
-    // https://github.com/chrisaljoudi/uBlock/issues/426
+    // https://github.com/chrisaljoudi/weBlock/issues/426
     if ( exports.remoteFetchBarrier !== 0 ) {
         readLocalFile(path, callback);
         return;
@@ -574,7 +574,7 @@ var readRepoFile = function(path, callback) {
     var repositoryURL = projectRepositoryRoot + path;
 
     var onRepoFileLoaded = function() {
-        //console.log('µBlock> readRepoFile("%s") / onRepoFileLoaded()', path);
+        //console.log('weBlock> readRepoFile("%s") / onRepoFileLoaded()', path);
         // https://github.com/gorhill/httpswitchboard/issues/263
         if ( this.status === 200 ) {
             reportBack(this.responseText);
@@ -628,22 +628,22 @@ var readRepoCopyAsset = function(path, callback) {
     };
 
     var onInstallFileLoaded = function() {
-        //console.log('µBlock> readRepoCopyAsset("%s") / onInstallFileLoaded()', path);
+        //console.log('weBlock> readRepoCopyAsset("%s") / onInstallFileLoaded()', path);
         reportBack(this.responseText);
     };
 
     var onInstallFileError = function() {
-        console.error('µBlock> readRepoCopyAsset("%s") / onInstallFileError():', path, this.statusText);
+        console.error('weBlock> readRepoCopyAsset("%s") / onInstallFileError():', path, this.statusText);
         reportBack('', 'Error');
     };
 
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock> readRepoCopyAsset("%s") / onCacheFileLoaded()', path);
+        //console.log('weBlock> readRepoCopyAsset("%s") / onCacheFileLoaded()', path);
         reportBack(details.content);
     };
 
     var onCachedContentError = function(details) {
-        //console.log('µBlock> readRepoCopyAsset("%s") / onCacheFileError()', path);
+        //console.log('weBlock> readRepoCopyAsset("%s") / onCacheFileError()', path);
         getTextFileFromURL(vAPI.getURL(details.path), onInstallFileLoaded, onInstallFileError);
     };
 
@@ -652,11 +652,11 @@ var readRepoCopyAsset = function(path, callback) {
 
     var onRepoFileLoaded = function() {
         if ( stringIsNotEmpty(this.responseText) === false ) {
-            console.error('µBlock> readRepoCopyAsset("%s") / onRepoFileLoaded("%s"): error', path, repositoryURL);
+            console.error('weBlock> readRepoCopyAsset("%s") / onRepoFileLoaded("%s"): error', path, repositoryURL);
             cachedAssetsManager.load(path, onCachedContentLoaded, onCachedContentError);
             return;
         }
-        //console.log('µBlock> readRepoCopyAsset("%s") / onRepoFileLoaded("%s")', path, repositoryURL);
+        //console.log('weBlock> readRepoCopyAsset("%s") / onRepoFileLoaded("%s")', path, repositoryURL);
         updateChecksum();
         cachedAssetsManager.save(path, this.responseText, callback);
     };
@@ -668,7 +668,7 @@ var readRepoCopyAsset = function(path, callback) {
 
     var onHomeFileLoaded = function() {
         if ( stringIsNotEmpty(this.responseText) === false ) {
-            console.error('µBlock> readRepoCopyAsset("%s") / onHomeFileLoaded("%s"): no response', path, homeURL);
+            console.error('weBlock> readRepoCopyAsset("%s") / onHomeFileLoaded("%s"): no response', path, homeURL);
             // Fetch from repo only if obsolescence was due to repo checksum
             if ( assetEntry.localChecksum !== assetEntry.repoChecksum ) {
                 getTextFileFromURL(repositoryURLSkipCache, onRepoFileLoaded, onRepoFileError);
@@ -677,7 +677,7 @@ var readRepoCopyAsset = function(path, callback) {
             }
             return;
         }
-        //console.log('µBlock> readRepoCopyAsset("%s") / onHomeFileLoaded("%s")', path, homeURL);
+        //console.log('weBlock> readRepoCopyAsset("%s") / onHomeFileLoaded("%s")', path, homeURL);
         updateChecksum();
         cachedAssetsManager.save(path, this.responseText, callback);
     };
@@ -702,7 +702,7 @@ var readRepoCopyAsset = function(path, callback) {
             exports.autoUpdate && stringIsNotEmpty(homeURL)
         ) {
             if ( inCache === false || cacheIsObsolete(timestamp) ) {
-                //console.log('µBlock> readRepoCopyAsset("%s") / onCacheMetaReady(): not cached or obsolete', path);
+                //console.log('weBlock> readRepoCopyAsset("%s") / onCacheMetaReady(): not cached or obsolete', path);
                 getTextFileFromURL(homeURL, onHomeFileLoaded, onHomeFileError);
                 return;
             }
@@ -733,7 +733,7 @@ var readRepoCopyAsset = function(path, callback) {
             exports.autoUpdate &&
             assetEntry.localChecksum !== assetEntry.repoChecksum
         ) {
-            //console.log('µBlock> readRepoCopyAsset("%s") / onRepoMetaReady(): repo has newer version', path);
+            //console.log('weBlock> readRepoCopyAsset("%s") / onRepoMetaReady(): repo has newer version', path);
             if ( stringIsNotEmpty(homeURL) ) {
                 getTextFileFromURL(homeURL, onHomeFileLoaded, onHomeFileError);
             } else {
@@ -776,22 +776,22 @@ var readRepoOnlyAsset = function(path, callback) {
     };
 
     var onInstallFileLoaded = function() {
-        //console.log('µBlock> readRepoOnlyAsset("%s") / onInstallFileLoaded()', path);
+        //console.log('weBlock> readRepoOnlyAsset("%s") / onInstallFileLoaded()', path);
         reportBack(this.responseText);
     };
 
     var onInstallFileError = function() {
-        console.error('µBlock> readRepoOnlyAsset("%s") / onInstallFileError()', path);
+        console.error('weBlock> readRepoOnlyAsset("%s") / onInstallFileError()', path);
         reportBack('', 'Error');
     };
 
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock> readRepoOnlyAsset("%s") / onCachedContentLoaded()', path);
+        //console.log('weBlock> readRepoOnlyAsset("%s") / onCachedContentLoaded()', path);
         reportBack(details.content);
     };
 
     var onCachedContentError = function() {
-        //console.log('µBlock> readRepoOnlyAsset("%s") / onCachedContentError()', path);
+        //console.log('weBlock> readRepoOnlyAsset("%s") / onCachedContentError()', path);
         getTextFileFromURL(vAPI.getURL(path), onInstallFileLoaded, onInstallFileError);
     };
 
@@ -799,16 +799,16 @@ var readRepoOnlyAsset = function(path, callback) {
 
     var onRepoFileLoaded = function() {
         if ( typeof this.responseText !== 'string' ) {
-            console.error('µBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s"): no response', path, repositoryURL);
+            console.error('weBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s"): no response', path, repositoryURL);
             cachedAssetsManager.load(path, onCachedContentLoaded, onCachedContentError);
             return;
         }
         if ( YaMD5.hashStr(this.responseText) !== assetEntry.repoChecksum ) {
-            console.error('µBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s"): bad md5 checksum', path, repositoryURL);
+            console.error('weBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s"): bad md5 checksum', path, repositoryURL);
             cachedAssetsManager.load(path, onCachedContentLoaded, onCachedContentError);
             return;
         }
-        //console.log('µBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s")', path, repositoryURL);
+        //console.log('weBlock> readRepoOnlyAsset("%s") / onRepoFileLoaded("%s")', path, repositoryURL);
         assetEntry.localChecksum = assetEntry.repoChecksum;
         updateLocalChecksums();
         cachedAssetsManager.save(path, this.responseText, callback);
@@ -834,7 +834,7 @@ var readRepoOnlyAsset = function(path, callback) {
             exports.autoUpdate &&
             assetEntry.localChecksum !== assetEntry.repoChecksum
         ) {
-            //console.log('µBlock> readRepoOnlyAsset("%s") / onRepoMetaReady(): repo has newer version', path);
+            //console.log('weBlock> readRepoOnlyAsset("%s") / onRepoMetaReady(): repo has newer version', path);
             getTextFileFromURL(repositoryURL, onRepoFileLoaded, onRepoFileError);
             return;
         }
@@ -878,24 +878,24 @@ var readExternalAsset = function(path, callback) {
     };
 
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock> readExternalAsset("%s") / onCachedContentLoaded()', path);
+        //console.log('weBlock> readExternalAsset("%s") / onCachedContentLoaded()', path);
         reportBack(details.content);
     };
 
     var onCachedContentError = function() {
-        console.error('µBlock> readExternalAsset("%s") / onCachedContentError()', path);
+        console.error('weBlock> readExternalAsset("%s") / onCachedContentError()', path);
         reportBack('', 'Error');
     };
 
     var onExternalFileLoaded = function() {
-        // https://github.com/chrisaljoudi/uBlock/issues/708
+        // https://github.com/chrisaljoudi/weBlock/issues/708
         // A successful download should never return an empty file: turn this
         // into an error condition.
         if ( stringIsNotEmpty(this.responseText) === false ) {
             onExternalFileError();
             return;
         }
-        //console.log('µBlock> readExternalAsset("%s") / onExternalFileLoaded1()', path);
+        //console.log('weBlock> readExternalAsset("%s") / onExternalFileLoaded1()', path);
         cachedAssetsManager.save(path, this.responseText);
         reportBack(this.responseText);
     };
@@ -935,12 +935,12 @@ var readExternalAsset = function(path, callback) {
 
 var readUserAsset = function(path, callback) {
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock.assets/readUserAsset("%s")/onCachedContentLoaded()', path);
+        //console.log('weBlock.assets/readUserAsset("%s")/onCachedContentLoaded()', path);
         callback({ 'path': path, 'content': details.content });
     };
 
     var onCachedContentError = function() {
-        //console.log('µBlock.assets/readUserAsset("%s")/onCachedContentError()', path);
+        //console.log('weBlock.assets/readUserAsset("%s")/onCachedContentError()', path);
         callback({ 'path': path, 'content': '' });
     };
 
@@ -956,12 +956,12 @@ var readUserAsset = function(path, callback) {
 
 var readCacheAsset = function(path, callback) {
     var onCachedContentLoaded = function(details) {
-        //console.log('µBlock.assets/readCacheAsset("%s")/onCachedContentLoaded()', path);
+        //console.log('weBlock.assets/readCacheAsset("%s")/onCachedContentLoaded()', path);
         callback({ 'path': path, 'content': details.content });
     };
 
     var onCachedContentError = function() {
-        //console.log('µBlock.assets/readCacheAsset("%s")/onCachedContentError()', path);
+        //console.log('weBlock.assets/readCacheAsset("%s")/onCachedContentError()', path);
         callback({ 'path': path, 'content': '' });
     };
 
@@ -1094,7 +1094,7 @@ exports.rename = function(from, to, callback) {
 exports.metadata = function(callback) {
     var out = {};
 
-    // https://github.com/chrisaljoudi/uBlock/issues/186
+    // https://github.com/chrisaljoudi/weBlock/issues/186
     // We need to check cache obsolescence when both cache and repo meta data
     // has been gathered.
     var checkCacheObsolescence = function() {
@@ -1104,7 +1104,7 @@ exports.metadata = function(callback) {
                 continue;
             }
             entry = out[path];
-            // https://github.com/gorhill/uBlock/issues/528
+            // https://github.com/gorhill/weBlock/issues/528
             // Not having a homeURL property does not mean the filter list
             // is not external.
             homeURL = reIsExternalPath.test(path) ? path : homeURLs[path];
@@ -1188,13 +1188,13 @@ return exports;
 /******************************************************************************/
 /******************************************************************************/
 
-µBlock.assetUpdater = (function() {
+weBlock.assetUpdater = (function() {
 
 'use strict';
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 var updateDaemonTimer = null;
 var autoUpdateDaemonTimerPeriod   = 11 * 60 * 1000; // 11 minutes
@@ -1231,11 +1231,11 @@ var onOneUpdated = function(details) {
     var path = details.path;
     if ( details.error ) {
         manualUpdateNotify(false, updatedCount / (updatedCount + toUpdateCount));
-        //console.debug('µBlock.assetUpdater/onOneUpdated: "%s" failed', path);
+        //console.debug('weBlock.assetUpdater/onOneUpdated: "%s" failed', path);
         return;
     }
 
-    //console.debug('µBlock.assetUpdater/onOneUpdated: "%s"', path);
+    //console.debug('weBlock.assetUpdater/onOneUpdated: "%s"', path);
     updated[path] = true;
     updatedCount += 1;
 
@@ -1279,7 +1279,7 @@ var updateOne = function() {
         // anything else before the resource is fetched (or times out).
         suspendUpdateDaemon();
 
-        //console.debug('µBlock.assetUpdater/updateOne: assets.get("%s")', path);
+        //console.debug('weBlock.assetUpdater/updateOne: assets.get("%s")', path);
         µb.assets.get(path, onOneUpdated);
         updatingCount = 1;
         updatingText = metaEntry.homeURL || path;
@@ -1332,7 +1332,7 @@ var safeStartListener = function(callback) {
             if ( toUpdate.hasOwnProperty(path) ) {
                 continue;
             }
-            //console.debug('assets.js > µBlock.assetUpdater/safeStartListener: "%s"', path);
+            //console.debug('assets.js > weBlock.assetUpdater/safeStartListener: "%s"', path);
             toUpdate[path] = true;
             toUpdateCount += 1;
         }
@@ -1364,7 +1364,7 @@ var updateDaemon = function() {
     // Start an update cycle?
     if ( updateCycleTime !== 0 ) {
         if ( Date.now() >= updateCycleTime ) {
-            //console.debug('µBlock.assetUpdater/updateDaemon: update cycle started');
+            //console.debug('weBlock.assetUpdater/updateDaemon: update cycle started');
             reset();
             safeStartListener();
         }
@@ -1384,7 +1384,7 @@ var updateDaemon = function() {
     // If anything was updated, notify listener
     if ( updatedCount !== 0 ) {
         if ( typeof onCompletedListener === 'function' ) {
-            //console.debug('µBlock.assetUpdater/updateDaemon: update cycle completed');
+            //console.debug('weBlock.assetUpdater/updateDaemon: update cycle completed');
             onCompletedListener({
                 updated: JSON.parse(JSON.stringify(updated)), // give callee its own safe copy
                 updatedCount: updatedCount
@@ -1395,7 +1395,7 @@ var updateDaemon = function() {
     // Schedule next update cycle
     if ( updateCycleTime === 0 ) {
         reset();
-        //console.debug('µBlock.assetUpdater/updateDaemon: update cycle re-scheduled');
+        //console.debug('weBlock.assetUpdater/updateDaemon: update cycle re-scheduled');
         updateCycleTime = Date.now() + updateCycleNextPeriod;
     }
 };
@@ -1524,7 +1524,7 @@ exports.restart = function() {
 
 /******************************************************************************/
 
-// Call when disabling uBlock, to ensure it doesn't stick around as a detached
+// Call when disabling weBlock, to ensure it doesn't stick around as a detached
 // window object in Firefox.
 
 exports.shutdown = function() {

@@ -1,21 +1,21 @@
 # Needed to unbreak web sites, mostly because of hosts file-based filters:
 #   Dan Pollock's, MVPS, Peter Lowe's
 
-# https://github.com/chrisaljoudi/uBlock/issues/20
+# https://github.com/chrisaljoudi/weBlock/issues/20
 # => blocking counterpart in Peter Lowe's Ad Server
 @@||www.google-analytics.com/ga.js^$domain=xda-developers.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/63
+# https://github.com/chrisaljoudi/weBlock/issues/63
 @@||adf.ly^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/69
+# https://github.com/chrisaljoudi/weBlock/issues/69
 @@||widget-cdn.rpxnow.com^$domain=foxnews.com,script
 
-# https://github.com/chrisaljoudi/uBlock/issues/119
+# https://github.com/chrisaljoudi/weBlock/issues/119
 # To counter `google-analytics.com` in Peter Lowe's list
 @@||google-analytics.com^$domain=avianca.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/141
+# https://github.com/chrisaljoudi/weBlock/issues/141
 # Videos broken on weather.com
 # To counter `tags.tiqcdn.com` in  MVPS
 @@||tags.tiqcdn.com/utag/*.js$script,domain=cnet.com|weather.com
@@ -24,27 +24,27 @@
 # To counter `statcounter.com` in Peter Lowe's, MVPS, Dan Pollock's and hpHosts
 @@||statcounter.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/166
+# https://github.com/chrisaljoudi/weBlock/issues/166
 # To counter `liverail.com` in Peter Lowe's, MVPS, and hpHosts
 @@||cdn-static.liverail.com^$object-subrequest
 
-# https://github.com/chrisaljoudi/uBlock/issues/580
+# https://github.com/chrisaljoudi/weBlock/issues/580
 # To counter `liverail.com` in Dan Pollock's, hpHosts, MVPS, Peter Lowe's
 @@||cdn-static.liverail.com$domain=9to5mac.com
 
-# https://github.com/gorhill/uBlock/issues/294
+# https://github.com/gorhill/weBlock/issues/294
 # To counter `liverail.com` in hpHosts, Peter Lowe
 # To counter `vox-static.liverail.com` in Dan Pollock, hpHosts, MVPS
 @@||vox-static.liverail.com/swf/$object-subrequest,domain=cdnapi.kaltura.com
 
 # cnet.com needs this for video players
-# https://github.com/chrisaljoudi/uBlock/issues/227
+# https://github.com/chrisaljoudi/weBlock/issues/227
 # To counter `2mdn.net` in Peter Lowe's
 # To counter `s0.2mdn.net` in MVPS, hpHosts, Dan Pollock's
 @@||s0.2mdn.net/instream/*$domain=cnet.com|nfl.com|wistv.com
 @@||s0.2mdn.net/instream/flash/v3/adsapi_3.swf$object
 
-# https://github.com/chrisaljoudi/uBlock/issues/243
+# https://github.com/chrisaljoudi/weBlock/issues/243
 # To counter `cdn-i.dmdentertainment.com` in hpHosts
 @@||cdn-i.dmdentertainment.com^$domain=cracked.com
 
@@ -58,27 +58,27 @@
 # To counter `adm.fwmrm.net` from hpHosts, MVPS, Dan Pollock's
 @@||adm.fwmrm.net^$domain=go.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/274
+# https://github.com/chrisaljoudi/weBlock/issues/274
 # To counter `mopub.com` in Peter Lowe's
 @@||mopub.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/293
+# https://github.com/chrisaljoudi/weBlock/issues/293
 # To counter `safelinking.net` in hpHosts
 @@||safelinking.net^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/302
+# https://github.com/chrisaljoudi/weBlock/issues/302
 # To counter `outbrain.com` in hpHosts
 @@||outbrain.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/316
+# https://github.com/chrisaljoudi/weBlock/issues/316
 # To counter `inc.com` in Peter Lowe's, hpHosts
 @@||inc.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/336
+# https://github.com/chrisaljoudi/weBlock/issues/336
 # To counter `flurry.com` in Peter Lowe's, hpHosts, MVPS
 @@||flurry.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/374
+# https://github.com/chrisaljoudi/weBlock/issues/374
 # To counter `2mdn.net` in Peter Lowe's, `s0.2mdn.net` in hpHosts
 @@||s0.2mdn.net/instream/*$object,script,domain=wsmv.com
 
@@ -90,17 +90,17 @@
 # To counter `www.googletagservices.com` in MVPS, hpHosts, Dan Pollock's
 @@||www.googletagservices.com/tag/js/gpt.js^$script,domain=weather.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/409
+# https://github.com/chrisaljoudi/weBlock/issues/409
 @@||c.speedtest.net^$~third-party
 
 # To counter Peter Lowe's, hpHosts
 @@||boldchat.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/463
+# https://github.com/chrisaljoudi/weBlock/issues/463
 # To counter Peter Lowe's, hpHosts
 @@||mixpanel.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/466
+# https://github.com/chrisaljoudi/weBlock/issues/466
 # Until fixed in EasyPrivacy
 @@/google-analytics-dashboard
 
@@ -113,12 +113,12 @@ ovh.strim.io#@##tweets
 @@||cdn.turner.com/ads/nba/adfuel.js$domain=www.nba.com
 
 # From Chrome store: "Go to site http://www.vd.nl/ ... links from dropdown top menu do not work"
-# https://github.com/gorhill/uBlock/issues/349 : "conflicting with reddit's gold popup box"
-# https://github.com/chrisaljoudi/uBlock/issues/1546
+# https://github.com/gorhill/weBlock/issues/349 : "conflicting with reddit's gold popup box"
+# https://github.com/chrisaljoudi/weBlock/issues/1546
 # To counter Dan Pollock's, hpHosts, MVPS, Peter Lowe's
 @@||google-analytics.com/analytics.js$domain=reddit.com|trello.com|www.vd.nl
 
-# https://github.com/chrisaljoudi/uBlock/issues/570
+# https://github.com/chrisaljoudi/weBlock/issues/570
 # To counter `yui.yahooapis.com` in hpHosts
 @@||yui.yahooapis.com^
 
@@ -126,11 +126,11 @@ ovh.strim.io#@##tweets
 # To counter `top.mail.ru` in Peter Lowe's
 @@||top.mail.ru^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/602
+# https://github.com/chrisaljoudi/weBlock/issues/602
 # To counter `/ads.css` in EasyList
 @@||css.washingtonpost.com/*/ads.css$stylesheet,~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/607
+# https://github.com/chrisaljoudi/weBlock/issues/607
 # To counter `||pcekspert.com^` in Peter Lowe's
 @@||pcekspert.com^$~third-party
 
@@ -138,19 +138,19 @@ ovh.strim.io#@##tweets
 # To counter `||clickbank.com^` in Dan Pollock's, Peter Lowe's
 @@||clickbank.com^$~third-party
 
-# https://github.com/chrisaljoudi/uBlock/issues/614
+# https://github.com/chrisaljoudi/weBlock/issues/614
 # To counter `awaps.yandex.ru` in hpHosts
 # To counter `mc.yandex.ru` in hpHosts, MVPS
 @@||awaps.yandex.ru^$domain=market.yandex.ru
 @@||mc.yandex.ru^$domain=market.yandex.ru
 @@||yastatic.net/market-export/*/advert.js$domain=market.yandex.ru
 
-# https://github.com/chrisaljoudi/uBlock/issues/650
-# https://github.com/chrisaljoudi/uBlock/issues/821
+# https://github.com/chrisaljoudi/weBlock/issues/650
+# https://github.com/chrisaljoudi/weBlock/issues/821
 # To counter `google-analytics.com` in Dan Pollock's, hpHosts, MVPS, Peter Lowe's
 @@||www.google-analytics.com/ga.js$domain=onlinetv.ru|zie.nl
 
-# https://github.com/chrisaljoudi/uBlock/issues/774
+# https://github.com/chrisaljoudi/weBlock/issues/774
 # To counter `carbonads.net` in Peter Lowe's
 @@||carbonads.net^$~third-party
 
@@ -161,12 +161,12 @@ ovh.strim.io#@##tweets
 # To counter `2o7.net` in Peter Lowe's
 @@||2o7.net^$domain=totaljobs.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/822
-# https://github.com/chrisaljoudi/uBlock/issues/940
+# https://github.com/chrisaljoudi/weBlock/issues/822
+# https://github.com/chrisaljoudi/weBlock/issues/940
 # To counter `google-analytics.com` in Dan Pollock's, hpHosts, MVPS, Peter Lowe's
 @@||google-analytics.com^$domain=musixmatch.com|bikstok.sonymusicshop.dk
 
-# https://github.com/chrisaljoudi/uBlock/issues/841
+# https://github.com/chrisaljoudi/weBlock/issues/841
 # To counter `quantcast.com` in hpHosts, Peter Lowe's
 @@||quantcast.com^$~third-party
 
@@ -178,7 +178,7 @@ ovh.strim.io#@##tweets
 # To counter `/keen.min.js` in EasyPrivacy
 @@||keen.github.io/*/keen.min.js$~third-party
 
-# https://github.com/gorhill/uBlock/issues/182
+# https://github.com/gorhill/weBlock/issues/182
 # http://www.okgoals.com/match-highlights-1425491618---41
 # To counter `intergi.com` in Peter Lowe's. For example, breaks:
 # explosm.net
@@ -199,7 +199,7 @@ ovh.strim.io#@##tweets
 # http://www.reddit.com/r/ublock/comments/32k908/cnncom_videos_wont_load_w_%C2%B5block_enabled/
 @@||i.cdn.turner.com/xslo/cvp/ads/freewheel/bundles/2/*$domain=cnn.com
 
-# https://github.com/chrisaljoudi/uBlock/issues/1421
+# https://github.com/chrisaljoudi/weBlock/issues/1421
 # To counter hpHost, MVPS, Peter Lowe: `woopra.com`
 @@||woopra.com^$~third-party
 
@@ -207,7 +207,7 @@ ovh.strim.io#@##tweets
 # Until the fix is in EasyPrivacy
 @@||monetate.net/*$script,domain=www.newegg.com
 
-# https://github.com/gorhill/uBlock/issues/372
+# https://github.com/gorhill/weBlock/issues/372
 @@||googleads.g.doubleclick.net/ads/preferences/getcookie$popup,domain=myaccount.google.com
 
 # http://www.reddit.com/r/AsianBeauty/comments/3ak15v/til_if_youre_using_ublock_origin_some_of_the/
@@ -220,7 +220,7 @@ ovh.strim.io#@##tweets
 # https://forums.lanik.us/viewtopic.php?f=64&t=24764
 @@/b/ss/*&aqe=$image,domain=aeroplan.com
 
-# https://github.com/gorhill/uBlock/issues/780
+# https://github.com/gorhill/weBlock/issues/780
 @@||www.google-analytics.com/plugins/ua/linkid.js$script,domain=support.amd.com
 @@||www.google-analytics.com/analytics.js$script,domain=support.amd.com
 @@||www.googletagmanager.com/gtm.js$script,domain=support.amd.com

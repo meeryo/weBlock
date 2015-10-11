@@ -1,8 +1,8 @@
 In effisjnte adblocker: brûkt hast gjin prosessorkrêft en ûnthâld. Dochs kin it tûzenen filters mear lade en tapasse as oare populêre adblockers.
 
-Yllustrearre effisjinsjefergeliking: https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+Yllustrearre effisjinsjefergeliking: https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
-Gebrûk: Mei de grutte oan-útknop yn de pop-up kin uBlock permanint yn- of útskeakele wurde foar de aktuele website. It wurdt inkeld op de aktuele website tapast. It is gjin globale oan-útknop.
+Gebrûk: Mei de grutte oan-útknop yn de pop-up kin weBlock permanint yn- of útskeakele wurde foar de aktuele website. It wurdt inkeld op de aktuele website tapast. It is gjin globale oan-útknop.
 
 ***
 
@@ -24,7 +24,7 @@ Der binne mear listen beskikber dy't jo ynskeakelje kin:
 - Spam404
 - En in protte mear
 
-Natuerlik wurdt it ûnthâldgebrûk grutter as der mear filters ynskeakele wurde. Mar sels nei it ynskeakeljen fan Fanboy's twa ekstra listen, hpHosts’s Ad en tracking servers, hat uBlock in leger ûnthâldgebrûk as oare populêre blockers.
+Natuerlik wurdt it ûnthâldgebrûk grutter as der mear filters ynskeakele wurde. Mar sels nei it ynskeakeljen fan Fanboy's twa ekstra listen, hpHosts’s Ad en tracking servers, hat weBlock in leger ûnthâldgebrûk as oare populêre blockers.
 
 Let op, it gebrûk fan guon fan dizze ekstra listen ferheget de kâns dat websites net korrekt werjûn wurde -- seker de listen dy't normaal as hosts-bestân brûkt wurde.
 
@@ -38,7 +38,7 @@ Fergees.
 Open source mei publike lisinsje (GPLv3)
 Foar brûkers, troch brûkers.
 
-Meiwurkers @ Github: https://github.com/gorhill/uBlock/graphs/contributors
+Meiwurkers @ Github: https://github.com/gorhill/weBlock/graphs/contributors
 Meiwurkers @ Crowdin: https://crowdin.net/project/ublock
 
 ***
@@ -46,4 +46,4 @@ Meiwurkers @ Crowdin: https://crowdin.net/project/ublock
 Unthâld dat dit in hiele betide ferzje is as jo kommentaar leverje.
 
 Projektwizigingslochboek:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

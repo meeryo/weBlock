@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014-2015 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock */
+/* global weBlock */
 
 /*******************************************************************************
 
@@ -33,13 +33,13 @@ To create a log of net requests
 /******************************************************************************/
 /******************************************************************************/
 
-µBlock.PageStore = (function() {
+weBlock.PageStore = (function() {
 
 'use strict';
 
 /******************************************************************************/
 
-var µb = µBlock;
+var µb = weBlock;
 
 /******************************************************************************/
 /******************************************************************************/
@@ -316,7 +316,7 @@ PageStore.prototype.init = function(tabId) {
         'cosmetic-filtering'
     );
     if ( this.skipCosmeticFiltering && µb.logger.isEnabled() ) {
-        // https://github.com/gorhill/uBlock/issues/370
+        // https://github.com/gorhill/weBlock/issues/370
         // Log using `cosmetic-filtering`, not `elemhide`.
         µb.logger.writeOne(
             tabId,
@@ -348,7 +348,7 @@ PageStore.prototype.reuse = function(context) {
     // video thumbnail would not work, because the frame hierarchy structure
     // was flushed from memory, while not really being flushed on the page.
     if ( context === 'tabUpdated' ) {
-        // As part of https://github.com/chrisaljoudi/uBlock/issues/405
+        // As part of https://github.com/chrisaljoudi/weBlock/issues/405
         // URL changed, force a re-evaluation of filtering switch
         this.rawURL = tabContext.rawURL;
         this.netFilteringReadTime = 0;
@@ -449,7 +449,7 @@ PageStore.prototype.getNetFilteringSwitch = function() {
         return this.netFiltering;
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/1078
+    // https://github.com/chrisaljoudi/weBlock/issues/1078
     // Use both the raw and normalized URLs.
     this.netFiltering = µb.getNetFilteringSwitch(tabContext.normalURL);
     if ( this.netFiltering && tabContext.rawURL !== tabContext.normalURL ) {

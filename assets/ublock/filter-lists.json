@@ -145,7 +145,7 @@
         },
     "http://www.certyficate.it/adblock/adblock.txt": {
         "off": true,
-        "title": "POL: polskie filtry do Adblocka i uBlocka",
+        "title": "POL: polskie filtry do Adblocka i weBlocka",
         "group": "regions",
         "supportURL": "http://www.certyficate.it/adblock-ublock-polish-filters/"
         },

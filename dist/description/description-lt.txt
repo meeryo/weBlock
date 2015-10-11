@@ -1,9 +1,9 @@
 Efektyvus blokatorius: neapkraunantis procesoriaus ir atminties, bet galintis taikyti tūkstančiais daugiau filtrų, nei kiti populiarūs blokatoriai.
 
 Iliustruota efektyvumo apžvalga:
-https://github.com/gorhill/uBlock/wiki/uBlock-vs.-ABP:-efficiency-compared
+https://github.com/gorhill/weBlock/wiki/weBlock-vs.-ABP:-efficiency-compared
 
-Naudojimas: didelis įjungimo mygtukas iškylančiame lange skirtas įjungti/išjungti uBlock dabartiniam puslapiui. Jis skirtas tik dabartiniam puslapiui ir nėra naudojamas visiškai išjungti plėtinį.
+Naudojimas: didelis įjungimo mygtukas iškylančiame lange skirtas įjungti/išjungti weBlock dabartiniam puslapiui. Jis skirtas tik dabartiniam puslapiui ir nėra naudojamas visiškai išjungti plėtinį.
 
 ***
 
@@ -25,7 +25,7 @@ Jei tik norite, galite pasirinkti dar daugiau sąrašų:
 - Spam404
 - Ir daugybę kitų
 
-Žinoma, kuo daugiau įjungsite filtrų, tuo labiau bus apkrauta operatyvioji atmintinė. Tačiau, net ir pridėjus du Fanboy sąrašus bei hpHosts reklamų ir sekimo serverius, uBlock naudoja žymiai mažiau atminties nei kiti populiarūs blokatoriai.
+Žinoma, kuo daugiau įjungsite filtrų, tuo labiau bus apkrauta operatyvioji atmintinė. Tačiau, net ir pridėjus du Fanboy sąrašus bei hpHosts reklamų ir sekimo serverius, weBlock naudoja žymiai mažiau atminties nei kiti populiarūs blokatoriai.
 
 Taip pat žinokite, kad pridėjus kelis kitus sąrašus, padidėja tikimybė, kad puslapis nebus rodomas tvarkingai, tai ypač galioja sąrašams, kurie dažniausiai naudojami kaip „hosts“ failai.
 
@@ -39,7 +39,7 @@ Nemokamas.
 Atviroji programinė įranga su viešąja licencija (GPLv3)
 Naudotojų naudotojams.
 
-Github talkininkai: https://github.com/gorhill/uBlock/graphs/contributors
+Github talkininkai: https://github.com/gorhill/weBlock/graphs/contributors
 Crowdin talkininkai: https://crowdin.net/project/ublock
 
 ***
@@ -47,4 +47,4 @@ Crowdin talkininkai: https://crowdin.net/project/ublock
 Tai pakankamai ankstyva versija, turėkite tai omenyje, kai rašysite apžvalgą.
 
 Projekto pakeitimų žurnalas:
-https://github.com/gorhill/uBlock/releases
+https://github.com/gorhill/weBlock/releases

@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global µBlock */
+/* global weBlock */
 'use strict';
 
 /******************************************************************************/
 
-// This will inserted as a module in the µBlock object.
+// This will inserted as a module in the weBlock object.
 
-µBlock.utils = (function() {
+weBlock.utils = (function() {
 
 /******************************************************************************/
 

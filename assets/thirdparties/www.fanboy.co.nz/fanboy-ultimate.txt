@@ -39081,7 +39081,7 @@ smarter.com##.favboxmiddlesearch
 smarter.com##.favwrapper
 facebook.com##.fbAdUnit
 facebook.com##.fbEmu
-facebook.com##.fbEmuBlock
+facebook.com##.fbEmweBlock
 facebook.com##.fbEmuComboList
 facebook.com##.fbEmuEgo
 facebook.com##.fbEmuEgoUnit

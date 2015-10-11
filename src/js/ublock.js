@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    µBlock - a browser extension to block requests.
+    weBlock - a browser extension to block requests.
     Copyright (C) 2014 Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see {http://www.gnu.org/licenses/}.
 
-    Home: https://github.com/gorhill/uBlock
+    Home: https://github.com/gorhill/weBlock
 */
 
-/* global vAPI, µBlock */
+/* global vAPI, weBlock */
 
 /******************************************************************************/
 
@@ -29,7 +29,7 @@
 
 /******************************************************************************/
 
-// https://github.com/chrisaljoudi/uBlock/issues/405
+// https://github.com/chrisaljoudi/weBlock/issues/405
 // Be more flexible with whitelist syntax
 
 // Any special regexp char will be escaped
@@ -64,7 +64,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.getNetFilteringSwitch = function(url) {
+weBlock.getNetFilteringSwitch = function(url) {
     var netWhitelist = this.netWhitelist;
     var buckets, i, pos;
     var targetHostname = this.URI.hostnameFromURI(url);
@@ -91,7 +91,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.toggleNetFilteringSwitch = function(url, scope, newState) {
+weBlock.toggleNetFilteringSwitch = function(url, scope, newState) {
     var currentState = this.getNetFilteringSwitch(url);
     if ( newState === undefined ) {
         newState = !currentState;
@@ -152,7 +152,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.stringFromWhitelist = function(whitelist) {
+weBlock.stringFromWhitelist = function(whitelist) {
     var r = {};
     var i, bucket;
     for ( var key in whitelist ) {
@@ -170,7 +170,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.whitelistFromString = function(s) {
+weBlock.whitelistFromString = function(s) {
     var whitelist = {
         '#': []
     };
@@ -180,7 +180,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
     var line, matches, key, directive;
     for ( var i = 0; i < lines.length; i++ ) {
         line = lines[i].trim();
-        // https://github.com/gorhill/uBlock/issues/171
+        // https://github.com/gorhill/weBlock/issues/171
         // Skip empty lines
         if ( line === '' ) {
             continue;
@@ -214,14 +214,14 @@ var matchWhitelistDirective = function(url, hostname, directive) {
             }
         }
 
-        // https://github.com/gorhill/uBlock/issues/171
+        // https://github.com/gorhill/weBlock/issues/171
         // Skip empty keys
         if ( key === '' ) {
             continue;
         }
 
         // Be sure this stays fixed:
-        // https://github.com/chrisaljoudi/uBlock/issues/185
+        // https://github.com/chrisaljoudi/weBlock/issues/185
         if ( whitelist.hasOwnProperty(key) === false ) {
             whitelist[key] = [];
         }
@@ -234,7 +234,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 // Return all settings if none specified.
 
-µBlock.changeUserSettings = function(name, value) {
+weBlock.changeUserSettings = function(name, value) {
     if ( name === undefined ) {
         return this.userSettings;
     }
@@ -291,7 +291,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.elementPickerExec = function(tabId, targetElement) {
+weBlock.elementPickerExec = function(tabId, targetElement) {
     if ( vAPI.isBehindTheSceneTabId(tabId) ) {
         return;
     }
@@ -304,14 +304,14 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.toggleFirewallRule = function(details) {
+weBlock.toggleFirewallRule = function(details) {
     if ( details.action !== 0 ) {
         this.sessionFirewall.setCellZ(details.srcHostname, details.desHostname, details.requestType, details.action);
     } else {
         this.sessionFirewall.unsetCell(details.srcHostname, details.desHostname, details.requestType);
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/731#issuecomment-73937469
+    // https://github.com/chrisaljoudi/weBlock/issues/731#issuecomment-73937469
     if ( details.persist ) {
         if ( details.action !== 0 ) {
             this.permanentFirewall.setCellZ(details.srcHostname, details.desHostname, details.requestType, details.action);
@@ -321,13 +321,13 @@ var matchWhitelistDirective = function(url, hostname, directive) {
         this.savePermanentFirewallRules();
     }
 
-    // https://github.com/chrisaljoudi/uBlock/issues/420
+    // https://github.com/chrisaljoudi/weBlock/issues/420
     this.cosmeticFilteringEngine.removeFromSelectorCache(details.srcHostname, 'net');
 };
 
 /******************************************************************************/
 
-µBlock.toggleURLFilteringRule = function(details) {
+weBlock.toggleURLFilteringRule = function(details) {
     var changed = this.sessionURLFiltering.setRule(
         details.context,
         details.url,
@@ -359,19 +359,19 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.isBlockResult = function(result) {
+weBlock.isBlockResult = function(result) {
     return typeof result === 'string' && result.charAt(1) === 'b';
 };
 
 /******************************************************************************/
 
-µBlock.isAllowResult = function(result) {
+weBlock.isAllowResult = function(result) {
     return typeof result !== 'string' || result.charAt(1) !== 'b';
 };
 
 /******************************************************************************/
 
-µBlock.toggleHostnameSwitch = function(details) {
+weBlock.toggleHostnameSwitch = function(details) {
     if ( this.hnSwitches.toggleZ(details.name, details.hostname, !!details.deep, details.state) ) {
         this.saveHostnameSwitches();
     }
@@ -391,12 +391,12 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.logCosmeticFilters = (function() {
+weBlock.logCosmeticFilters = (function() {
     var tabIdToTimerMap = {};
 
     var injectNow = function(tabId) {
         delete tabIdToTimerMap[tabId];
-        µBlock.scriptlets.injectDeep(tabId, 'cosmetic-logger');
+        weBlock.scriptlets.injectDeep(tabId, 'cosmetic-logger');
     };
 
     var injectAsync = function(tabId) {
@@ -414,7 +414,7 @@ var matchWhitelistDirective = function(url, hostname, directive) {
 
 /******************************************************************************/
 
-µBlock.scriptlets = (function() {
+weBlock.scriptlets = (function() {
     var pendingEntries = Object.create(null);
 
     var Entry = function(tabId, scriptlet, callback) {
