@@ -861,18 +861,41 @@ var updateVote = function() {
 /******************************************************************************/
 
 var changeGlobalSlider = function(event) {
-    console.log(event.target.value);
-    var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generate/' + event.target.value;
+    var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generateByPercentile';
+    var body = {
+        rating: event.currentTarget.value
+    };
     var xhr = new XMLHttpRequest();
-    xhr.open('get', url, true);
+    xhr.open('POST', url, true);
     xhr.timeout = 10000;
-    xhr.method = 'GET';
     xhr.responseType = 'json';
     xhr.onload = function() {
-        console.log(xhr.reponsive.list);
+        var response = _getResponse(this);
+        var filterUrl = response.list;
+
+        messager.send({
+            what: 'userSettings',
+            name: 'externalLists',
+            value: filterUrl
+        }, function() {
+            messager.send({ what: 'reloadAllFilters' });
+        });
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send();
+    xhr.send(JSON.stringify(body));
+};
+
+var _getResponse = function(xhr) {
+    var data;
+    if (!xhr.responseType || xhr.responseType === "text") {
+        data = xhr.responseText;
+    } else if (xhr.responseType === "document") {
+        data = xhr.responseXML;
+    } else {
+        data = xhr.response;
+    }
+    return data;
+
 };
 
 /*********************************************/
