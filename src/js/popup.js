@@ -216,113 +216,27 @@ var addFirewallRow = function(des) {
 /******************************************************************************/
 
 var updateFirewallCell = function(scope, des, type, rule) {
-    var selector = '#firewallContainer span[data-src="' + scope + '"][data-des="' + des + '"][data-type="' + type + '"]';
-    var cell = uDom(selector);
-
-    // This should not happen
-    if ( cell.length === 0 ) {
-        return;
-    }
-
-    cell.removeClass();
-    var action = rule.charAt(1);
-    if ( action !== '' ) {
-        cell.toggleClass(action + 'Rule', true);
-    }
-
-    // Use dark shade visual cue if the filter is specific to the cell.
-    var ownRule = false;
-    var matches = reSrcHostnameFromRule.exec(rule);
-    if ( matches !== null ) {
-        ownRule = (matches[2] !== '*' || matches[3] === type) &&
-                  (matches[2] === des) &&
-                  (matches[1] === scopeToSrcHostnameMap[scope]);
-    }
-    cell.toggleClass('ownRule', ownRule);
-
-    if ( scope !== '.' || des === '*' ) {
-        return;
-    }
-
-    // IMPORTANT: It is completely assumed the first node is a TEXT_NODE, so
-    //            ensure this in the HTML file counterpart when you make
-    //            changes
-    var textNode = cell.nodeAt(0).firstChild;
-
-    // Remember this may be a cell from a reused row, we need to clear text
-    // content if we can't compute request counts.
-    if ( popupData.hostnameDict.hasOwnProperty(des) === false ) {
-        textNode.nodeValue = ' ';
-        return;
-    }
-
-    var hnDetails = popupData.hostnameDict[des];
-    var aCount = hnDetails.allowCount;
-    var bCount = hnDetails.blockCount;
-    if ( aCount !== 0 || bCount !== 0 ) {
-        // https://github.com/chrisaljoudi/uBlock/issues/471
-        aCount = Math.min(Math.ceil(Math.log(aCount + 1) / Math.LN10), 3);
-        bCount = Math.min(Math.ceil(Math.log(bCount + 1) / Math.LN10), 3);
-        textNode.nodeValue = threePlus.slice(0, aCount) +
-                             sixSpace.slice(aCount + bCount) +
-                             threeMinus.slice(0, bCount);
-    } else {
-        textNode.nodeValue = ' ';
-    }
-
-    if ( hnDetails.domain !== des ) {
-        return;
-    }
-
-    textNode = cell.nodeAt(1).firstChild;
-    aCount = hnDetails.totalAllowCount;
-    bCount = hnDetails.totalBlockCount;
-    if ( aCount !== 0 || bCount !== 0 ) {
-        // https://github.com/chrisaljoudi/uBlock/issues/471
-        aCount = Math.min(Math.ceil(Math.log(aCount + 1) / Math.LN10), 3);
-        bCount = Math.min(Math.ceil(Math.log(bCount + 1) / Math.LN10), 3);
-        textNode.nodeValue = threePlus.slice(0, aCount) +
-                             sixSpace.slice(aCount + bCount) +
-                             threeMinus.slice(0, bCount);
-    } else {
-        textNode.nodeValue = ' ';
-    }
+    return;
 };
 
 /******************************************************************************/
 
 var updateAllFirewallCells = function() {
-    var rules = popupData.firewallRules;
-    for ( var key in rules ) {
-        if ( rules.hasOwnProperty(key) === false ) {
-            continue;
-        }
-        updateFirewallCell(
-            key.charAt(0),
-            key.slice(2, key.indexOf(' ', 2)),
-            key.slice(key.lastIndexOf(' ') + 1),
-            rules[key]
-        );
-    }
-
-    positionRulesetTools();
-
-    uDom.nodeFromId('firewallContainer').classList.toggle(
-        'dirty',
-        popupData.matrixIsDirty === true
-    );
+    return;
 };
 
 /******************************************************************************/
 
 var buildAllFirewallRows = function() {
     // Do this before removing the rows
+    /*
     if ( dfHotspots === null ) {
         dfHotspots = uDom('#actionSelector')
             .toggleClass('colorBlind', popupData.colorBlindFriendly)
             .on('click', 'span', setFirewallRuleHandler);
     }
     dfHotspots.detach();
+    */
 
     // Remove and reuse all rows: the order may have changed, we can't just
     // reuse them in-place.
@@ -334,14 +248,13 @@ var buildAllFirewallRows = function() {
     }
 
     if ( dfPaneBuilt !== true ) {
-        uDom('#firewallContainer')
+        /*uDom('#firewallContainer')
             .on('click', 'span[data-src]', unsetFirewallRuleHandler)
             .on('mouseenter', '[data-src]', mouseenterCellHandler)
             .on('mouseleave', '[data-src]', mouseleaveCellHandler);
+            */
         dfPaneBuilt = true;
     }
-
-    updateAllFirewallCells();
 };
 
 /******************************************************************************/
@@ -587,12 +500,14 @@ var toggleFirewallPane = function() {
 /******************************************************************************/
 
 var mouseenterCellHandler = function() {
+  return;
     if ( uDom(this).hasClass('ownRule') === false ) {
         dfHotspots.appendTo(this);
     }
 };
 
 var mouseleaveCellHandler = function() {
+  return;
     dfHotspots.detach();
 };
 
@@ -600,6 +515,7 @@ var mouseleaveCellHandler = function() {
 
 var setFirewallRule = function(src, des, type, action, persist) {
     // This can happen on pages where uBlock does not work
+    return;
     if ( typeof popupData.pageHostname !== 'string' || popupData.pageHostname === '' ) {
         return;
     }
@@ -623,6 +539,7 @@ var setFirewallRule = function(src, des, type, action, persist) {
 /******************************************************************************/
 
 var unsetFirewallRuleHandler = function(ev) {
+  return;
     var cell = uDom(this);
     setFirewallRule(
         cell.attr('data-src') === '/' ? '*' : popupData.pageHostname,
@@ -637,6 +554,7 @@ var unsetFirewallRuleHandler = function(ev) {
 /******************************************************************************/
 
 var setFirewallRuleHandler = function(ev) {
+  return;
     var hotspot = uDom(this);
     var cell = hotspot.ancestors('[data-src]');
     if ( cell.length === 0 ) {
@@ -694,6 +612,7 @@ var toggleMinimize = function() {
 /******************************************************************************/
 
 var saveFirewallRules = function() {
+  return;
     messager.send({
         what: 'saveFirewallRules',
         srcHostname: popupData.pageHostname,
@@ -705,6 +624,7 @@ var saveFirewallRules = function() {
 /******************************************************************************/
 
 var revertFirewallRules = function() {
+  return;
     var onFirewallRuleChanged = function(response) {
         cachePopupData(response);
         updateAllFirewallCells();
