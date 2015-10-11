@@ -23,11 +23,15 @@ Now that we've shown the direction we are taking with weBlock in the period of 3
 
 ## Installation
 1. Clone this repository:
-`git clone git@github.com:sangyounkim/weBlock.git`
+```bash
+git clone git@github.com:sangyounkim/weBlock.git
+```
 2. Change into the cloned directory & run install script:
-`cd weBlock && tools/make-chromium.sh`
-3. Enable Developer mode
-4. Open Google Chrome > Go to Extensions > Load unpacked extension...
+```bash
+cd weBlock && tools/make-chromium.sh
+```
+3. Open Google Chrome > `Go to Extensions` > Enable Developer mode
+4. Select `Load unpacked extension...`
 5. Select the `dist/build/weBlock0.chromium/` directory under the your cloned directory
 6. Browse to any web page and you are ready to go! :happy
 
