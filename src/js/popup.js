@@ -760,20 +760,26 @@ var onHideTooltip = function() {
     uDom.nodeFromId('tooltip').classList.remove('show');
 };
 
-var updateVote = function() {
+var updateVote = function(event) {
     var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/rate';
     var xhr = new XMLHttpRequest();
-    var vote = this.dataset.vote === '+' ? 1 : -1;
+    var isActive = uDom(event.currentTarget).hasClass('active');
+    var value = this.dataset.vote === '+' ? 1 : -1;
+    if (isActive) {
+        value *= -1;
+    }
     var body = {
         'url': this.parentElement.dataset.des,
-        'rating': vote
+        'rating': value
     };
 
     xhr.open('post', url, true);
     xhr.timeout = 10000;
     xhr.method = 'POST';
     xhr.responseType = 'json';
-    xhr.onload = function() {};
+    xhr.onload = function() {
+        uDom(this).toggleClass('active');
+    }.bind(this);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
 };

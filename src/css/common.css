@@ -12,6 +12,9 @@
     line-height: 1;
     vertical-align: middle;
     }
+.active {
+    color: #0275d8;
+}
 body {
     background-color: white;
     color: black;
