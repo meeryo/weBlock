@@ -844,7 +844,6 @@ var _getResponse = function(xhr) {
     if (vAPI.localStorage.getItem('sliderValue') === null) {
         vAPI.localStorage.setItem('sliderValue', '50');
     }
-    console.log(vAPI.localStorage.getItem('sliderValue'));
     uDom('#switch').on('click', toggleNetFilteringSwitch);
     uDom('#gotoPick').on('click', gotoPick);
     uDom('a[href]').on('click', gotoURL);
