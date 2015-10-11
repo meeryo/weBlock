@@ -781,7 +781,7 @@ var updateVote = function() {
 /******************************************************************************/
 
 var changeGlobalSlider = function(event) {
-    console.log(event.target.value);
+    vAPI.localStorage.setItem('sliderValue', event.target.value.toString());
     document.getElementById('sliderValue').innerHTML = event.target.value;
     var url = 'http://calhacksmachine.cloudapp.net:5000/api/v1.0/generateByPercentile';
     var body = {
@@ -826,14 +826,17 @@ var _getResponse = function(xhr) {
     // If there's no tab id specified in the query string,
     // it will default to current tab.
     var tabId = null;
-
+    window.sliderValue = 50;
     // Extract the tab id of the page this popup is for
     var matches = window.location.search.match(/[\?&]tabId=([^&]+)/);
     if ( matches && matches.length === 2 ) {
         tabId = matches[1];
     }
     getPopupData(tabId);
-
+    if (vAPI.localStorage.getItem('sliderValue') === null) {
+        vAPI.localStorage.setItem('sliderValue', '50');
+    }
+    console.log(vAPI.localStorage.getItem('sliderValue'));
     uDom('#switch').on('click', toggleNetFilteringSwitch);
     uDom('#gotoPick').on('click', gotoPick);
     uDom('a[href]').on('click', gotoURL);
@@ -844,8 +847,8 @@ var _getResponse = function(xhr) {
     uDom('#revertRules').on('click', revertFirewallRules);
     uDom('[data-i18n="popupAnyRulePrompt"]').on('click', toggleMinimize);
     document.getElementById('sliderInput').addEventListener('change', changeGlobalSlider);
-    document.getElementById('sliderInput').defaultValue = 50;
-    document.getElementById('sliderValue').innerHTML = 50;
+    document.getElementById('sliderInput').defaultValue = parseInt(vAPI.localStorage.getItem('sliderValue'));
+    document.getElementById('sliderValue').innerHTML = parseInt(vAPI.localStorage.getItem('sliderValue'));
     uDom('body').on('mouseenter', '[data-tip]', onShowTooltip)
                 .on('mouseleave', '[data-tip]', onHideTooltip);
 })();
